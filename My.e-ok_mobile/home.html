@@ -484,8 +484,11 @@
             $('#dteVanPopup').css('display', 'none');
             $('#dteTotPopup').css('display', 'none');
             $('#' + e.target.id + 'Popup').css('display', 'inline');
-            document.activeElement.blur();
-            $("input").blur();
+
+            
+            $("input#dteVan").blur();
+            $("input#dteTot").blur();
+            $('#btnDetailDagen').focus();
         } else {
             if (popupActive) {
                 if (!mouse_is_inside && !firstclick) {
