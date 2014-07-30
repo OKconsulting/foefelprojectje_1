@@ -365,12 +365,10 @@ div.customDatepicker table tbody td a {
 }
 
 #opPageFooter, #abPageFooter {
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    margin-left: -16px;
-    bottom: 0;
-    margin-bottom: 20px;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -71px;
 }
 
 #loadingDivSaldi, #loadingDivHist {
@@ -386,6 +384,7 @@ div.customDatepicker table tbody td a {
     background-color: white;
     width: 75px;
     height: 75px;
+    border-radius: 38px;    
 }
 
 #loadingDivSaldi img, #loadingDivHist img {

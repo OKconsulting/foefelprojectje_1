@@ -110,7 +110,6 @@
             <form id="verlofAanvr">
                 <fieldset>
                     <label id="lblDatVan">Datum van</label>
-                    <!--<div id="dtpVanOverlay"></div>-->
                     <input name="dteVan" id="dteVan" type="text" data-theme="a" onfocus="showDteVanPopup('dteVan')" oninput="clearVanDte()" readonly />
                     <!--<input name="dteVan" id="dteVan" type="text" data-role="date" data-theme="a" oninput="clearVanDte()">-->
                     <label id="lblDatTot">Datum tot</label>
@@ -466,7 +465,7 @@
         kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup');
         dteTarget = target;
     }
-
+/*
     var mouse_is_inside = false;
     $('#dteVanPopup').hover(function () {
         mouse_is_inside = true;
@@ -477,7 +476,7 @@
         mouse_is_inside = true;
     }, function () {
         mouse_is_inside = false;
-    });
+    });*/
 
     var firstclick = false;
     window.onclick = function (e) {
@@ -487,7 +486,7 @@
             $('#' + e.target.id + 'Popup').css('display', 'inline');
         } else {
             if (popupActive) {
-                if (!mouse_is_inside && !firstclick) {
+                if (e.target.className.indexOf('ui-datepicker') == -1 && !firstclick) {
                     $('#dteVanPopup').css('display', 'none');
                     $('#dteTotPopup').css('display', 'none');
                     popupActive = false;
