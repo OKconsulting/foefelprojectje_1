@@ -110,10 +110,11 @@
             <form id="verlofAanvr">
                 <fieldset>
                     <label id="lblDatVan">Datum van</label>
-                    <input name="dteVan" id="dteVan" type="text" data-theme="a" onfocus="showDteVanPopup('dteVan')" oninput="clearVanDte()" />
+                    <!--<div id="dtpVanOverlay"></div>-->
+                    <input name="dteVan" id="dteVan" type="text" data-theme="a" onfocus="showDteVanPopup('dteVan')" oninput="clearVanDte()" readonly />
                     <!--<input name="dteVan" id="dteVan" type="text" data-role="date" data-theme="a" oninput="clearVanDte()">-->
                     <label id="lblDatTot">Datum tot</label>
-                    <input name="dteTot" id="dteTot" type="text" data-theme="a" onfocus="showDteTotPopup('dteTot')" oninput="clearTotDte()" />
+                    <input name="dteTot" id="dteTot" type="text" data-theme="a" onfocus="showDteTotPopup('dteTot')" oninput="clearTotDte()" readonly />
                     <!--<input name="dteTot" id="dteTot" type="text" data-role="date" data-theme="a" oninput="clearTotDte()">-->
                     <div class="ui-body-a">
                         <a id="btnDetailDagen" onclick="haalDagenOp()" href="#" data-transition="none" class="ui-btn" data-role="none" data-position-to="window">Details dagen</a>
@@ -484,13 +485,6 @@
             $('#dteVanPopup').css('display', 'none');
             $('#dteTotPopup').css('display', 'none');
             $('#' + e.target.id + 'Popup').css('display', 'inline');
-
-            setTimeout(function () {
-                $("input#dteVan").blur();
-                $("input#dteTot").blur();
-                $('#btnDetailDagen').focus();
-            }, 3000);
-            
         } else {
             if (popupActive) {
                 if (!mouse_is_inside && !firstclick) {
