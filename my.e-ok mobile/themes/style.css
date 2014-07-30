@@ -189,7 +189,7 @@ ol, ul {
     text-shadow: 0px 0px;
     font-weight: normal;
 }
-/*
+
 table#table-column-toggle th, table#table-column-toggle_historiek th {
     text-transform: uppercase;
     font-size: .7em;
@@ -213,7 +213,7 @@ table#table-column-toggle thead th:first-child, table#table-column-toggle_histor
 a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-popup"] {
     width: 100%;
     padding: 8.75px 0px;
-}*/
+}
 
 #Toon-kalender > a {
     position: absolute;
@@ -365,13 +365,15 @@ div.customDatepicker table tbody td a {
 }
 
 #opPageFooter, #abPageFooter {
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-    margin-left: -71px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    margin-left: -16px;
+    bottom: 0;
+    margin-bottom: 20px;
 }
 
-#loadingDivSaldi, #loadingDivHist {
+#loadingDivSaldi, #loadingDivHist, #loadingDivDetailsDagen {
     position: absolute;
     z-index: 1;
     width: 120px;
@@ -384,10 +386,10 @@ div.customDatepicker table tbody td a {
     background-color: white;
     width: 75px;
     height: 75px;
-    border-radius: 38px;    
+    border-radius: 38px;
 }
 
-#loadingDivSaldi img, #loadingDivHist img {
+#loadingDivSaldi img, #loadingDivHist img, #loadingDivDetailsDagen img {
     margin-top: 12px;
     margin-left: 12px;
 }
@@ -473,5 +475,6 @@ table#tblPCodes thead th:first-child, #tblHist thead th:first-child{
     text-align: left;
 }
 
-
-
+#btnDetailDagen {
+    width: 100%;
+}

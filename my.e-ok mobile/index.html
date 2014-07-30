@@ -29,10 +29,10 @@
         <div data-role="footer">
             <img src="images/logo-okc.png" />
         </div>
+        <script src="scripts/DatabaseConnection.js"></script>
         <script>
             var timeout;
             $(document).ready(function () {
-                window.localStorage.removeItem('mdwID');
                 var mdwID = window.localStorage.getItem("mdwID");
                 if (mdwID != null) {
                     window.localStorage.setItem("mdwID", mdwID);
@@ -58,16 +58,38 @@
                 login();
             });
 
-            var intI = 0;
             function login() {
-                if (intI == 0) {
-                    $('#containerLogin').css('display', 'block');
-                    $('#containerLoading').css('display', 'none');
-                    melding('blurred');
-                    intI++;
-                }
-                else
-                    window.location.href = "./home.html#home";
+                console.log('login');
+                var user = {
+                    UserName: $("#loginInput").val(),
+                    Paswoord: $("#paswoordInput").val(),
+                    MedewerkerID: 0, Role: ""
+                };
+
+                $.ajax({
+                    headers: { 'Access-Control-Allow-Origin': "*" },
+                    url: url + 'api/user/',
+                    cache: false,
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(user),
+                    success: function (data) {
+                         window.localStorage.setItem("mdwID", data);
+                        //window.localStorage.setItem("mdwID", 4642);
+                        window.location.href = "./home.html#home";
+                    },
+                    error: function (e) {
+                        $('#containerLogin').css('display', 'block');
+                        $('#containerLoading').css('display', 'none');
+                        if (e.responseJSON == "login") {
+                            melding("Deze login heeft geen toegang tot de applicatie.");
+                        } else if (e.responseJSON == "wachtwoord") {
+                            melding("U heeft een verkeerd wachtwoord ingevoerd.");
+                        } else {
+                            melding("U heeft geen internet connectie.");
+                        }
+                    },
+                });
             }
         </script>
     </body>

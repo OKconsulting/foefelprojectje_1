@@ -3,7 +3,7 @@
 function vertaalTekst(taal) {
     if (taal == 'nl')
         vertaalNl();
-    else if (taal == 'fr') 
+    else if (taal == 'fr')
         vertaalFr();
     else if (taal == 'en')
         vertaalEn();
@@ -30,7 +30,7 @@ function vertaalNl() {
     $('#lblDatTot')[0].innerHTML = 'Datum tot';
     $('#btnDetailDagen')[0].innerHTML = 'Details dagen';
     btnConfirm = 'Bevestigen';
-    
+
     $('#tblPCodes tbody tr:nth-child(1) th')[0].innerHTML = 'Verlofrecht';
     $('#tblPCodes tbody tr:nth-child(2) th')[0].innerHTML = 'Gebruikt';
     $('#tblPCodes tbody tr:nth-child(3) th')[0].innerHTML = 'Aangevraagd';
@@ -62,7 +62,7 @@ function vertaalFr() {
     $('#lblDatTot')[0].innerHTML = "Jusqu'au";
     $('#btnDetailDagen')[0].innerHTML = 'Détails du jours';
     btnConfirm = 'Confirmer';
-    
+
     $('#tblPCodes tbody tr:nth-child(1) th')[0].innerHTML = 'Nombre de jours';
     $('#tblPCodes tbody tr:nth-child(2) th')[0].innerHTML = 'Utilisé';
     $('#tblPCodes tbody tr:nth-child(3) th')[0].innerHTML = 'Demandé';
@@ -94,7 +94,7 @@ function vertaalEn() {
     $('#lblDatTot')[0].innerHTML = 'Up to';
     $('#btnDetailDagen')[0].innerHTML = 'Day details';
     btnConfirm = 'Confirm';
-    
+
     $('#tblPCodes tbody tr:nth-child(1) th')[0].innerHTML = 'Number of days';
     $('#tblPCodes tbody tr:nth-child(2) th')[0].innerHTML = 'Used';
     $('#tblPCodes tbody tr:nth-child(3) th')[0].innerHTML = 'Requested';
