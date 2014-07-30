@@ -478,7 +478,58 @@
         mouse_is_inside = false;
     });
 
+    var firstclick = false;
     window.onclick = function (e) {
+        if (e.target.id.indexOf('dte') != -1) {
+            $('#dteVanPopup').css('display', 'none');
+            $('#dteTotPopup').css('display', 'none');
+            $('#' + e.target.id + 'Popup').css('display', 'inline');
+            document.activeElement.blur();
+            $("input").blur();
+        } else {
+            if (popupActive) {
+                if (!mouse_is_inside && !firstclick) {
+                    $('#dteVanPopup').css('display', 'none');
+                    $('#dteTotPopup').css('display', 'none');
+                    popupActive = false;
+                    popupDte = '';
+                }
+                firstclick = false;
+            }
+
+            if (popupActive != '') {
+                if (popupDte == "Van") {
+                    if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
+                        huidigeVanMaand -= 1;
+                        kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup');
+                    }
+                    if (e.target.className.indexOf('ui-datepicker-next') != -1) {
+                        huidigeVanMaand += 1;
+                        kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup');
+                    }
+                } else if (popupDte == 'Tot') {
+                    if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
+                        huidigeTotMaand -= 1;
+                        kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup');
+                    }
+                    if (e.target.className.indexOf('ui-datepicker-next') != -1) {
+                        huidigeTotMaand += 1;
+                        kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup');
+                    }
+                } else if (popupDte == 'Overview') {
+                    if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
+                        huidigeOverviewMaand -= 1;
+                        kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview');
+                    }
+                    if (e.target.className.indexOf('ui-datepicker-next') != -1) {
+                        huidigeOverviewMaand += 1;
+                        kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview');
+                    }
+                }
+            }
+        }
+    }
+    /*window.onclick = function (e) {
         if (popupActive) {
             if (!mouse_is_inside) {
                 $('#dteVanPopup').css('display', 'none');
@@ -518,7 +569,7 @@
                 }
             }
         }
-    }
+    }*/
 
     // De opmaak voor de datepickers voorzien
     function setDteStyle(selector) {
