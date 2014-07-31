@@ -6,7 +6,7 @@
   </description>
   <author email="minnemorten@hotmail.com">minnemorten@hotmail.com</author>
   <access origin="*" />
-<!--
+
   <icon src="/icons/ios/icon.png" gap:platform="ios" width="57" height="57" />
   <icon src="/icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
   <icon src="/icons/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
@@ -22,7 +22,7 @@
   <icon src="/icons/android/icon-ldpi.png" gap:density="ldpi" gap:platform="android" />
   <icon src="/icons/android/icon-mdpi.png" gap:density="mdpi" gap:platform="android" />
   <icon src="/icons/android/icon-xhdpi.png" gap:density="xhdpi" gap:platform="android" />
--->
+
   <preference name="phonegap-version" value="3.3.0" />
   <preference name="orientation" value="portrait" />
   <preference name="DisallowOverscroll" value="true" />

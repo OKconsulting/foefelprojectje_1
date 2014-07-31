@@ -315,7 +315,7 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
     <script src="scripts/Vertalen.js"></script>
-    <script src="cordova.js"></script>
+    <!--<script src="cordova.js"></script>-->
     <script>
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
@@ -325,13 +325,17 @@
             initSaldiTable();
             var selectedPCode = $('#cboPrestatieC')[0].selectedIndex;
             $('#tblPCodes thead tr')[0].innerHTML = '<th></th><th>' + verlofSaldi[selectedPCode].omschrijving + '</th>';
+            alert($('#tblPCodes tbody tr:nth-child(1)').length);
             $('#tblPCodes tbody tr:nth-child(1)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantaldagen + '</td>';
-            $('#tblPCodes tbody tr:nth-child(2)')[0].innerHTML += '<td>' + /*Math.round(*/verlofSaldi[selectedPCode].gebruikt/* * 100) / 100 */+ '</td>';
-            $('#txaRedenVal').val(verlofSaldi[selectedPCode].aangevraagd);
+            alert($('#tblPCodes tbody tr:nth-child(2)').length);
+            $('#tblPCodes tbody tr:nth-child(2)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].gebruikt * 100) / 100 + '</td>';
             alert($('#tblPCodes tbody tr:nth-child(3)').length);
-            $('#tblPCodes tbody tr:nth-child(3)')[0].innerHTML += '<td>' + /*Math.round(*/verlofSaldi[selectedPCode].aangevraagd/* * 100) / 100 */+ '</td>';
-            $('#tblPCodes tbody tr:nth-child(4)')[0].innerHTML += '<td>' + /*Math.round(*/verlofSaldi[selectedPCode].beschikbaar/* * 100) / 100 */+ '</td>';
+            $('#tblPCodes tbody tr:nth-child(3)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].aangevraagd * 100) / 100 + '</td>';
+            alert($('#tblPCodes tbody tr:nth-child(4)').length);
+            $('#tblPCodes tbody tr:nth-child(4)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].beschikbaar * 100) / 100 + '</td>';
+            alert($('#tblPCodes tbody tr:nth-child(5)').length);
             $('#tblPCodes tbody tr:nth-child(5)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantalUren + '</td>';
+            alert($('#tblPCodes tbody tr:nth-child(6)').length);
             $('#tblPCodes tbody tr:nth-child(6)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
         }
         function changeHistItem() {
