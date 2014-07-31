@@ -315,7 +315,7 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
     <script src="scripts/Vertalen.js"></script>
-    <!--<script src="cordova.js"></script>-->
+    <script src="cordova.js"></script>
     <script>
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
@@ -973,9 +973,7 @@
                 //$('#colSet > div:nth-child(1) div.ui-select select')
                 if (value.type == 'Uren') {
                     var pCodeId = $(selector + ' div.ui-select select')[0][$(selector + ' div.ui-select select')[0].selectedIndex].value;
-                    alert(pCodeId);
                     var aantaluur = $(selector + ' div div.ui-input-text input')[0].value;
-                    alert(aantaluur);
 
                     if (aantaluur == '')
                         UurLeeg = true;
@@ -1023,8 +1021,11 @@
                     data: JSON.stringify(gegevens),
                     success: function (data) {
                         alert('dagen bevestigen data received');
-                        if (typeof data == 'string')
+                        alert(data);
+                        if (typeof data == 'string') {
+                            $('#txaRedenVal').val(data);
                             melding(data, 10000);
+                        }
                         if (typeof data != 'string') {
                             $('#dteVan').val('');
                             $('#dteTot').val('');
