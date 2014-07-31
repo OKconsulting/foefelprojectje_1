@@ -315,7 +315,7 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
     <script src="scripts/Vertalen.js"></script>
-    <script src="cordova.js"></script>
+    <!--<script src="cordova.js"></script>-->
     <script>
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
@@ -657,6 +657,7 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
+                    alert('hist data ontvangen: ' + data.length);
                     if (data.length == 0){
                         if ($.mobile.activePage.attr('id') == 'historiek') {
                             switch (taal) {
