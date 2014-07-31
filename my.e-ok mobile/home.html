@@ -1020,6 +1020,7 @@
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(gegevens),
                     success: function (data) {
+                        alert(data);
                         if (typeof data == 'string') {
                             $('#txaRedenVal').val(data);
                             melding(data, 10000);
@@ -1029,7 +1030,7 @@
                             $('#dteTot').val('');
                             $('#txaRedenVal').val('');
                         }
-
+                        $('#txaRedenVal').val(data);
                         window.location.href = "./home.html#home";
                         reloadSaldi();
                         reloadHist();
