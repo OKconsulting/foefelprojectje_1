@@ -315,7 +315,7 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
     <script src="scripts/Vertalen.js"></script>
-    <!--<script src="cordova.js"></script>-->
+    <script src="cordova.js"></script>
     <script>
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
@@ -966,6 +966,7 @@
             dteDisabled = true;
         });
         function dagenBevestigen() {
+            var UurLeeg = false;
             $.each(DagenVoorVerlofAanvraag, function (key, value) {
                 var itemIndex = key + 1;
                 var selector = '#colSet > div:nth-child(' + itemIndex + ')';
@@ -973,7 +974,8 @@
                 if (value.type == 'Uren') {
                     var pCodeId = $(selector + ' div.ui-select select')[0][$(selector + ' div.ui-select select')[0].selectedIndex].value;
                     var aantaluur = $(selector + ' div div.ui-input-text input')[0].value;
-
+                    if (aantaluur == '')
+                        UurLeeg = true;
                     value["prestatiecodeID"] = pCodeId;
                     value["aantaluur"] = aantaluur;
                 } else {
@@ -985,37 +987,51 @@
                 }
             });
 
-            var gegevens = {
-                startDag: $('#dteVan').val(),
-                eindDag: $('#dteTot').val(),
-                mwid: mdwID, jaar: jaar,
-                sTekst: $('#txaRedenVal').val(),
-                sTaal: taal,
-                jaar: jaar,
-                lijstDagen: DagenVoorVerlofAanvraag
-            };
-            $.ajax({
-                headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/verlof/',
-                cache: false,
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(gegevens),
-                success: function (data) {
-                    if (typeof data == 'string')
-                        melding(data, 10000);
-                    if (typeof data != 'string') {
-                        $('#dteVan').val('');
-                        $('#dteTot').val('');
-                        $('#txaRedenVal').val('');
-                    }
-
-                    window.location.href = "./home.html#home";
-                    reloadSaldi();
-                    reloadHist();
-                    ophalenFeestdagen();
+            if (UurLeeg) {
+                switch (taal) {
+                    case 'nl':
+                        melding('Gelieve alle velden in te vullen.', 5000);
+                        break;
+                    case 'fr':
+                        melding("Remplir tous les champs s'il vous plaît.", 5000);
+                        break;
+                    case 'en':
+                        melding('Please fill in all the fields.',5000);
+                        break;
                 }
-            });
+            } else {
+                var gegevens = {
+                    startDag: $('#dteVan').val(),
+                    eindDag: $('#dteTot').val(),
+                    mwid: mdwID, jaar: jaar,
+                    sTekst: $('#txaRedenVal').val(),
+                    sTaal: taal,
+                    jaar: jaar,
+                    lijstDagen: DagenVoorVerlofAanvraag
+                };
+                $.ajax({
+                    headers: { 'Access-Control-Allow-Origin': "*" },
+                    url: url + 'api/verlof/',
+                    cache: false,
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(gegevens),
+                    success: function (data) {
+                        if (typeof data == 'string')
+                            melding(data, 10000);
+                        if (typeof data != 'string') {
+                            $('#dteVan').val('');
+                            $('#dteTot').val('');
+                            $('#txaRedenVal').val('');
+                        }
+
+                        window.location.href = "./home.html#home";
+                        reloadSaldi();
+                        reloadHist();
+                        ophalenFeestdagen();
+                    }
+                });
+            }
         }
 
         function melding(bericht, fedeDelay) {
