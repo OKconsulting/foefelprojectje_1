@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.okc.mobile.myE-ok" version="1.0.0" versionCode="001" xmlns:gap="http://phonegap.com/ns/1.0" xmlns="http://www.w3.org/ns/widgets">
+  <name>my.e-ok Mobile</name>
+  <description>
+    My.e-ok is nu beschikbaar of uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
+  </description>
+  <author email="minnemorten@hotmail.com">minnemorten@hotmail.com</author>
+  <access origin="*" />
+<!--
+  <icon src="/icons/ios/icon.png" gap:platform="ios" width="57" height="57" />
+  <icon src="/icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+  <icon src="/icons/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
+  <icon src="/icons/ios/icon-120.png" gap:platform="ios" width="120" height="120" />
+  <icon src="/icons/ios/icon-152.png" gap:platform="ios" width="152" height="152" />
+  <gap:splash src="/icons/ios/small.png" gap:platform="ios" width="320" height="480" />
+  <gap:splash src="/icons/ios/large.png" gap:platform="ios" width="640" height="960" />
+  <gap:splash src="/icons/ios/xlarge.png" gap:platform="ios" width="640" height="1136" />
+
+  <icon src="/icons/android/icon.png" gap:platform="android"/>
+  <gap:splash src="/icons/android/splash.png" gap:platform="android" />
+  <icon src="/icons/android/icon-hdpi.png" gap:density="hdpi" gap:platform="android" />
+  <icon src="/icons/android/icon-ldpi.png" gap:density="ldpi" gap:platform="android" />
+  <icon src="/icons/android/icon-mdpi.png" gap:density="mdpi" gap:platform="android" />
+  <icon src="/icons/android/icon-xhdpi.png" gap:density="xhdpi" gap:platform="android" />
+-->
+  <preference name="phonegap-version" value="3.3.0" />
+  <preference name="orientation" value="portrait" />
+  <preference name="DisallowOverscroll" value="true" />
+  <preference name="permissions" value="none" />
+</widget>
