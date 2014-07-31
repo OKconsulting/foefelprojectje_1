@@ -321,6 +321,7 @@
         var verlofSaldi = null;
         var historiekItems;
 
+        // wijzigen van het weer te geven item in de saldi tabel
         function changePrestC() {
             initSaldiTable();
             var selectedPCode = $('#cboPrestatieC')[0].selectedIndex;
@@ -332,6 +333,7 @@
             $('#tblPCodes5')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantalUren + '</td>';
             $('#tblPCodes6')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
         }
+        // wijzigen van het weer te geven item in de historiek tabel
         function changeHistItem() {
             initHistTable();
             var selectedPCode = $('#cboHistItems')[0].selectedIndex;
@@ -350,6 +352,7 @@
        
         var timeout;
 
+        // Dropdown om het selecteren van een jaar voorzien van jaartallen
         var iJaar = new Date().getFullYear();
         for (i = 0; i <= 1; i++) {
             var option = document.createElement("option");
@@ -358,6 +361,7 @@
             $('#cboJaar')[0].add(option);
         }
 
+        // Verschillende date uit de 'coockies' halen
         var mdwID = window.localStorage.getItem("mdwID");
         var jaar = $('#cboJaar')[0][$('#cboJaar')[0].selectedIndex].value;
         var taal = window.localStorage.getItem("TaalKeuze");
@@ -366,6 +370,8 @@
             taal = 'nl';
         }
         
+        // Waardes uit de inputvelden van de datepicker verwijderen
+        // er kan geen datum getypt worden, er moet gebruik gemaakt worden van de datepickers
         function clearVanDte() {
             $('#dteVan').val('');
             dteVanIngevuld = false;
@@ -375,6 +381,8 @@
             dteTotIngevuld = false;
         }
 
+        // Opmaak voor de overview datepicker voorzien
+        // overview datepicker = datepicker met de legende op
         function styleDteOverview() {
             setDteStyle('#dteOverview');
             popupActive = true;
@@ -386,6 +394,7 @@
         var popupActive = false;
         var popupDte = '';
         var dteTarget = null;
+        // Tonen van de datum van datepicker
         function showDteVanPopup(target) {
             if ($('#dteTot').val() != '') {
                 var arrEinddag = $('#dteTot').val().split('-');
@@ -404,6 +413,7 @@
             dteTarget = target;
         }
 
+        // Tonen van de datum tot datepicker
         function showDteTotPopup(target) {
             if ($('#dteVan').val() != '') {
                 var arrStartdag = $('#dteVan').val().split('-');
@@ -422,6 +432,7 @@
             dteTarget = target;
         }
 
+        // Click event om na te gaan wanneer bepaalde controls verborgen moeten worden
         var firstclick = false;
         window.onclick = function (e) {
             if (e.target.id.indexOf('dte') != -1) {
@@ -440,6 +451,8 @@
                 }
 
                 if (popupActive != '') {
+                    // Er werd geklikt op een pijltje om de volgende/vorige maand te selecteren in een datepicker
+                    // Huidige maand variabele updaten en de verschillende feest-/verlofdagen kleuren in de datepicker
                     if (popupDte == "Van") {
                         if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
                             huidigeVanMaand -= 1;
@@ -472,7 +485,7 @@
             }
         }
 
-        // De opmaak voor de datepickers voorzien
+        // Functie voor het voorzien van de opmaak van de datepickers
         function setDteStyle(selector) {
             $(selector).addClass('ui-shadow');
             $(selector + ' > div > div').removeClass('ui-corner-all');
@@ -492,6 +505,7 @@
             });
         }
 
+        // Arrays met de verschillende maanden/dagen in de beschikbare talen
         var dagenKortNl = ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"];
         var dagenKortFr = ["Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"];
         var dagenKortEn = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
@@ -507,6 +521,7 @@
 
         var dteVanIngevuld = false;
         var dteTotIngevuld = false;
+        // Datepickers initialiseren
         $('.customDatepicker').datepicker({
             firstDay: 1,
             dateFormat: "dd-mm-yy",
@@ -521,6 +536,7 @@
                 $('#dteVanPopup').css('display', 'none');
                 popupActive = false;
 
+                // Bij het selecteren van een datum nagaan naar welke input het geschreven moet worden
                 if (dteTarget == 'dteVan')
                     dteVanIngevuld = true;
                 else if (dteTarget == "dteTot")
@@ -551,6 +567,7 @@
             reloadHist();
         }
 
+        // De huidige waardes in de saldi tabel weghalen
         function initSaldiTable() {
             $('#tblPCodes thead tr')[0].innerHTML = $('#tblPCodes thead tr th:first-child')[0].outerHTML;
             $('#tblPCodes1')[0].innerHTML = $('#tblPCodes1 th')[0].outerHTML;
@@ -572,6 +589,7 @@
             getSaldi();
         }
 
+        // De huidige waardes in de historiek tabel weghalen
         function initHistTable() {
             $('#tblHist thead tr')[0].innerHTML = $('#tblHist thead tr th:first-child')[0].outerHTML;
             $('#tblHist1')[0].innerHTML = $('#tblHist1 th')[0].outerHTML;
@@ -582,6 +600,7 @@
             $('#tblHist6')[0].innerHTML = $('#tblHist6 th')[0].outerHTML;
         }
 
+        // Herladen van de historiek van de gebruiker
         function reloadHist() {
             if (histPageInit)
                 $('#cboHistItems').selectmenu("disable");
@@ -593,7 +612,7 @@
         }
         
         var loadingSaldi = true;
-        // Ophalen en weergeven van de saldi
+        // Ophalen en weergeven van de saldi van de gebruiker
         function getSaldi() {
             loadingSaldi = true;
             $('#loadingDivSaldi').css('display', 'inline');
@@ -610,13 +629,13 @@
                         if ($.mobile.activePage.attr('id') == 'home') {
                             switch (taal) {
                                 case 'nl':
-                                    melding("Er zijn geen saldi beschikbaar.", 5000);
+                                    melding("Er zijn geen saldi beschikbaar.", 5000, 'warning');
                                     break;
                                 case 'fr':
-                                    melding("Il n'y a pas de données disponibles.", 5000);
+                                    melding("Il n'y a pas de données disponibles.", 5000, 'warning');
                                     break;
                                 case 'en':
-                                    melding("There is no data available.", 5000);
+                                    melding("There is no data available.", 5000, 'warning');
                                     break;
                             }
                             $('#cboPrestatieC')[0].innerHTML = '';
@@ -626,6 +645,7 @@
                         verlofSaldi = data;
                         verlofSaldi.sort(sorteerSaldi);
 
+                        // Select voor het selecteren van een item om weer te geven leeg maken en opnieuw opvullen
                         $('#cboPrestatieC')[0].innerHTML = '';
                         $.each(verlofSaldi, function (key, pcode) {
                             var option = document.createElement("option");
@@ -646,6 +666,7 @@
         }
         getSaldi();
 
+        // Ophalen van de verschillende historiek records van de gebruiker
         var loadingHist = true;
         function getHistoriek() {
             loadingHist = true;
@@ -661,13 +682,13 @@
                         if ($.mobile.activePage.attr('id') == 'historiek') {
                             switch (taal) {
                                 case 'nl':
-                                    melding("Er is geen historiek beschikbaar.", 5000);
+                                    melding("Er is geen historiek beschikbaar.", 5000, 'warning');
                                     break;
                                 case 'fr':
-                                    melding("Il n'y a pas de données disponibles.", 5000);
+                                    melding("Il n'y a pas de données disponibles.", 5000, 'warning');
                                     break;
                                 case 'en':
-                                    melding("There is no data available.", 5000);
+                                    melding("There is no data available.", 5000, 'warning');
                                     break;
                             }
                         }
@@ -675,6 +696,7 @@
                     else {
                         historiekItems = data;
 
+                        // Select voor het selecteren van een item om weer te geven leeg maken en opnieuw opvullen
                         $('#cboHistItems')[0].innerHTML = '';
                         $.each(historiekItems, function (key, histItem) {
                             var datumStart = histItem.start.split('T')[0];
@@ -697,6 +719,7 @@
         }
         getHistoriek();
 
+        // Ophalen van de verschillende prestatiecodes en bijhorend kleurtje op in de legende weer te geven
         function opvullenRPTKleuren() {
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
@@ -715,25 +738,29 @@
         }
         opvullenRPTKleuren();
 
+        // Functie voor het kleuren van de verschillende feest-/verlofdagen
         function kleurDisabledDagen(huidigeMaand, dtpId) {
-            var datumMaand = new Date();
-            datumMaand.setMonth(huidigeMaand - 1);
-            datumMaand.setDate(1);
-            
+            // Alle feest-/verlofdagen overlopen en op de datepicker kleuren indien nodig
             $.each(uitTeSchakelenDagen, function (key, value) {
+                // Als de dag plaatsvindt in de huidig weergegeven maand --> dag kleuren
                 if (parseInt(value.datum.split('-')[1]) == huidigeMaand) {
-                    datumMaand = new Date(new Date().getFullYear(), huidigeMaand - 1, parseInt(value.datum.split('-')[0]));
+                    var datumMaand = new Date(new Date().getFullYear(), huidigeMaand - 1, parseInt(value.datum.split('-')[0]));
+
+                    // Bepalen in welke week van de maand de dag plaatsvindt
                     var weekInMaand = Math.ceil(Math.abs(datumMaand.getDay() - parseInt(value.datum.split('-')[0])) / 7);
-                    var dagInWeek = datumMaand.getDay();
-                    weekcheck = datumMaand.getDay() - parseInt(value.datum.split('-')[0]);
+                    var weekcheck = datumMaand.getDay() - parseInt(value.datum.split('-')[0]);
                     if (weekcheck <= 0)
                         weekInMaand += 1;
+                    // Bepalen de hoeveelste dag van de week de dag plaatsvindt
+                    var dagInWeek = datumMaand.getDay();
 
+                    // De dag inkleuren in de datepicker
                     var selector = dtpId + ' tbody tr:nth-child(' + weekInMaand + ') td:nth-child(' + dagInWeek + ')';
                     $(selector).css('background-color', value.kleur);
                 }
             });
             
+            // Als er in het weekend niet gewerkt wordt dan worden de weekends in ge grijs gekleurd
             if (!weekendWerk) {
                 for (i = 1; i <= $(dtpId + ' tbody tr').length; i++) {
                     selector = dtpId + ' tbody tr:nth-child(' + i + ') td:nth-child(6)';
@@ -754,6 +781,7 @@
         var loadingFeest = false;
         var dteDisabled = false;
 
+        // Ophalen van alle feest-/verlofdagen
         function ophalenFeestdagen() {
             loadingFeest = true;
             $.ajax({
@@ -763,6 +791,8 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
+                    // De opgehaalde dagen in een array opslaan
+                    // Deze lijst wordt pas overlopen/toegepast bij het weergeven/navigeren in een datepicker
                     loadingFeest = false;
                     uitTeSchakelenDagen = data;
                     if (dteDisabled) {
@@ -778,14 +808,17 @@
         ophalenFeestdagen();
 
         var DagenVoorVerlofAanvraag;
-
+        // Click event voor het ophalen van de dagen waarvoor effectief verlof voor aangevraagd kan worden
         $("#btnDetailDagen").click(function (event) {
             event.preventDefault();
             haalDagenOp()
         });
         
+        // De dagen ophalen waarvoor effectief verlof voor aangevraagd kan worden
+        // aan de hand van de periode die door de gebruiker werd opgegeven
         function haalDagenOp() {
            $('#loadingDivDetailsDagen').css('display', 'inline');
+            // gegevens voorsturen naar de API
            $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
                 url: url + 'api/verlof/?mwId=' + mdwID + '&startdag=' + $('#dteVan').val() + '&einddag=' + $('#dteTot').val() + '&sTaal=' + taal,
@@ -793,9 +826,11 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
+                    // Als er een fout plaatsvond deze weergeven aan de gebruiker
                     if (typeof data == 'string')
-                        melding(data, 5000);
+                        melding(data, 5000, 'error');
                     else {
+                        // Een lijst van alle opgehaalde dagen weergeven op de #DetailsDagen pagina
                         DagenVoorVerlofAanvraag = data;
                         $("#colSet")[0].innerHTML = '';
                         var content = '';
@@ -805,7 +840,10 @@
                             var dagNummer = dag.getDate();
                             var maandNaam = maandenHuidig[dag.getMonth()];
                             var datumJaar = dag.getFullYear();
+                            // Toevoegen van de datum aan de header van de collapsible
                             content += "<div data-role='collapsible' data-theme='a' id='collap" + i + "' data-collapsed='true'><h3>" + dagNaam + " " + dagNummer + " " + maandNaam + " " + datumJaar + "</h3><select id='collapSel" + i + "'>";
+
+                            // Alle prestatieCodes toevoegen aan de select in de collapsible
                             for (y = 0; y < verlofSaldi.length; y++) {
                                 content += '<option value="' + verlofSaldi[y].prestatiecodeID + '">' + verlofSaldi[y].omschrijving + '</option>';
                             }
@@ -822,6 +860,9 @@
                                     content += "Number of hours";
                                     break;
                             }
+                            // Bepalen welke controls weergegeven moeten worden in de collapsible
+                            // verlofInUren --> NumericalUpDown
+                            // verlofInDagen --> Select
                             if (data[i].type == 'Uren')
                                 content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' /></div>";
                             else {
@@ -847,6 +888,7 @@
                             }
                                                      
                         }
+                        // Een button btnDagenBevestigen toevoegen
                         content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
                         content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='Bevestigen' />Bevestigen</input></div>";
                         $("#colSet")[0].innerHTML = content;
@@ -874,22 +916,19 @@
                                             $(selector)[0].selectedIndex = iTeller;
                                             verlofSaldi[iTeller].aantaldagen -= 1;
                                         }
-                                        else {
-                                            //ddlPres.SelectedIndex = 0;
-                                        }
                                     }
                                 }
-                            } else {
-                                //ddlPres.SelectedValue = "";
                             }
                         }
+                        // Navigeren naar de lijst van opgehaalde dagen
                         window.location.href = "./home.html#DetailsDagen";
                     }
                     $('#loadingDivDetailsDagen').css('display', 'none');
                 }
             });
         }
-
+        
+        // Sorteren van saldi op basis van belang
         function sorteerSaldi(a, b) {
             if (a.belang == 0)
                 a.belang = 999999999;
@@ -901,7 +940,7 @@
                 return 1;
             return 0;
         }
-
+        // Code die uitgevoegd wordt bij het laden van de #DetailsDagen pagina
         $(document).on('pagebeforeshow', '#DetailsDagen', function () {
             $('#colSet select').selectmenu();
             $('#colSet .collapAantUur').textinput();
@@ -920,7 +959,7 @@
                 }
             });            
         });
-
+        // Code die uitgevoegd wordt bij het laden van de #home pagina
         $(document).on('pagebeforeshow', '#home', function () {
             if (loadingSaldi) {
                 $('#cboJaar').selectmenu("disable");
@@ -930,7 +969,7 @@
             $("#cboPrestatieC").selectmenu("refresh", true);
             vertaalTekst(taal);
         });
-
+        // Code die uitgevoegd wordt bij het laden van de #historiek pagina
         var histPageInit = false;
         $(document).on('pagebeforeshow', '#historiek', function () {
             if (loadingHist) {
@@ -941,6 +980,7 @@
             vertaalTekst(taal);
             histPageInit = true;
         });
+        // Code die uitgevoegd wordt bij het laden van de #Opties pagina
         $(document).on('pagebeforeshow', '#Opties', function () {
             switch (taal) {
                 case 'nl':
@@ -956,6 +996,7 @@
             $("input[type='radio']").checkboxradio().checkboxradio("refresh");
             vertaalTekst(taal);
         });
+        // Code die uitgevoegd wordt bij het laden van de #verlofAanv pagina
         $(document).on('pagebeforeshow', '#verlofAanv', function () {
             if (!dteVanIngevuld || !dteTotIngevuld)
                 $("#btnDetailDagen").button("disable");
@@ -965,8 +1006,12 @@
             }
             dteDisabled = true;
         });
+
+        // Het bevestigen van de aanvraag
         function dagenBevestigen() {
             var UurLeeg = false;
+            // Lijst van alle aan te vragen dagen overlopen,
+            // Controlleren of alles ingevuld is en de data opslaan in een object
             $.each(DagenVoorVerlofAanvraag, function (key, value) {
                 var itemIndex = key + 1;
                 var selector = '#colSet > div:nth-child(' + itemIndex + ')';
@@ -989,16 +1034,17 @@
                 }
             });
 
+            // Als niet alles ingevuld werd een melding aan de gebruiker tonen
             if (UurLeeg) {
                 switch (taal) {
                     case 'nl':
-                        melding('Gelieve alle velden in te vullen.', 5000);
+                        melding('Gelieve alle velden in te vullen.', 5000, 'error');
                         break;
                     case 'fr':
-                        melding("Remplir tous les champs s'il vous plaît.", 5000);
+                        melding("Remplir tous les champs s'il vous plaît.", 5000, 'error');
                         break;
                     case 'en':
-                        melding('Please fill in all the fields.',5000);
+                        melding('Please fill in all the fields.', 5000, 'error');
                         break;
                 }
             } else {
@@ -1012,6 +1058,7 @@
                     lijstDagen: DagenVoorVerlofAanvraag
                 };
 
+                // Gegevens doorsturen naar de API
                 $.ajax({
                     headers: { 'Access-Control-Allow-Origin': "*" },
                     url: url + 'api/verlof/',
@@ -1021,16 +1068,21 @@
                     data: JSON.stringify(gegevens),
                     success: function (data) {
                         alert(data);
+                        // Een melding geven indien er een probleem was bij het opslaan van de aanvraag
                         if (typeof data == 'string') {
                             $('#txaRedenVal').val(data);
-                            melding(data, 10000);
+                            melding(data, 10000, 'error');
                         }
+
+                        // Formuliertje leeg maken
                         if (typeof data != 'string') {
                             $('#dteVan').val('');
                             $('#dteTot').val('');
                             $('#txaRedenVal').val('');
                         }
                         $('#txaRedenVal').val(data);
+
+                        // Saldi, historiek en feest-/verlofdagen opnieuw ophalen
                         window.location.href = "./home.html#home";
                         reloadSaldi();
                         reloadHist();
@@ -1040,11 +1092,26 @@
             }
         }
 
-        function melding(bericht, fedeDelay) {
+        // Een melding aan de gebruiker meegeven
+        // Bericht = tekst in de melding
+        // fadeDelay = tijd dat het bericht zichtbaar is
+        // status = wat voor soort melding is het? error (rood), warning (geel), success (groen)
+        function melding(bericht, fadeDelay, status) {
+            switch (status) {
+                case "error":
+                    $('.melding').css('background-color', '#ff5757');
+                    break;
+                case "warning":
+                    $('.melding').css('background-color', '#ffdd57');
+                    break;
+                case "success":
+                    $('.melding').css('background-color', '#57dd57');
+                    break;
+            }
             $('.melding').text(bericht);
             $('.melding').fadeIn();
             window.clearTimeout(timeout);
-            timeout = setTimeout(function () { $('.melding').fadeOut(); }, fedeDelay);
+            timeout = setTimeout(function () { $('.melding').fadeOut(); }, fadeDelay);
         }
 
         // De gebruiker logt uit

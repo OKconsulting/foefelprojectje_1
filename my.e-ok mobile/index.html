@@ -33,6 +33,8 @@
         <script src="cordova.js"></script>
         <script>
             var timeout;
+            // Als de pagina geladen is kijken of er een 'cookie' is opgeslaan met een eerder ingelogde gebruikerId
+            // Indien wel --> login overslaan en met gegevens van vorige gebruiker blijven werken
             $(document).ready(function () {
                 var mdwID = window.localStorage.getItem("mdwID");
                 if (mdwID != null) {
@@ -41,15 +43,31 @@
                 }
             });
 
+            // Als een textveld focus krijgt het logog van okc verbergen (geeft problemen met het soft keyboard)
             $('#loginInput, #paswoordInput').focus(function () {
                 $('[data-role=footer]').css("display", "none");
             });
 
-            function melding(bericht) {
+            // Een melding aan de gebruiker meegeven
+            // Bericht = tekst in de melding
+            // fadeDelay = tijd dat het bericht zichtbaar is
+            // status = wat voor soort melding is het? error (rood), warning (geel), success (groen)
+            function melding(bericht, fadeDelay, status) {
+                switch (status) {
+                    case "error":
+                        $('.melding').css('background-color', '#ff5757');
+                        break;
+                    case "warning":
+                        $('.melding').css('background-color', '#ffdd57');
+                        break;
+                    case "success":
+                        $('.melding').css('background-color', '#57dd57');
+                        break;
+                }
                 $('.melding').text(bericht);
                 $('.melding').fadeIn();
                 window.clearTimeout(timeout);
-                timeout = setTimeout(function () { $('.melding').fadeOut(); }, 3000);
+                timeout = setTimeout(function () { $('.melding').fadeOut(); }, fadeDelay);
             }
 
 
@@ -83,11 +101,11 @@
                         $('#containerLogin').css('display', 'block');
                         $('#containerLoading').css('display', 'none');
                         if (e.responseJSON == "login") {
-                            melding("Deze login heeft geen toegang tot de applicatie.");
+                            melding("Deze login heeft geen toegang tot de applicatie.", 3000, 'error');
                         } else if (e.responseJSON == "wachtwoord") {
-                            melding("U heeft een verkeerd wachtwoord ingevoerd.");
+                            melding("U heeft een verkeerd wachtwoord ingevoerd.", 3000, 'error');
                         } else {
-                            melding("U heeft geen internet connectie.");
+                            melding("U heeft geen internet connectie.", 3000, 'error');
                         }
                     },
                 });

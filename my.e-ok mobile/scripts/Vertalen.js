@@ -1,4 +1,5 @@
-﻿var btnConfirm = 'Bevestigen'
+﻿// Vertalen van de verschillende teksten in de applicatie
+var btnConfirm = 'Bevestigen'
 
 function vertaalTekst(taal) {
     if (taal == 'nl')
@@ -13,7 +14,7 @@ function vertaalTekst(taal) {
     $('.customDatepicker').datepicker("option", "monthNames", maandenHuidig);
     //setDteStyle('.customDatepicker');
 }
-
+// Nederlandstalige vertaling
 function vertaalNl() {
     dagenKortHuidig = dagenKortNl;
     dagenHuidig = dagenNl;
@@ -45,7 +46,7 @@ function vertaalNl() {
     $('#tblHist tbody tr:nth-child(5) th')[0].innerHTML = 'Status';
     $('#tblHist tbody tr:nth-child(6) th')[0].innerHTML = 'Behandeld door';
 }
-
+// Franstalige vertaling
 function vertaalFr() {
     dagenKortHuidig = dagenKortFr;
     dagenHuidig = dagenFr;
@@ -77,7 +78,7 @@ function vertaalFr() {
     $('#tblHist tbody tr:nth-child(5) th')[0].innerHTML = 'Statut';
     $('#tblHist tbody tr:nth-child(6) th')[0].innerHTML = 'Traitée par';
 }
-
+// Engelstalige vertaling
 function vertaalEn() {
     dagenKortHuidig = dagenKortEn;
     dagenHuidig = dagenEn;

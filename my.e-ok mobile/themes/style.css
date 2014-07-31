@@ -44,6 +44,7 @@ div[data-role=footer].ui-footer.ui-bar-inherit.ui-footer-fixed.slideup {
 }
 
 .melding {
+    font-weight: bold;
     position: absolute;
     top: 50px;
     left: 0;
