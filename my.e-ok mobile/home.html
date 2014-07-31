@@ -326,7 +326,8 @@
             $('#tblPCodes thead tr')[0].innerHTML = '<th></th><th>' + verlofSaldi[selectedPCode].omschrijving + '</th>';
             $('#tblPCodes tbody tr:nth-child(1)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantaldagen + '</td>';
             $('#tblPCodes tbody tr:nth-child(2)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].gebruikt * 100) / 100 + '</td>';
-            $('#tblPCodes tbody tr:nth-child(3)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].aangevraagd * 100) /100 + '</td>';
+            $('#txaRedenVal').val(verlofSaldi[selectedPCode].aangevraagd);
+            $('#tblPCodes tbody tr:nth-child(3)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].aangevraagd * 100) / 100 + '</td>';
             $('#tblPCodes tbody tr:nth-child(4)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].beschikbaar * 100) / 100 + '</td>';
             $('#tblPCodes tbody tr:nth-child(5)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantalUren + '</td>';
             $('#tblPCodes tbody tr:nth-child(6)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
@@ -595,6 +596,8 @@
         function getSaldi() {
             loadingSaldi = true;
             $('#loadingDivSaldi').css('display', 'inline');
+            $("#cboPrestatieC").selectmenu();
+            $("#cboPrestatieC").selectmenu("disable");
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
                 url: url + 'api/verlof/?mwId=' + mdwID + '&jaar=' + jaar + '&taal=' + taal,
@@ -616,6 +619,7 @@
                                     break;
                             }
                             $('#cboPrestatieC')[0].innerHTML = '';
+                            $("#cboPrestatieC").selectmenu();
                         }
                     } else {
                         verlofSaldi = data;
@@ -716,13 +720,14 @@
             datumMaand.setDate(1);
             
             $.each(uitTeSchakelenDagen, function (key, value) {
-                if (value.datum.split('-')[1] == huidigeMaand) {
-                    var weekInMaand = Math.floor((parseInt(value.datum.split('-')[0]) + datumMaand.getDay()) / 7);
-                    var dagInWeek = (parseFloat(value.datum.split('-')[0]) + datumMaand.getDay()) % 7;
-
-                    if (dagInWeek != 0)
+                if (parseInt(value.datum.split('-')[1]) == huidigeMaand) {
+                    datumMaand = new Date(new Date().getFullYear(), huidigeMaand - 1, parseInt(value.datum.split('-')[0]));
+                    var weekInMaand = Math.ceil(Math.abs(datumMaand.getDay() - parseInt(value.datum.split('-')[0])) / 7);
+                    var dagInWeek = datumMaand.getDay();
+                    weekcheck = datumMaand.getDay() - parseInt(value.datum.split('-')[0]);
+                    if (weekcheck <= 0)
                         weekInMaand += 1;
-                    dagInWeek -=1
+
                     var selector = dtpId + ' tbody tr:nth-child(' + weekInMaand + ') td:nth-child(' + dagInWeek + ')';
                     $(selector).css('background-color', value.kleur);
                 }
@@ -764,7 +769,6 @@
                         $('#dteTot').textinput("option", "disabled", false);
                         dteDisabled = false;
                     }
-                    
                     if(data.length != 0)
                         weekendWerk = data[0].werkWeekend;
                 }
@@ -999,6 +1003,12 @@
                 success: function (data) {
                     if (typeof data == 'string')
                         melding(data, 10000);
+                    if (typeof data != 'string') {
+                        $('#dteVan').val('');
+                        $('#dteTot').val('');
+                        $('#txaRedenVal').val('');
+                    }
+
                     window.location.href = "./home.html#home";
                     reloadSaldi();
                     reloadHist();
@@ -1021,7 +1031,7 @@
         }
 
         window.onerror = function (errorMessage, errorUrl, errorLine) {
-            $('#txaRedenVal').val(errorMessage + '     -     ' + errorLine);
+            $('#txaRedenVal').val($('#txaRedenVal').val() + '-------' + errorMessage + '     -     ' + errorLine);
         }
     </script>
 </body>
