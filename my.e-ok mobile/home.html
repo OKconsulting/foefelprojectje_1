@@ -315,7 +315,7 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
     <script src="scripts/Vertalen.js"></script>
-    <script src="cordova.js"></script>
+    <!--<script src="cordova.js"></script>-->
     <script>
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
@@ -908,7 +908,6 @@
             $("#btnDagenBevestigen").button();
 
             $('#btnDagenBevestigen').click(function (event) {
-                alert('btnBevestigen clicked');
                 event.preventDefault();
                 dagenBevestigen();
             })
@@ -974,6 +973,7 @@
                 //$('#colSet > div:nth-child(1) div.ui-select select')
                 if (value.type == 'Uren') {
                     var pCodeId = $(selector + ' div.ui-select select')[0][$(selector + ' div.ui-select select')[0].selectedIndex].value;
+                    alert(pCodeId);
                     var aantaluur = $(selector + ' div div.ui-input-text input')[0].value;
                     alert(aantaluur);
 
@@ -1013,7 +1013,7 @@
                     jaar: jaar,
                     lijstDagen: DagenVoorVerlofAanvraag
                 };
-                alert('data naar de api sturen');
+
                 $.ajax({
                     headers: { 'Access-Control-Allow-Origin': "*" },
                     url: url + 'api/verlof/',
