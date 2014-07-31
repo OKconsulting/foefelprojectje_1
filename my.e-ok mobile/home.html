@@ -583,7 +583,8 @@
         }
 
         function reloadHist() {
-            $('#cboHistItems').selectmenu("disable");
+            if (histPageInit)
+                $('#cboHistItems').selectmenu("disable");
 
             initHistTable();
             jaar = $('#cboJaar')[0][$('#cboJaar')[0].selectedIndex].value;
