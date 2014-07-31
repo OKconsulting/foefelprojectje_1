@@ -1020,8 +1020,6 @@
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(gegevens),
                     success: function (data) {
-                        alert('dagen bevestigen data received');
-                        alert(data);
                         if (typeof data == 'string') {
                             $('#txaRedenVal').val(data);
                             melding(data, 10000);
