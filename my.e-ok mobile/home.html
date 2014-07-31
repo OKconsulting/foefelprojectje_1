@@ -593,7 +593,7 @@
         function initHistTable() {
             $('#tblHist thead tr')[0].innerHTML = $('#tblHist thead tr th:first-child')[0].outerHTML;
             $('#tblHist1')[0].innerHTML = $('#tblHist1 th')[0].outerHTML;
-            $('#tblHist1')[0].innerHTML = $('#tblHist2 th')[0].outerHTML;
+            $('#tblHist2')[0].innerHTML = $('#tblHist2 th')[0].outerHTML;
             $('#tblHist3')[0].innerHTML = $('#tblHist3 th')[0].outerHTML;
             $('#tblHist4')[0].innerHTML = $('#tblHist4 th')[0].outerHTML;
             $('#tblHist5')[0].innerHTML = $('#tblHist5 th')[0].outerHTML;
@@ -1067,7 +1067,6 @@
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(gegevens),
                     success: function (data) {
-                        alert(data);
                         // Een melding geven indien er een probleem was bij het opslaan van de aanvraag
                         if (typeof data == 'string') {
                             $('#txaRedenVal').val(data);
@@ -1080,7 +1079,6 @@
                             $('#dteTot').val('');
                             $('#txaRedenVal').val('');
                         }
-                        $('#txaRedenVal').val(data);
 
                         // Saldi, historiek en feest-/verlofdagen opnieuw ophalen
                         window.location.href = "./home.html#home";
