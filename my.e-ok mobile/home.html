@@ -615,6 +615,7 @@
                                     melding("There is no data available.", 5000);
                                     break;
                             }
+                            $('#cboPrestatieC')[0].innerHTML = '';
                         }
                     } else {
                         verlofSaldi = data;
@@ -1017,6 +1018,10 @@
         function logout() {
             window.localStorage.removeItem("mdwID");
             window.location.href = "./index.html#login";
+        }
+
+        window.onerror = function (errorMessage, errorUrl, errorLine) {
+            $('#txaRedenVal').val(errorMessage + '     -     ' + errorLine);
         }
     </script>
 </body>
