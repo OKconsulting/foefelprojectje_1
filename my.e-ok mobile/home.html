@@ -37,22 +37,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr id="tblPCodes1">
                         <th>Verlofrecht</th>
                     </tr>
-                    <tr>
+                    <tr id="tblPCodes2">
                         <th>Gebruikt</th>
                     </tr>
-                    <tr>
+                    <tr id="tblPCodes3">
                         <th>Aangevraagd</th>
                     </tr>
-                    <tr>
+                    <tr id="tblPCodes4">
                         <th>Beschikbaar</th>
                     </tr>
-                    <tr>
+                    <tr id="tblPCodes5">
                         <th>Beschikbare uren</th>
                     </tr>
-                    <tr>
+                    <tr id="tblPCodes6">
                         <th>Geldig tot</th>
                     </tr>
                 </tbody>
@@ -199,22 +199,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr id="tblHist1">
                         <th>Van</th>
                     </tr>
-                    <tr>
+                    <tr id="tblHist2">
                         <th>Tot en met</th>
                     </tr>
-                    <tr>
+                    <tr id="tblHist3">
                         <th>Aantal dagen</th>
                     </tr>
-                    <tr>
+                    <tr id="tblHist4">
                         <th>Aangevraagd op</th>
                     </tr>
-                    <tr>
+                    <tr id="tblHist5">
                         <th>Status</th>
                     </tr>
-                    <tr>
+                    <tr id="tblHist6">
                         <th>Behandeld door</th>
                     </tr>
                 </tbody>
@@ -325,18 +325,12 @@
             initSaldiTable();
             var selectedPCode = $('#cboPrestatieC')[0].selectedIndex;
             $('#tblPCodes thead tr')[0].innerHTML = '<th></th><th>' + verlofSaldi[selectedPCode].omschrijving + '</th>';
-            alert($('#tblPCodes tbody tr:nth-child(1)').length);
-            $('#tblPCodes tbody tr:nth-child(1)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantaldagen + '</td>';
-            alert($('#tblPCodes tbody tr:nth-child(2)').length);
-            $('#tblPCodes tbody tr:nth-child(2)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].gebruikt * 100) / 100 + '</td>';
-            alert($('#tblPCodes tbody tr:nth-child(3)').length);
-            $('#tblPCodes tbody tr:nth-child(3)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].aangevraagd * 100) / 100 + '</td>';
-            alert($('#tblPCodes tbody tr:nth-child(4)').length);
-            $('#tblPCodes tbody tr:nth-child(4)')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].beschikbaar * 100) / 100 + '</td>';
-            alert($('#tblPCodes tbody tr:nth-child(5)').length);
-            $('#tblPCodes tbody tr:nth-child(5)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantalUren + '</td>';
-            alert($('#tblPCodes tbody tr:nth-child(6)').length);
-            $('#tblPCodes tbody tr:nth-child(6)')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
+            $('#tblPCodes1')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantaldagen + '</td>';
+            $('#tblPCodes2')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].gebruikt * 100) / 100 + '</td>';
+            $('#tblPCodes3')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].aangevraagd * 100) / 100 + '</td>';
+            $('#tblPCodes4')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].beschikbaar * 100) / 100 + '</td>';
+            $('#tblPCodes5')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantalUren + '</td>';
+            $('#tblPCodes6')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
         }
         function changeHistItem() {
             initHistTable();
@@ -345,13 +339,13 @@
             var datumEind = historiekItems[selectedPCode].einde.split('T')[0];
 
             $('#tblHist thead tr')[0].innerHTML = '<th></th><th>' + datumStart.split('-')[2] + '/' + datumStart.split('-')[1] + ' - ' + datumEind.split('-')[2] + '/' + datumEind.split('-')[1] + '</th>';
-            $('#tblHist tbody tr:nth-child(1)')[0].innerHTML += '<td>' + datumStart.split('-')[2] + '/' + datumStart.split('-')[1] + '</td>';
-            $('#tblHist tbody tr:nth-child(2)')[0].innerHTML += '<td>' + datumEind.split('-')[2] + '/' + datumEind.split('-')[1] + '</td>';
-            $('#tblHist tbody tr:nth-child(3)')[0].innerHTML += '<td>' + historiekItems[selectedPCode].aantaldagen + '</td>';
+            $('#tblHist1')[0].innerHTML += '<td>' + datumStart.split('-')[2] + '/' + datumStart.split('-')[1] + '</td>';
+            $('#tblHist2')[0].innerHTML += '<td>' + datumEind.split('-')[2] + '/' + datumEind.split('-')[1] + '</td>';
+            $('#tblHist3')[0].innerHTML += '<td>' + historiekItems[selectedPCode].aantaldagen + '</td>';
             var aanvraagDatum = historiekItems[selectedPCode].datumaanvraag.split('T')[0];
-            $('#tblHist tbody tr:nth-child(4)')[0].innerHTML += '<td>' + aanvraagDatum.split('-')[2] + '/' + aanvraagDatum.split('-')[1] + '</td>';
-            $('#tblHist tbody tr:nth-child(5)')[0].innerHTML += '<td>' + historiekItems[selectedPCode].status + '</td>';
-            $('#tblHist tbody tr:nth-child(6)')[0].innerHTML += '<td>' + historiekItems[selectedPCode].naam2 + '</td>';
+            $('#tblHist4')[0].innerHTML += '<td>' + aanvraagDatum.split('-')[2] + '/' + aanvraagDatum.split('-')[1] + '</td>';
+            $('#tblHist5')[0].innerHTML += '<td>' + historiekItems[selectedPCode].status + '</td>';
+            $('#tblHist6')[0].innerHTML += '<td>' + historiekItems[selectedPCode].naam2 + '</td>';
         }
        
         var timeout;
