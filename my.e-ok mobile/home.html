@@ -1119,10 +1119,6 @@
             window.localStorage.removeItem("mdwID");
             window.location.href = "./index.html#login";
         }
-
-        window.onerror = function (errorMessage, errorUrl, errorLine) {
-            $('#txaRedenVal').val($('#txaRedenVal').val() + '-------' + errorMessage + '     -     ' + errorLine);
-        }
     </script>
 </body>
 </html>
