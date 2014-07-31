@@ -315,7 +315,7 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
     <script src="scripts/Vertalen.js"></script>
-    <!--<script src="cordova.js"></script>-->
+    <script src="cordova.js"></script>
     <script>
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
@@ -657,7 +657,6 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    alert('hist data ontvangen: ' + data.length);
                     if (data.length == 0){
                         if ($.mobile.activePage.attr('id') == 'historiek') {
                             switch (taal) {
@@ -909,6 +908,7 @@
             $("#btnDagenBevestigen").button();
 
             $('#btnDagenBevestigen').click(function (event) {
+                alert('btnBevestigen clicked');
                 event.preventDefault();
                 dagenBevestigen();
             })
@@ -975,10 +975,13 @@
                 if (value.type == 'Uren') {
                     var pCodeId = $(selector + ' div.ui-select select')[0][$(selector + ' div.ui-select select')[0].selectedIndex].value;
                     var aantaluur = $(selector + ' div div.ui-input-text input')[0].value;
+                    alert(aantaluur);
+
                     if (aantaluur == '')
                         UurLeeg = true;
                     value["prestatiecodeID"] = pCodeId;
                     value["aantaluur"] = aantaluur;
+                    
                 } else {
                     var pCodeId = $(selector + ' div div.ui-select:nth-child(1) select')[0][$(selector + ' div div.ui-select:nth-child(1) select')[0].selectedIndex].value;
                     var aantaluur = $(selector + ' div div.ui-select')[1].children[0].children[1][$(selector + ' div div.ui-select')[1].children[0].children[1].selectedIndex].value;
@@ -1010,6 +1013,7 @@
                     jaar: jaar,
                     lijstDagen: DagenVoorVerlofAanvraag
                 };
+                alert('data naar de api sturen');
                 $.ajax({
                     headers: { 'Access-Control-Allow-Origin': "*" },
                     url: url + 'api/verlof/',
@@ -1018,6 +1022,7 @@
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(gegevens),
                     success: function (data) {
+                        alert('dagen bevestigen data received');
                         if (typeof data == 'string')
                             melding(data, 10000);
                         if (typeof data != 'string') {
