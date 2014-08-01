@@ -629,7 +629,9 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
+                    var revealCbo = true;
                     if (data.length == 0) {
+                        revealCbo = false;
                         if ($.mobile.activePage.attr('id') == 'home') {
                             switch (taal) {
                                 case 'nl':
@@ -663,7 +665,8 @@
                     }
                     $('#loadingDivSaldi').css('display', 'none');
                     $('#cboJaar').selectmenu("enable");
-                    $('#cboPrestatieC').selectmenu("enable");
+                    if (revealCbo)
+                        $('#cboPrestatieC').selectmenu("enable");
                     loadingSaldi = false;
                 }
             });
@@ -894,7 +897,7 @@
                         }
                         // Een button btnDagenBevestigen toevoegen
                         content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
-                        content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='Bevestigen' />Bevestigen</input></div>";
+                        content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + btnConfirm + "' />" + btnConfirm + "</input></div>";
                         $("#colSet")[0].innerHTML = content;
 
                         var iTeller = 0;
@@ -1009,6 +1012,7 @@
         });
         // Code die uitgevoegd wordt bij het laden van de #verlofAanv pagina
         $(document).on('pagebeforeshow', '#verlofAanv', function () {
+            $("#btnDetailDagen").button();
             if (!dteVanIngevuld || !dteTotIngevuld)
                 $("#btnDetailDagen").button("disable");
             if (loadingFeest) {

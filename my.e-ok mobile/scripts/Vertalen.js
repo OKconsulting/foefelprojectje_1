@@ -29,7 +29,9 @@ function vertaalNl() {
     $('#txaReden')[0].innerHTML = 'Reden van afwezigheid';
     $('#lblDatVan')[0].innerHTML = 'Datum van';
     $('#lblDatTot')[0].innerHTML = 'Datum tot';
-    $('#btnDetailDagen')[0].innerHTML = 'Details dagen';
+    $('#btnDetailDagen')[0].innerHTML = 'Verder';
+    $('#btnDetailDagen')[0].value = 'Verder';
+    $('#btnDetailDagen')[0].nextSibling.data = 'Verder';
     btnConfirm = 'Bevestigen';
 
     $('#tblPCodes tbody tr:nth-child(1) th')[0].innerHTML = 'Verlofrecht';
@@ -58,10 +60,12 @@ function vertaalFr() {
     $.each($('.lblMenuInst'), function (key, label) { label.innerHTML = 'Langue'; });
     $.each($('.lblMenuLogout'), function (key, label) { label.innerHTML = 'Déconnexion'; });
 
-    $('#txaReden')[0].innerHTML = 'Raison Absence';
+    $('#txaReden')[0].innerHTML = "Raison d'absence";
     $('#lblDatVan')[0].innerHTML = 'De';
     $('#lblDatTot')[0].innerHTML = "Jusqu'au";
-    $('#btnDetailDagen')[0].innerHTML = 'Détails du jours';
+    $('#btnDetailDagen')[0].innerHTML = 'Ensuite';
+    $('#btnDetailDagen')[0].value = 'Ensuite';
+    $('#btnDetailDagen')[0].nextSibling.data = 'Ensuite';
     btnConfirm = 'Confirmer';
 
     $('#tblPCodes tbody tr:nth-child(1) th')[0].innerHTML = 'Nombre de jours';
@@ -93,7 +97,9 @@ function vertaalEn() {
     $('#txaReden')[0].innerHTML = 'Reason for absence';
     $('#lblDatVan')[0].innerHTML = 'From';
     $('#lblDatTot')[0].innerHTML = 'Up to';
-    $('#btnDetailDagen')[0].innerHTML = 'Day details';
+    $('#btnDetailDagen')[0].innerHTML = 'Continue';
+    $('#btnDetailDagen')[0].value = 'Continue';
+    $('#btnDetailDagen')[0].nextSibling.data = 'Continue';
     btnConfirm = 'Confirm';
 
     $('#tblPCodes tbody tr:nth-child(1) th')[0].innerHTML = 'Number of days';
