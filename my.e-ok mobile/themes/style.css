@@ -364,7 +364,7 @@ div.customDatepicker table tbody td a {
     top: 33px;
     left: 14px;
 }
-
+/*
 #opPageFooter, #abPageFooter {
     text-align: center;
     position: fixed;
@@ -372,7 +372,7 @@ div.customDatepicker table tbody td a {
     margin-left: -16px;
     bottom: 0;
     margin-bottom: 20px;
-}
+}*/
 
 #loadingDivSaldi, #loadingDivHist, #loadingDivDetailsDagen {
     position: absolute;

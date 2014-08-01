@@ -12,7 +12,7 @@
 </head>
 <body class="ui-mobile-viewport ui-overlay-c">
     <div data-role="page" id="home" data-theme="b">
-        <div class="melding">
+        <div class="melding" onclick="hideMelding()">
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#home_panel"><img src="images/menu.png" /></a></div>
@@ -75,7 +75,7 @@
     </div>
 
     <div data-role="page" id="verlofAanv" data-theme="b">
-        <div class="melding">
+        <div class="melding" onclick="hideMelding()">
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#verlof_panel" data-transition="none"><img src="images/menu.png" /></a></div>
@@ -118,15 +118,15 @@
                     <label id="lblDatTot">Datum tot</label>
                     <input name="dteTot" id="dteTot" type="text" data-theme="a" onfocus="showDteTotPopup('dteTot')" oninput="clearTotDte()" readonly />
                     <!--<input name="dteTot" id="dteTot" type="text" data-role="date" data-theme="a" oninput="clearTotDte()">-->
+                    <label id="txaReden" for="txaReden">Reden van afwezigheid</label>
+                    <textarea id="txaRedenVal" name="txaReden" data-theme="a"></textarea>
                     <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a">
-                        <input data-theme="b" id="btnDetailDagen" type="submit" value="Details dagen" />Details dagen</input>
+                        <input data-theme="b" id="btnDetailDagen" type="submit" value="Verder" />Verder</input>
                         <!--<a onclick="haalDagenOp()" href="#" data-transition="none" class="ui-btn" data-role="none" data-position-to="window">Details dagen</a>-->
                     </div>
                     <div id="dteVanPopup" class="customDatepicker"></div>
                     <div id="dteTotPopup" class="customDatepicker"></div>
                 </fieldset>
-                <label id="txaReden" for="txaReden">Reden van afwezigheid</label>
-                <textarea id="txaRedenVal" name="txaReden" data-theme="a"></textarea>
             </form>
         </div>
 
@@ -146,7 +146,7 @@
     </div>
 
     <div data-role="page" id="DetailsDagen" data-theme="b">
-        <div class="melding">
+        <div class="melding" onclick="hideMelding()">
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#details_panel" data-transition="none"><img src="images/menu.png" /></a></div>
@@ -175,7 +175,7 @@
     </div>
 
     <div data-role="page" id="historiek" data-theme="b">
-        <div class="melding">
+        <div class="melding" onclick="hideMelding()">
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#historiek_panel" data-transition="none"><img src="images/menu.png" /></a></div>
@@ -237,7 +237,7 @@
     </div>
 
     <div data-role="page" id="Opties" data-theme="b">
-        <div class="melding">
+        <div class="melding" onclick="hideMelding()">
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#opties_panel" data-transition="none"><img src="images/menu.png" /></a></div>
@@ -277,7 +277,7 @@
     </div>
 
     <div data-role="page" id="About" data-theme="b">
-        <div class="melding">
+        <div class="melding" onclick="hideMelding()">
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#about_panel" data-transition="none"><img src="images/menu.png" /></a></div>
@@ -287,9 +287,11 @@
 
         <div data-role="content" class="ui-content" role="main">
             <div id="contactGeg">
+                <p>OKc bvba</p>
                 <p>Accent Business Park</p>
                 <p>Kwadestraat 149</p>
                 <p>B-8800 Roeselare</p>
+                <p>België</p>
                 <p>contact@okc.be</p>
                 <p>www.okc.be</p>
             </div>
@@ -953,16 +955,16 @@
                 dagenBevestigen();
             })
             
-            $('#colSet div[data-role="collapsible"]').collapsible({
-                expand: function (event, ui) {
-                    /*var collapId = this.id.substring(6, this.id.length);
-                    $('#colSet #collap' + collapId + ' select').selectmenu();
-                    $('#colSet #collap' + collapId + ' .collapAantUur').textinput();*/
-                }
-            });            
+            $('#colSet div[data-role="collapsible"]').collapsible();            
         });
         // Code die uitgevoegd wordt bij het laden van de #home pagina
+        var appStartup = true;
         $(document).on('pagebeforeshow', '#home', function () {
+            if (appStartup) {
+                $("#home_panel").panel("open");
+                appStartup = false;
+            }
+            
             if (loadingSaldi) {
                 $('#cboJaar').selectmenu("disable");
                 $('#cboPrestatieC').selectmenu("disable");
@@ -997,6 +999,13 @@
             }
             $("input[type='radio']").checkboxradio().checkboxradio("refresh");
             vertaalTekst(taal);
+
+            var deviceWidth = document.documentElement.clientWidth - 16;
+            $('#opPageFooter').css('width', deviceWidth);
+            $('#opPageFooter').css('text-align', 'center');
+            $('#opPageFooter').css('position', 'absolute');
+            $('#opPageFooter').css('bottom', '0');
+            $('#opPageFooter').css('margin-bottom', '20px');
         });
         // Code die uitgevoegd wordt bij het laden van de #verlofAanv pagina
         $(document).on('pagebeforeshow', '#verlofAanv', function () {
@@ -1008,10 +1017,18 @@
             }
             dteDisabled = true;
         });
+        $(document).on('pagebeforeshow', '#About', function () {
+            var deviceWidth = document.documentElement.clientWidth - 16;
+            $('#abPageFooter').css('width', deviceWidth);
+            $('#abPageFooter').css('text-align', 'center');
+            $('#abPageFooter').css('position', 'absolute');
+            $('#abPageFooter').css('bottom', '0');
+            $('#abPageFooter').css('margin-bottom', '20px');
+        });
 
         // Het bevestigen van de aanvraag
         function dagenBevestigen() {
-            var UurLeeg = false;
+            var UurLeegOfNr = false;
             // Lijst van alle aan te vragen dagen overlopen,
             // Controlleren of alles ingevuld is en de data opslaan in een object
             $.each(DagenVoorVerlofAanvraag, function (key, value) {
@@ -1023,9 +1040,14 @@
                     var aantaluur = $(selector + ' div div.ui-input-text input')[0].value;
 
                     if (aantaluur == '')
-                        UurLeeg = true;
+                        UurLeegOfNr = true;
                     value["prestatiecodeID"] = pCodeId;
                     value["aantaluur"] = aantaluur;
+                    var uren = aantaluur.split(':');
+                    for (i = 0; i < uren.length; i++) {
+                        if(isNaN(uren[i]))
+                            UurLeegOfNr = true;
+                    }
                     
                 } else {
                     var pCodeId = $(selector + ' div div.ui-select:nth-child(1) select')[0][$(selector + ' div div.ui-select:nth-child(1) select')[0].selectedIndex].value;
@@ -1037,7 +1059,7 @@
             });
 
             // Als niet alles ingevuld werd een melding aan de gebruiker tonen
-            if (UurLeeg) {
+            if (UurLeegOfNr) {
                 switch (taal) {
                     case 'nl':
                         melding('Gelieve alle velden in te vullen.', 5000, 'error');
@@ -1072,7 +1094,10 @@
                         // Een melding geven indien er een probleem was bij het opslaan van de aanvraag
                         if (typeof data == 'string') {
                             $('#txaRedenVal').val(data);
-                            melding(data, 10000, 'error');
+                            if (data.split('@#@').length == 2)
+                                melding(data.split('@#@')[1], 10000, data.split('@#@')[0]);
+                            else
+                                melding(data, 10000, 'error');
                         }
 
                         // Formuliertje leeg maken
@@ -1112,6 +1137,12 @@
             $('.melding').fadeIn();
             window.clearTimeout(timeout);
             timeout = setTimeout(function () { $('.melding').fadeOut(); }, fadeDelay);
+        }
+
+        // Melding verbergen wanneer er op geklikt wordt
+        function hideMelding() {
+            clearTimeout(timeout);
+            $('.melding').fadeOut();
         }
 
         // De gebruiker logt uit

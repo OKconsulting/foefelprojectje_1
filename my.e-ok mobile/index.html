@@ -11,7 +11,7 @@
     <body class="ui-mobile-viewport ui-overlay-c">
         <div data-role="page" id="login" data-theme="a">
             <div data-role="content" class="ui-content" role="main">
-                <div class="melding">
+                <div class="melding" onclick="hideMelding()">
                 </div>
                 <div class="headerLogo">
                     <img src="images/my.e-ok_Logo.png" />
@@ -70,11 +70,20 @@
                 timeout = setTimeout(function () { $('.melding').fadeOut(); }, fadeDelay);
             }
 
+            // Melding verbergen wanneer er op geklikt wordt
+            function hideMelding() {
+                clearTimeout(timeout);
+                $('.melding').fadeOut();
+            }
+
 
             $("#inloggen").on('click', function () {
-                $('#containerLogin').css('display', 'none');
-                $('#containerLoading').css('display', 'block');
-                login();
+                if ($('[data-role=footer]')[0].display == 'none') {
+                    $('#containerLogin').css('display', 'none');
+                    $('#containerLoading').css('display', 'block');
+                    login();
+                } else
+                    $('#loginInput').focus();
             });
 
             function login() {
@@ -93,8 +102,7 @@
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(user),
                     success: function (data) {
-                         window.localStorage.setItem("mdwID", data);
-                        //window.localStorage.setItem("mdwID", 4642);
+                        window.localStorage.setItem("mdwID", data);
                         window.location.href = "./home.html#home";
                     },
                     error: function (e) {
