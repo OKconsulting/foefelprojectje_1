@@ -78,7 +78,7 @@
 
 
             $("#inloggen").on('click', function () {
-                if ($('[data-role=footer]')[0].display == 'none') {
+                if ($('[data-role=footer]')[0].style.display == 'none') {
                     $('#containerLogin').css('display', 'none');
                     $('#containerLoading').css('display', 'block');
                     login();
