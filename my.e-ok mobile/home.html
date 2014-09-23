@@ -155,6 +155,9 @@
         </div>
 
         <div data-role="content" class="ui-content" role="main">
+            <div id="loadingDivDetailD" style="display: none;">
+                <img src="images/gif-load_blue.gif">
+            </div>
             <div data-role="collapsibleset" data-theme="a" data-iconpos="right" id="colSet">
             </div>
         </div>
@@ -402,7 +405,8 @@
                 var arrEinddag = $('#dteTot').val().split('-');
                 var einddag = new Date(arrEinddag[2], arrEinddag[1] - 1, arrEinddag[0]);
                 $("#dteVanPopup").datepicker("option", "maxDate", einddag);
-            }
+            } else
+                $("#dteVanPopup").datepicker("option", "minDate", null);
             var maand = $('#dteVanPopup .ui-datepicker-title span')[0].outerText;
             huidigeVanMaand = maandenHuidig.indexOf(maand) + 1;
 
@@ -421,7 +425,8 @@
                 var arrStartdag = $('#dteVan').val().split('-');
                 var startdag = new Date(arrStartdag[2], arrStartdag[1] - 1, arrStartdag[0]);
                 $("#dteTotPopup").datepicker("option", "minDate", startdag);
-            }
+            } else
+                $("#dteTotPopup").datepicker("option", "minDate", null);
             var maand = $('#dteTotPopup .ui-datepicker-title span')[0].outerText;
             huidigeTotMaand = maandenHuidig.indexOf(maand) + 1;
 
@@ -542,9 +547,11 @@
                 if (dteTarget == 'dteVan')
                     dteVanIngevuld = true;
                 else if (dteTarget == "dteTot")
-                    dteTotIngevuld = true;
+                    dteTotIngevuld = true; 
                 if(dteVanIngevuld && dteTotIngevuld)
                     $("#btnDetailDagen").button("enable");
+                else
+                    $("#btnDetailDagen").button("disable");
             }
         });
         setDteStyle('.customDatepicker');
@@ -1012,13 +1019,16 @@
         });
         // Code die uitgevoegd wordt bij het laden van de #verlofAanv pagina
         $(document).on('pagebeforeshow', '#verlofAanv', function () {
-            $("#btnDetailDagen").button();
-            if (!dteVanIngevuld || !dteTotIngevuld)
-                $("#btnDetailDagen").button("disable");
             if (loadingFeest) {
                 $('#dteVan').textinput("option", "disabled", true);
                 $('#dteTot').textinput("option", "disabled", true);
             }
+            $('#txaRedenVal').val('');
+            $('#dteVan').val('');
+            $('#dteTot').val('');
+            dteTotIngevuld = false;
+            dteVanIngevuld = false;
+            $("#btnDetailDagen").button("disable");
             dteDisabled = true;
         });
         $(document).on('pagebeforeshow', '#About', function () {
@@ -1032,6 +1042,7 @@
 
         // Het bevestigen van de aanvraag
         function dagenBevestigen() {
+            $('#loadingDivDetailD').css('display', 'inline');
             var UurLeegOfNr = false;
             // Lijst van alle aan te vragen dagen overlopen,
             // Controlleren of alles ingevuld is en de data opslaan in een object
@@ -1095,6 +1106,7 @@
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(gegevens),
                     success: function (data) {
+                        $('#loadingDivDetailD').css('display', 'none');
                         // Een melding geven indien er een probleem was bij het opslaan van de aanvraag
                         if (typeof data == 'string') {
                             $('#txaRedenVal').val(data);

@@ -374,7 +374,7 @@ div.customDatepicker table tbody td a {
     margin-bottom: 20px;
 }*/
 
-#loadingDivSaldi, #loadingDivHist, #loadingDivDetailsDagen {
+#loadingDivSaldi, #loadingDivHist, #loadingDivDetailsDagen, #loadingDivDetailD {
     position: absolute;
     z-index: 1;
     width: 120px;
@@ -390,7 +390,7 @@ div.customDatepicker table tbody td a {
     border-radius: 38px;
 }
 
-#loadingDivSaldi img, #loadingDivHist img, #loadingDivDetailsDagen img {
+#loadingDivSaldi img, #loadingDivHist img, #loadingDivDetailsDagen img, #loadingDivDetailD img {
     margin-top: 12px;
     margin-left: 12px;
 }
