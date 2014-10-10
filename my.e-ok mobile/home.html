@@ -757,12 +757,15 @@
             // Alle feest-/verlofdagen overlopen en op de datepicker kleuren indien nodig
             $.each(uitTeSchakelenDagen, function (key, value) {
                 // Als de dag plaatsvindt in de huidig weergegeven maand --> dag kleuren
-                if (parseInt(value.datum.split('-')[1]) == huidigeMaand) {
-                    var datumMaand = new Date(new Date().getFullYear(), huidigeMaand - 1, parseInt(value.datum.split('-')[0]));
+                var datumUitschakelen = value.datum;
+                if (value.altDatum != '' && value.altDatum != null)
+                    datumUitschakelen = value.altDatum;
+                if (parseInt(datumUitschakelen.split('-')[1]) == huidigeMaand) {
+                    var datumMaand = new Date(new Date().getFullYear(), huidigeMaand - 1, parseInt(datumUitschakelen.split('-')[0]));
 
                     // Bepalen in welke week van de maand de dag plaatsvindt
-                    var weekInMaand = Math.ceil(Math.abs(datumMaand.getDay() - parseInt(value.datum.split('-')[0])) / 7);
-                    var weekcheck = datumMaand.getDay() - parseInt(value.datum.split('-')[0]);
+                    var weekInMaand = Math.ceil(Math.abs(datumMaand.getDay() - parseInt(datumUitschakelen.split('-')[0])) / 7);
+                    var weekcheck = datumMaand.getDay() - parseInt(datumUitschakelen.split('-')[0]);
                     if (weekcheck <= 0)
                         weekInMaand += 1;
                     // Bepalen de hoeveelste dag van de week de dag plaatsvindt
