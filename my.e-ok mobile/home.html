@@ -16,7 +16,6 @@
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#home_panel"><img src="images/menu.png" /></a></div>
-            <!--<div class="right"><a href="#selecteerPeriode" data-role="none" data-rel="popup" data-position-to="window" onclick="reloadSaldi();"><img src="images/herladen.png" /></a></div>-->
             <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
         </div>
 
@@ -38,22 +37,22 @@
                 </thead>
                 <tbody>
                     <tr id="tblPCodes1">
-                        <th>Verlofrecht</th>
+                        <th class="tblPCodes1">Verlofrecht</th>
                     </tr>
                     <tr id="tblPCodes2">
-                        <th>Gebruikt</th>
+                        <th class="tblPCodes2">Gebruikt</th>
                     </tr>
                     <tr id="tblPCodes3">
-                        <th>Aangevraagd</th>
+                        <th class="tblPCodes3">Aangevraagd</th>
                     </tr>
                     <tr id="tblPCodes4">
-                        <th>Beschikbaar</th>
+                        <th class="tblPCodes4">Beschikbaar</th>
                     </tr>
                     <tr id="tblPCodes5">
-                        <th>Beschikbare uren</th>
+                        <th class="tblPCodes5">Beschikbare uren</th>
                     </tr>
                     <tr id="tblPCodes6">
-                        <th>Geldig tot</th>
+                        <th class="tblPCodes6">Geldig tot</th>
                     </tr>
                 </tbody>
             </table>
@@ -66,6 +65,9 @@
                     <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
                     <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+                    
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+                    
                     <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Taalkeuze</span><div class="clear-fix"></div></a></li>
                     <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
                     <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
@@ -112,16 +114,16 @@
             </div>
             <form id="verlofAanvr">
                 <fieldset>
-                    <label id="lblDatVan">Datum van</label>
+                    <label id="lblDatVan" class="lblDatVanAanvr">Datum van</label>
                     <input name="dteVan" id="dteVan" type="text" data-theme="a" onfocus="showDteVanPopup('dteVan')" oninput="clearVanDte()" readonly />
                     <!--<input name="dteVan" id="dteVan" type="text" data-role="date" data-theme="a" oninput="clearVanDte()">-->
-                    <label id="lblDatTot">Datum tot</label>
+                    <label id="lblDatTot" class="lblDatTotAanvr">Datum tot</label>
                     <input name="dteTot" id="dteTot" type="text" data-theme="a" onfocus="showDteTotPopup('dteTot')" oninput="clearTotDte()" readonly />
                     <!--<input name="dteTot" id="dteTot" type="text" data-role="date" data-theme="a" oninput="clearTotDte()">-->
-                    <label id="txaReden" for="txaReden">Reden van afwezigheid</label>
+                    <label id="txaReden" class="txaRedenAanvr" for="txaReden">Reden van afwezigheid</label>
                     <textarea id="txaRedenVal" name="txaReden" data-theme="a"></textarea>
                     <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a">
-                        <input data-theme="b" id="btnDetailDagen" type="submit" value="Verder" />Verder</input>
+                        <input data-theme="b" id="btnDetailDagen" class="btnDetailDagenAanvr" type="submit" value="Verder" />Verder</input>
                         <!--<a onclick="haalDagenOp()" href="#" data-transition="none" class="ui-btn" data-role="none" data-position-to="window">Details dagen</a>-->
                     </div>
                     <div id="dteVanPopup" class="customDatepicker"></div>
@@ -132,11 +134,14 @@
 
         <div data-role="panel" id="verlof_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
             <div class="ui-panel-inner">
-                <a href="#home" data-transition="none" data-rel="close" class='verlof_hide_panel' style='display:none;'></a>
+                <a href="#verlofAanv" data-transition="none" data-rel="close" class='verlof_hide_panel' style='display:none;'></a>
                 <ul class="menu">
                     <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
                     <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+
                     <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Taalkeuze</span><div class="clear-fix"></div></a></li>
                     <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
                     <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
@@ -150,7 +155,6 @@
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#details_panel" data-transition="none"><img src="images/menu.png" /></a></div>
-            <!--<div class="right"><a href="#selecteerPeriode" data-role="none" data-rel="popup" data-position-to="window" onclick="loadAll();"><img src="images/herladen.png" /></a></div>-->
             <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
         </div>
 
@@ -164,11 +168,14 @@
 
         <div data-role="panel" id="details_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
             <div class="ui-panel-inner">
-                <a href="#home" data-transition="none" data-rel="close" class='details_hide_panel' style='display:none;'></a>
+                <a href="#DetailsDagen" data-transition="none" data-rel="close" class='details_hide_panel' style='display:none;'></a>
                 <ul class="menu">
                     <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
                     <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+                    
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+
                     <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Instellingen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
                     <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
@@ -182,7 +189,6 @@
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#historiek_panel" data-transition="none"><img src="images/menu.png" /></a></div>
-            <!--<div class="right"><a href="#selecteerPeriode" data-role="none" data-rel="popup" data-position-to="window" onclick="loadAll();"><img src="images/herladen.png" /></a></div>-->
             <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
         </div>
 
@@ -203,22 +209,22 @@
                 </thead>
                 <tbody>
                     <tr id="tblHist1">
-                        <th>Van</th>
+                        <th class="tblHist1">Van</th>
                     </tr>
                     <tr id="tblHist2">
-                        <th>Tot en met</th>
+                        <th class="tblHist2">Tot en met</th>
                     </tr>
                     <tr id="tblHist3">
-                        <th>Aantal dagen</th>
+                        <th class="tblHist3">Aantal dagen</th>
                     </tr>
                     <tr id="tblHist4">
-                        <th>Aangevraagd op</th>
+                        <th class="tblHist4">Aangevraagd op</th>
                     </tr>
                     <tr id="tblHist5">
-                        <th>Status</th>
+                        <th class="tblHist5">Status</th>
                     </tr>
                     <tr id="tblHist6">
-                        <th>Behandeld door</th>
+                        <th class="tblHist6">Behandeld door</th>
                     </tr>
                 </tbody>
             </table>
@@ -226,11 +232,97 @@
 
         <div data-role="panel" id="historiek_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
             <div class="ui-panel-inner">
-                <a href="#home" data-transition="none" data-rel="close" class='historiek_hide_panel' style='display:none;'></a>
+                <a href="#historiek" data-transition="none" data-rel="close" class='historiek_hide_panel' style='display:none;'></a>
                 <ul class="menu">
                     <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
                     <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+
+                    <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Instellingen</span><div class="clear-fix"></div></a></li>
+                    <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
+                    <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="aanvragen" data-theme="b">
+        <div class="melding" onclick="hideMelding()">
+        </div>
+        <div data-role="header" class="header" data-position="fixed">
+            <div class="left"><a href="#aanvragen_panel" data-transition="none"><img src="images/menu.png" /></a></div>
+            <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
+        </div>
+
+        <div data-role="content" class="ui-content" role="main">
+            <div id="loadingDivAanvragen" style="display: none;">
+                <img src="images/gif-load_blue.gif">
+            </div>
+            <div data-role="collapsibleset" data-theme="a" data-iconpos="right" id="colSetAanvragen">            
+            </div>
+            <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAllesGoedkeuren" class="btnAllesGoedkeuren" type="submit" value="Alles goedkeuren" />Alles goedkeuren</div>
+        </div>
+
+        <div data-role="panel" id="aanvragen_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+            <div class="ui-panel-inner">
+                <a href="#aanvragen" data-transition="none" data-rel="close" class='aanvragen_hide_panel' style='display:none;'></a>
+                <ul class="menu">
+                    <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
+                    <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
+                    <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+
+                    <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Instellingen</span><div class="clear-fix"></div></a></li>
+                    <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
+                    <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="detailsAanvraag" data-theme="b">
+        <div class="melding" onclick="hideMelding()">
+        </div>
+        <div data-role="header" class="header" data-position="fixed">
+            <div class="left"><a href="#detailsAanvraag_panel" data-transition="none"><img src="images/menu.png" /></a></div>
+            <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
+        </div>
+
+        <div data-role="content" class="ui-content" role="main" data-theme="a">
+            <div id="loadingDivDetailAanvraag" style="display: none;">
+                <img src="images/gif-load_blue.gif">
+            </div>
+
+            <span class="hiddenField" id="aanvrGoedkeuringID"></span>
+            <span class="hiddenField" id="aanvrAanvraagID"></span>
+            <span class="hiddenField" id="aanvrMdwID"></span>
+            <p><span class="vet lblAanvraagVanBeh">Aanvraag van: </span><span id="aanvrMdwNaam"></span></p>
+            <p><span class="vet lblFunctieBeh">Functie: </span><span id="aanvrFunc"></span></p>
+            <p><span class="vet lblAfdBeh">Afdeling: </span><span id="aanvrAfd"></span></p><br/>
+
+            <div id="dagenAanvraag" style="margin-bottom: 15px;">
+            </div>
+
+            <label class="lblRedenBeh">Reden (optioneel bij goedkeuren):</label>
+            <textarea id="txaRedenAanvraagKeuren" name="txaReden" data-theme="a"></textarea>
+            <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnGoedkeuren" type="submit" value="Goedkeuren" />Goedkeuren</div>
+            <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAfkeuren" type="submit" value="Afkeuren" />Afkeuren</div>
+            <a style="text-decoration: none;" href="#aanvragen"><div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnBehandelAndereAanvr" type="submit" value="Andere aanvraag behandelen" />Andere aanvraag behandelen</div></a>
+        </div>
+
+        <div data-role="panel" id="detailsAanvraag_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+            <div class="ui-panel-inner">
+                <a href="#detailsAanvraag" data-transition="none" data-rel="close" class='detailsAanvraag_hide_panel' style='display:none;'></a>
+                <ul class="menu">
+                    <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
+                    <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
+                    <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+
                     <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Instellingen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
                     <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
@@ -244,7 +336,6 @@
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#opties_panel" data-transition="none"><img src="images/menu.png" /></a></div>
-            <!--<div class="right"><a href="#selecteerPeriode" data-role="none" data-rel="popup" data-position-to="window" onclick="loadAll();"><img src="images/herladen.png" /></a></div>-->
             <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
         </div>
 
@@ -266,11 +357,14 @@
 
         <div data-role="panel" id="opties_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
             <div class="ui-panel-inner">
-                <a href="#home" data-transition="none" data-rel="close" class='opties_hide_panel' style='display:none;'></a>
+                <a href="#Opties" data-transition="none" data-rel="close" class='opties_hide_panel' style='display:none;'></a>
                 <ul class="menu">
                     <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
                     <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+
                     <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Instellingen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
                     <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
@@ -284,7 +378,6 @@
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#about_panel" data-transition="none"><img src="images/menu.png" /></a></div>
-            <!--<div class="right"><a href="#selecteerPeriode" data-role="none" data-rel="popup" data-position-to="window" onclick="loadAll();"><img src="images/herladen.png" /></a></div>-->
             <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
         </div>
 
@@ -305,11 +398,14 @@
 
         <div data-role="panel" id="about_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
             <div class="ui-panel-inner">
-                <a href="#home" data-transition="none" data-rel="close" class='about_hide_panel' style='display:none;'></a>
+                <a href="#About" data-transition="none" data-rel="close" class='about_hide_panel' style='display:none;'></a>
                 <ul class="menu">
                     <li><a href="#home" data-rel="close" data-transition="none"><img src="images/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
                     <li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#historiek" data-rel="close" data-transition="none"><img src="images/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
+
+                    <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="images/kalender_black.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+
                     <li><a href="#Opties" data-rel="close" data-transition="none"><img src="images/opties.png" /><span class="lblMenuInst">Instellingen</span><div class="clear-fix"></div></a></li>
                     <li><a href="#About" data-rel="close" data-transition="none"><img src="images/About.png" /><span>OKc</span><div class="clear-fix"></div></a></li>
                     <li><a onclick="logout()"><img src="images/logout.png" /><span class="lblMenuLogout">Uitloggen</span><div class="clear-fix"></div></a></li>
@@ -322,6 +418,7 @@
     <script src="scripts/Vertalen.js"></script>
     <script src="cordova.js"></script>
     <script>
+        $('#colSetDetailAanvraag.ui-collapsible.ui-collapsible-collapsed').attr('data-collapsed', false).removeClass("ui-collapsible-collapsed").find('.ui-collapsible-content').removeClass('ui-collapsible-content-collapsed');
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
         var historiekItems;
@@ -366,8 +463,9 @@
             $('#cboJaar')[0].add(option);
         }
 
-        // Verschillende date uit de 'coockies' halen
+        // Verschillende data uit de 'coockies' halen
         var mdwID = window.localStorage.getItem("mdwID");
+        var miRol = window.localStorage.getItem("miRol");
         var jaar = $('#cboJaar')[0][$('#cboJaar')[0].selectedIndex].value;
         var taal = window.localStorage.getItem("TaalKeuze");
         if (taal == null) {
@@ -393,7 +491,7 @@
             popupActive = true;
             popupDte = 'Overview';
             firstclick = true;
-            kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview');
+            kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview', huidigOverviewJaar);
         }
 
         var popupActive = false;
@@ -408,6 +506,7 @@
             } else
                 $("#dteVanPopup").datepicker("option", "minDate", null);
             var maand = $('#dteVanPopup .ui-datepicker-title span')[0].outerText;
+            var jaar = $('#dteVanPopup .ui-datepicker-title span:nth-child(2)')[0].outerText;
             huidigeVanMaand = maandenHuidig.indexOf(maand) + 1;
 
             setDteStyle('#dteVanPopup');
@@ -415,7 +514,7 @@
             popupActive = true;
             popupDte = 'Van';
 
-            kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup');
+            kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup', jaar);
             dteTarget = target;
         }
 
@@ -428,6 +527,7 @@
             } else
                 $("#dteTotPopup").datepicker("option", "minDate", null);
             var maand = $('#dteTotPopup .ui-datepicker-title span')[0].outerText;
+            var jaar = $('#dteTotPopup .ui-datepicker-title span:nth-child(2)')[0].outerText;
             huidigeTotMaand = maandenHuidig.indexOf(maand) + 1;
 
             setDteStyle('#dteTotPopup');
@@ -435,7 +535,7 @@
             popupActive = true;
             popupDte = 'Tot';
 
-            kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup');
+            kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup', jaar);
             dteTarget = target;
         }
 
@@ -463,29 +563,65 @@
                     if (popupDte == "Van") {
                         if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
                             huidigeVanMaand -= 1;
-                            kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup');
+
+                            if (huidigeVanMaand < 1) {
+                                huidigeVanMaand = 12;
+                                huidigVanJaar -= 1;
+                            }
+                            
+                            kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup', huidigVanJaar);
                         }
                         if (e.target.className.indexOf('ui-datepicker-next') != -1) {
                             huidigeVanMaand += 1;
-                            kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup');
+
+                            if (huidigeVanMaand > 12) {
+                                huidigeVanMaand = 1;
+                                huidigVanJaar += 1;
+                            }
+                            
+                            kleurDisabledDagen(huidigeVanMaand, '#dteVanPopup', huidigVanJaar);
                         }
                     } else if (popupDte == 'Tot') {
                         if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
                             huidigeTotMaand -= 1;
-                            kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup');
+                            
+                            if (huidigeTotMaand < 1) {
+                                huidigeTotMaand = 12;
+                                huidigTotJaar -= 1;
+                            }
+
+                            kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup', huidigTotJaar);
                         }
                         if (e.target.className.indexOf('ui-datepicker-next') != -1) {
                             huidigeTotMaand += 1;
-                            kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup');
+
+                            if (huidigeTotMaand > 12) {
+                                huidigeTotMaand = 1;
+                                huidigTotJaar += 1;
+                            }
+
+                            kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup', huidigTotJaar);
                         }
                     } else if (popupDte == 'Overview') {
                         if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
                             huidigeOverviewMaand -= 1;
-                            kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview');
+
+                            if (huidigeOverviewMaand > 12) {
+                                huidigeOverviewMaand = 1;
+                                huidigOverviewJaar -= 1;
+                            }
+
+                            kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview', huidigOverviewJaar);
                         }
                         if (e.target.className.indexOf('ui-datepicker-next') != -1) {
                             huidigeOverviewMaand += 1;
-                            kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview');
+
+                            if (huidigeOverviewMaand > 12) {
+                                huidigeOverviewMaand = 1;
+                                huidigOverviewJaar += 1;
+                            }
+
+                            kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview', huidigOverviewJaar);
                         }
                     }
                 }
@@ -548,10 +684,14 @@
                     dteVanIngevuld = true;
                 else if (dteTarget == "dteTot")
                     dteTotIngevuld = true; 
-                if(dteVanIngevuld && dteTotIngevuld)
+                if (dteVanIngevuld && dteTotIngevuld) {
                     $("#btnDetailDagen").button("enable");
-                else
+                    $('#btnDetailDagen').parent().css('color', '').css('background-color', '');
+                }
+                else {
                     $("#btnDetailDagen").button("disable");
+                    $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd');
+                }
             }
         });
         setDteStyle('.customDatepicker');
@@ -591,6 +731,7 @@
 
         // Herladen van de saldi
         function reloadSaldi() {
+            $('#cboJaar').selectmenu();
             $('#cboJaar').selectmenu("disable");
             // Saldo van het vorige jaar verwijderen
             initSaldiTable();
@@ -613,8 +754,10 @@
 
         // Herladen van de historiek van de gebruiker
         function reloadHist() {
-            if (histPageInit)
+            if (histPageInit) {
+                $('#cboHistItems').selectmenu();
                 $('#cboHistItems').selectmenu("disable");
+            }
 
             initHistTable();
             jaar = $('#cboJaar')[0][$('#cboJaar')[0].selectedIndex].value;
@@ -631,7 +774,7 @@
             $("#cboPrestatieC").selectmenu("disable");
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/verlof/?mwId=' + mdwID + '&jaar=' + jaar + '&taal=' + taal,
+                url: url + 'api/VerlofAanvragen/GetVerlofSaldo/?mwId=' + mdwID + '&jaar=' + jaar + '&taal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -640,17 +783,7 @@
                     if (data.length == 0) {
                         revealCbo = false;
                         if ($.mobile.activePage.attr('id') == 'home') {
-                            switch (taal) {
-                                case 'nl':
-                                    melding("Er zijn geen saldi beschikbaar.", 5000, 'warning');
-                                    break;
-                                case 'fr':
-                                    melding("Il n'y a pas de données disponibles.", 5000, 'warning');
-                                    break;
-                                case 'en':
-                                    melding("There is no data available.", 5000, 'warning');
-                                    break;
-                            }
+                            melding(msgGeenSaldi, 5000, 'warning');
                             $('#cboPrestatieC')[0].innerHTML = '';
                             $("#cboPrestatieC").selectmenu();
                         }
@@ -672,8 +805,11 @@
                     }
                     $('#loadingDivSaldi').css('display', 'none');
                     $('#cboJaar').selectmenu("enable");
-                    if (revealCbo)
+                    if (revealCbo) {
+                        $('#cboPrestatieC').selectmenu();
                         $('#cboPrestatieC').selectmenu("enable");
+                    }
+                        
                     loadingSaldi = false;
                 }
             });
@@ -687,26 +823,16 @@
             $('#loadingDivHist').css('display', 'inline');
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/verlof/?mwId=' + mdwID + '&jaar=' + jaar + '&status=1,2,3,4' + '&taal=' + taal,
+                url: url + 'api/VerlofAanvragen/GetHistoriek/?mwId=' + mdwID + '&jaar=' + jaar + '&status=1,2,3,4' + '&taal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    if (data.length == 0){
+                    if (data.length == 0) {
                         if ($.mobile.activePage.attr('id') == 'historiek') {
-                            switch (taal) {
-                                case 'nl':
-                                    melding("Er is geen historiek beschikbaar.", 5000, 'warning');
-                                    break;
-                                case 'fr':
-                                    melding("Il n'y a pas de données disponibles.", 5000, 'warning');
-                                    break;
-                                case 'en':
-                                    melding("There is no data available.", 5000, 'warning');
-                                    break;
-                            }
+                            melding(msgGeenHistoriek, 5000, 'warning');
                         }
-                    }   
+                    }
                     else {
                         historiekItems = data;
 
@@ -725,8 +851,11 @@
                         changeHistItem();
                     }
                     $('#loadingDivHist').css('display', 'none');
-                    if (histPageInit)
+                    if (histPageInit) {
+                        $('#cboHistItems').selectmenu();
                         $('#cboHistItems').selectmenu("enable");
+                    }
+                        
                     loadingHist = false;
                 }
             });
@@ -735,9 +864,10 @@
 
         // Ophalen van de verschillende prestatiecodes en bijhorend kleurtje op in de legende weer te geven
         function opvullenRPTKleuren() {
+
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/verlof/?mdwId=' + mdwID + '&iJaar=' + jaar + '&sTaal=' + taal,
+                url: url + 'api/VerlofAanvragen/GetRPTKleuren/?mdwId=' + mdwID + '&iJaar=' + new Date().getFullYear() + '&sTaal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -753,15 +883,16 @@
         opvullenRPTKleuren();
 
         // Functie voor het kleuren van de verschillende feest-/verlofdagen
-        function kleurDisabledDagen(huidigeMaand, dtpId) {
+        function kleurDisabledDagen(huidigeMaand, dtpId, huidigjaar) {
             // Alle feest-/verlofdagen overlopen en op de datepicker kleuren indien nodig
             $.each(uitTeSchakelenDagen, function (key, value) {
                 // Als de dag plaatsvindt in de huidig weergegeven maand --> dag kleuren
                 var datumUitschakelen = value.datum;
                 if (value.altDatum != '' && value.altDatum != null)
                     datumUitschakelen = value.altDatum;
-                if (parseInt(datumUitschakelen.split('-')[1]) == huidigeMaand) {
-                    var datumMaand = new Date(new Date().getFullYear(), huidigeMaand - 1, parseInt(datumUitschakelen.split('-')[0]));
+
+                if (parseInt(datumUitschakelen.split('-')[1]) == huidigeMaand && parseInt(datumUitschakelen.split('-')[2]) == huidigjaar) {
+                    var datumMaand = new Date(huidigjaar, huidigeMaand - 1, parseInt(datumUitschakelen.split('-')[0]));
 
                     // Bepalen in welke week van de maand de dag plaatsvindt
                     var weekInMaand = Math.ceil(Math.abs(datumMaand.getDay() - parseInt(datumUitschakelen.split('-')[0])) / 7);
@@ -791,8 +922,11 @@
         }
 
         var huidigeVanMaand = new Date().getMonth() + 1;
+        var huidigVanJaar = new Date().getFullYear();
         var huidigeTotMaand = new Date().getMonth() + 1;
+        var huidigTotJaar = new Date().getFullYear();
         var huidigeOverviewMaand = new Date().getMonth() + 1;
+        var huidigOverviewJaar = new Date().getFullYear();
         var uitTeSchakelenDagen = null;
         var weekendWerk = true;
         var loadingFeest = false;
@@ -803,7 +937,7 @@
             loadingFeest = true;
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/verlof/?mwId=' + mdwID + '&jaar=' + jaar + '&sTaal=' + taal,
+                url: url + 'api/VerlofAanvragen/GetFeestdagen/?mwId=' + mdwID + '&jaar=' + new Date().getFullYear() + '&sTaal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -825,11 +959,6 @@
         ophalenFeestdagen();
 
         var DagenVoorVerlofAanvraag;
-        // Click event voor het ophalen van de dagen waarvoor effectief verlof voor aangevraagd kan worden
-        $("#btnDetailDagen").click(function (event) {
-            event.preventDefault();
-            haalDagenOp()
-        });
         
         // De dagen ophalen waarvoor effectief verlof voor aangevraagd kan worden
         // aan de hand van de periode die door de gebruiker werd opgegeven
@@ -838,7 +967,7 @@
             // gegevens voorsturen naar de API
            $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/verlof/?mwId=' + mdwID + '&startdag=' + $('#dteVan').val() + '&einddag=' + $('#dteTot').val() + '&sTaal=' + taal,
+                url: url + 'api/VerlofAanvragen/GetRequestedDagen/?mwId=' + mdwID + '&startdag=' + $('#dteVan').val() + '&einddag=' + $('#dteTot').val() + '&sTaal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -865,18 +994,7 @@
                                 content += '<option value="' + verlofSaldi[y].prestatiecodeID + '">' + verlofSaldi[y].omschrijving + '</option>';
                             }
                                 
-                            content += "</select><label>";
-                            switch (taal) {
-                                case 'nl':
-                                    content += "Aantal uur";
-                                    break;
-                                case 'fr':
-                                    content += "Nombre d'heurs";
-                                    break;
-                                case 'en':
-                                    content += "Number of hours";
-                                    break;
-                            }
+                            content += "</select><label>" + dynamicAantUur;
                             // Bepalen welke controls weergegeven moeten worden in de collapsible
                             // verlofInUren --> NumericalUpDown
                             // verlofInDagen --> Select
@@ -884,30 +1002,15 @@
                                 content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' /></div>";
                             else {
                                 content += "</label><select>";
-                                switch (taal) {
-                                    case 'nl':
-                                        content += "<option value='D100'>dag</option>";
-                                        content += "<option value='V50'>voormiddag</option>";
-                                        content += "<option value='N50'>namiddag</option>";
-                                        break;
-                                    case 'fr':
-                                        content += "<option value='D100'>jour</option>";
-                                        content += "<option value='V50'>matinée</option>";
-                                        content += "<option value='N50'>après-midi</option>";
-                                        break;
-                                    case 'en':
-                                        content += "<option value='D100'>day</option>";
-                                        content += "<option value='V50'>AM</option>";
-                                        content += "<option value='N50'>PM</option>";
-                                        break;
-                                }
+                                content += "<option value='D100'>" + dynamicDag + "</option>";
+                                content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
+                                content += "<option value='N50'>" + dynamicNamiddag + "</option>";
                                 content += "</select></div>";
-                            }
-                                                     
+                            }                       
                         }
                         // Een button btnDagenBevestigen toevoegen
                         content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
-                        content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + btnConfirm + "' />" + btnConfirm + "</input></div>";
+                        content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + dynamicBtnDagenBevestigen + "' />" + dynamicBtnDagenBevestigen + "</input></div>";
                         $("#colSet")[0].innerHTML = content;
 
                         var iTeller = 0;
@@ -965,6 +1068,7 @@
 
             $('#btnDagenBevestigen').click(function (event) {
                 event.preventDefault();
+                disableBijVerlofaanvraag();
                 dagenBevestigen();
             })
             
@@ -976,15 +1080,29 @@
             if (appStartup) {
                 $("#home_panel").panel("open");
                 appStartup = false;
+                vertaalTekst(taal);
+                // Click event voor het ophalen van de dagen waarvoor effectief verlof voor aangevraagd kan worden
+                $("#btnDetailDagen").click(function (event) {
+                    event.preventDefault();
+                    haalDagenOp()
+                });
             }
             
+            // Als de ingelogde medewerkers HRM|LG is worden de te behandelen aanvragen opgehaald
+            if (miRol.indexOf('myHRM') != -1 || miRol.indexOf('myLG') != -1)
+                getAanvragenLGHR();
+            else
+                $('li.menuBehandelen').css('display', 'none');
+            $('#btnAllesGoedkeuren').click(function () {
+                inBatchGoedkeuren();
+            });
+
             if (loadingSaldi) {
                 $('#cboJaar').selectmenu("disable");
                 $('#cboPrestatieC').selectmenu("disable");
             }
 
             $("#cboPrestatieC").selectmenu("refresh", true);
-            vertaalTekst(taal);
         });
         // Code die uitgevoegd wordt bij het laden van de #historiek pagina
         var histPageInit = false;
@@ -992,9 +1110,10 @@
             if (loadingHist) {
                 $('#cboHistItems').selectmenu("disable");
             }
+            if ($('#loadingDivHist')[0].style.display == 'none' && (historiekItems == undefined || historiekItems == null))
+                melding(msgGeenHistoriek, 5000, 'warning');
             
             $("#cboHistItems").selectmenu("refresh", true);
-            vertaalTekst(taal);
             histPageInit = true;
         });
         // Code die uitgevoegd wordt bij het laden van de #Opties pagina
@@ -1011,7 +1130,6 @@
                     break;
             }
             $("input[type='radio']").checkboxradio().checkboxradio("refresh");
-            vertaalTekst(taal);
 
             var deviceWidth = document.documentElement.clientWidth - 16;
             $('#opPageFooter').css('width', deviceWidth);
@@ -1031,7 +1149,9 @@
             $('#dteTot').val('');
             dteTotIngevuld = false;
             dteVanIngevuld = false;
+            $("#btnDetailDagen").button();
             $("#btnDetailDagen").button("disable");
+            $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd');
             dteDisabled = true;
         });
         $(document).on('pagebeforeshow', '#About', function () {
@@ -1078,17 +1198,8 @@
 
             // Als niet alles ingevuld werd een melding aan de gebruiker tonen
             if (UurLeegOfNr) {
-                switch (taal) {
-                    case 'nl':
-                        melding('Gelieve alle velden in te vullen.', 5000, 'error');
-                        break;
-                    case 'fr':
-                        melding("Remplir tous les champs s'il vous plaît.", 5000, 'error');
-                        break;
-                    case 'en':
-                        melding('Please fill in all the fields.', 5000, 'error');
-                        break;
-                }
+                melding(msgAlleVeldenInvullen, 5000, 'error');
+                enableBijVerlofaanvraag();
             } else {
                 var gegevens = {
                     startDag: $('#dteVan').val(),
@@ -1103,7 +1214,7 @@
                 // Gegevens doorsturen naar de API
                 $.ajax({
                     headers: { 'Access-Control-Allow-Origin': "*" },
-                    url: url + 'api/verlof/',
+                    url: url + 'api/VerlofAanvragen/VerlofBevestigen/',
                     cache: false,
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',
@@ -1125,6 +1236,8 @@
                             $('#dteTot').val('');
                             $('#txaRedenVal').val('');
                         }
+
+                        enableBijVerlofaanvraag();
 
                         // Saldi, historiek en feest-/verlofdagen opnieuw ophalen
                         window.location.href = "./home.html#home";
@@ -1167,8 +1280,45 @@
         // De gebruiker logt uit
         function logout() {
             window.localStorage.removeItem("mdwID");
+            window.localStorage.removeItem("miRol");
             window.location.href = "./index.html#login";
         }
+
+        function disableBijVerlofaanvraag() {
+            try {
+                // Verlof aanvragen
+                $('#btnDetailDagen').button("disable");
+                $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd');
+            } catch (ex) { }
+            try {
+                // Verlof bevestigen
+                $('#btnDagenBevestigen').button("disable");
+                $('#btnDagenBevestigen').parent().css('color', '#aaa').css('background-color', '#ddd');
+            } catch (ex) { }
+            try {
+                // Behandelen
+                $('input[value="Behandelen"]').button("disable");
+                $('input[value="Behandelen"]').parent().css('color', '#aaa').css('background-color', '#ddd');
+            } catch (ex) { }
+        }
+        function enableBijVerlofaanvraag() {
+            try {
+                // Verlof aanvragen
+                $('#btnDetailDagen').button("enable");
+                $('#btnDetailDagen').parent().css('color', '').css('background-color', '');
+            } catch (ex) { }
+            try {
+                // Verlof bevestigen
+                $('#btnDagenBevestigen').button("enable");
+                $('#btnDagenBevestigen').parent().css('color', '').css('background-color', '');
+            } catch (ex) { }
+            try {
+                // Behandelen
+                $('input[value="Behandelen"]').button("enable");
+                $('input[value="Behandelen"]').parent().css('color', '').css('background-color', '');
+            } catch (ex) { }
+        }
     </script>
+    <script src="scripts/BehandelenAanvragen.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@ div[data-role=footer].ui-footer.ui-bar-inherit.ui-footer-fixed.slideup {
     color: white;
     padding: 16px;
     text-align: center;
-    z-index: 1;
+    z-index: 3;
     font-size: 14px;
     text-shadow: 0px 0px;
 }
@@ -167,16 +167,16 @@ ol, ul {
     clear: both;
 }
 
-#home_panel, #historiek_panel, #verlof_panel, #details_panel, #opties_panel, #about_panel {
+#home_panel, #historiek_panel, #verlof_panel, #details_panel, #opties_panel, #about_panel, #aanvragen_panel, #detailsAanvraag_panel {
     margin-top: 51px;
     background-color: #f9f9f9;
 }
 
-#home_panel .ui-panel-inner, #historiek_panel .ui-panel-inner, #verlof_panel .ui-panel-inner, #details_panel .ui-panel-inner, #opties_panel .ui-panel-inner, #about_panel .ui-panel-inner{
+#home_panel .ui-panel-inner, #historiek_panel .ui-panel-inner, #verlof_panel .ui-panel-inner, #details_panel .ui-panel-inner, #opties_panel .ui-panel-inner, #about_panel .ui-panel-inner, #aanvragen_panel .ui-panel-inner, #detailsAanvraag_panel .ui-panel-inner{
     padding: 0;
 }
 
-#home_panel .ui-panel-inner ul, #historiek_panel .ui-panel-inner ul, #verlof_panel .ui-panel-inner ul, #details_panel .ui-panel-inner ul, #opties_panel .ui-panel-inner ul, #about_panel .ui-panel-inner ul{
+#home_panel .ui-panel-inner ul, #historiek_panel .ui-panel-inner ul, #verlof_panel .ui-panel-inner ul, #details_panel .ui-panel-inner ul, #opties_panel .ui-panel-inner ul, #about_panel .ui-panel-inner ul, #aanvragen_panel .ui-panel-inner ul, #detailsAanvraag_panel .ui-panel-inner ul{
     margin: 0;
     padding: 0;
     border: 0;
@@ -185,7 +185,7 @@ ol, ul {
     vertical-align: baseline;
 }
 
-#home_panel .ui-panel-inner ul li a, #historiek_panel .ui-panel-inner ul li a, #verlof_panel .ui-panel-inner ul li a, #details_panel .ui-panel-inner ul li a, #opties_panel .ui-panel-inner ul li a, #about_panel .ui-panel-inner ul li a{
+#home_panel .ui-panel-inner ul li a, #historiek_panel .ui-panel-inner ul li a, #verlof_panel .ui-panel-inner ul li a, #details_panel .ui-panel-inner ul li a, #opties_panel .ui-panel-inner ul li a, #about_panel .ui-panel-inner ul li a, #aanvragen_panel .ui-panel-inner ul li a, #detailsAanvraag_panel .ui-panel-inner ul li a{
     color: black;
     text-shadow: 0px 0px;
     font-weight: normal;
@@ -354,7 +354,7 @@ div.customDatepicker table tbody td a {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 20px #888888;
-    z-index: 1;
+    z-index: 2;
 }
 
 #dteOverlay {
@@ -374,7 +374,7 @@ div.customDatepicker table tbody td a {
     margin-bottom: 20px;
 }*/
 
-#loadingDivSaldi, #loadingDivHist, #loadingDivDetailsDagen, #loadingDivDetailD {
+#loadingDivSaldi, #loadingDivHist, #loadingDivDetailsDagen, #loadingDivDetailD, #loadingDivAanvragen, #loadingDivDetailAanvraag {
     position: absolute;
     z-index: 1;
     width: 120px;
@@ -390,7 +390,7 @@ div.customDatepicker table tbody td a {
     border-radius: 38px;
 }
 
-#loadingDivSaldi img, #loadingDivHist img, #loadingDivDetailsDagen img, #loadingDivDetailD img {
+#loadingDivSaldi img, #loadingDivHist img, #loadingDivDetailsDagen img, #loadingDivDetailD img, #loadingDivAanvragen img, #loadingDivDetailAanvraag img {
     margin-top: 12px;
     margin-left: 12px;
 }
@@ -478,4 +478,52 @@ table#tblPCodes thead th:first-child, #tblHist thead th:first-child{
 
 #btnDetailDagen {
     width: 100%;
+}
+
+.vet {
+    font-weight: bold;
+}
+
+.hiddenField {
+    display: none;
+}
+
+.aanvraagInfo {
+    margin: 5px 0 5px;
+    border-bottom: 1px #bbb dotted;
+    padding-bottom: 2px;
+}
+
+.aanvraagInfo span:nth-child(2) {
+    float: right;
+}
+
+.StandaloneCollapsible.ui-collapsible {
+    border-right: rgb(221, 221, 221) 1px solid;
+    border-left: rgb(221, 221, 221) 1px solid;
+    margin: 0;
+}
+
+#detailsAanvraag .ui-content .StandaloneCollapsible:first-child {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+#detailsAanvraag .ui-content .StandaloneCollapsible:last-child {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.multilineDetail p:first-child{
+    margin-bottom: 5px;
+}
+
+.multilineDetail p:last-child{
+    border-bottom: dotted 1px #bbb;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+#txaRedenAanvraagKeuren {
+    height: 80px !important;
 }
