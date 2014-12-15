@@ -123,7 +123,7 @@
                     <label id="txaReden" class="txaRedenAanvr" for="txaReden">Reden van afwezigheid</label>
                     <textarea id="txaRedenVal" name="txaReden" data-theme="a"></textarea>
                     <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a">
-                        <input data-theme="b" id="btnDetailDagen" class="btnDetailDagenAanvr" type="submit" value="Verder" />Verder</input>
+                        <input data-theme="b" id="btnDetailDagen" class="btnDetailDagenAanvr" type="submit" value="Verder" />Verder
                         <!--<a onclick="haalDagenOp()" href="#" data-transition="none" class="ui-btn" data-role="none" data-position-to="window">Details dagen</a>-->
                     </div>
                     <div id="dteVanPopup" class="customDatepicker"></div>
@@ -259,6 +259,14 @@
         <div data-role="content" class="ui-content" role="main">
             <div id="loadingDivAanvragen" style="display: none;">
                 <img src="images/gif-load_blue.gif">
+            </div>
+            <div id="confirmBoxAanvr" class="confirmBox" style="display:none;">
+                <div class="confBackg">&nbsp;</div>
+                <div class="confContent">
+                    <p class="txtConfirmAanvr">Weet je zeker dat je alle aanvragen wilt goedkeuren?</p>
+                    <div id="divConfAanvrNo" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnConfAanvrNo" class="btnConfAanvrNo" type="submit" value="Nee" />Nee</div>
+                    <div id="divConfAanvrYes" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnConfAanvrYes" class="btnConfAanvrYes" type="submit" value="Ja" />Ja</div>
+                </div>
             </div>
             <div data-role="collapsibleset" data-theme="a" data-iconpos="right" id="colSetAanvragen">            
             </div>
@@ -686,11 +694,11 @@
                     dteTotIngevuld = true; 
                 if (dteVanIngevuld && dteTotIngevuld) {
                     $("#btnDetailDagen").button("enable");
-                    $('#btnDetailDagen').parent().css('color', '').css('background-color', '');
+                    $('#btnDetailDagen').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
                 }
                 else {
                     $("#btnDetailDagen").button("disable");
-                    $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd');
+                    $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
                 }
             }
         });
@@ -774,7 +782,7 @@
             $("#cboPrestatieC").selectmenu("disable");
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/VerlofAanvragen/GetVerlofSaldo/?mwId=' + mdwID + '&jaar=' + jaar + '&taal=' + taal,
+                url: url + 'api/Medewerker/GetVerlofSaldo/?mwId=' + mdwID + '&jaar=' + jaar + '&taal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -823,7 +831,7 @@
             $('#loadingDivHist').css('display', 'inline');
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/VerlofAanvragen/GetHistoriek/?mwId=' + mdwID + '&jaar=' + jaar + '&status=1,2,3,4' + '&taal=' + taal,
+                url: url + 'api/Medewerker/GetHistoriek/?mwId=' + mdwID + '&jaar=' + jaar + '&status=1,2,3,4' + '&taal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -867,7 +875,7 @@
 
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/VerlofAanvragen/GetRPTKleuren/?mdwId=' + mdwID + '&iJaar=' + new Date().getFullYear() + '&sTaal=' + taal,
+                url: url + 'api/Medewerker/GetRPTKleuren/?mdwId=' + mdwID + '&iJaar=' + new Date().getFullYear() + '&sTaal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -937,7 +945,7 @@
             loadingFeest = true;
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/VerlofAanvragen/GetFeestdagen/?mwId=' + mdwID + '&jaar=' + new Date().getFullYear() + '&sTaal=' + taal,
+                url: url + 'api/Medewerker/GetFeestdagen/?mwId=' + mdwID + '&jaar=' + new Date().getFullYear() + '&sTaal=' + taal,
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -1086,6 +1094,16 @@
                     event.preventDefault();
                     haalDagenOp()
                 });
+                $('#btnConfAanvrNo').click(function () {
+                    $('#confirmBoxAanvr').css('display', 'none');
+                });
+                $('.confBackg').click(function () {
+                    $(this).parent().css('display', 'none');
+                });
+                $('#btnConfAanvrYes').click(function () {
+                    $('#confirmBoxAanvr').css('display', 'none');
+                    inBatchGoedkeuren();
+                });
             }
             
             // Als de ingelogde medewerkers HRM|LG is worden de te behandelen aanvragen opgehaald
@@ -1094,7 +1112,7 @@
             else
                 $('li.menuBehandelen').css('display', 'none');
             $('#btnAllesGoedkeuren').click(function () {
-                inBatchGoedkeuren();
+                $('#confirmBoxAanvr').css('display', 'inline-block');
             });
 
             if (loadingSaldi) {
@@ -1151,7 +1169,7 @@
             dteVanIngevuld = false;
             $("#btnDetailDagen").button();
             $("#btnDetailDagen").button("disable");
-            $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd');
+            $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
             dteDisabled = true;
         });
         $(document).on('pagebeforeshow', '#About', function () {
@@ -1288,34 +1306,34 @@
             try {
                 // Verlof aanvragen
                 $('#btnDetailDagen').button("disable");
-                $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd');
+                $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
             } catch (ex) { }
             try {
                 // Verlof bevestigen
                 $('#btnDagenBevestigen').button("disable");
-                $('#btnDagenBevestigen').parent().css('color', '#aaa').css('background-color', '#ddd');
+                $('#btnDagenBevestigen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
             } catch (ex) { }
             try {
                 // Behandelen
                 $('input[value="Behandelen"]').button("disable");
-                $('input[value="Behandelen"]').parent().css('color', '#aaa').css('background-color', '#ddd');
+                $('input[value="Behandelen"]').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
             } catch (ex) { }
         }
         function enableBijVerlofaanvraag() {
             try {
                 // Verlof aanvragen
                 $('#btnDetailDagen').button("enable");
-                $('#btnDetailDagen').parent().css('color', '').css('background-color', '');
+                $('#btnDetailDagen').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
             } catch (ex) { }
             try {
                 // Verlof bevestigen
                 $('#btnDagenBevestigen').button("enable");
-                $('#btnDagenBevestigen').parent().css('color', '').css('background-color', '');
+                $('#btnDagenBevestigen').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
             } catch (ex) { }
             try {
                 // Behandelen
                 $('input[value="Behandelen"]').button("enable");
-                $('input[value="Behandelen"]').parent().css('color', '').css('background-color', '');
+                $('input[value="Behandelen"]').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
             } catch (ex) { }
         }
     </script>

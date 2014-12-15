@@ -20,7 +20,6 @@
                     <input type="email" id="loginInput" placeholder="Login" />
                     <input type="password" id="paswoordInput" placeholder="Paswoord" />
                     <input type="button" id="inloggen" class="btnInloggen" value="Inloggen" data-role="button" />
-                    <input type="button" id="testje" class="btnInloggen" value="Native confirm" data-role="button" />
                 </div>
                 <div id="containerLoading">
                     <img src="images/gif-load.gif" />
@@ -33,23 +32,6 @@
         <script src="scripts/DatabaseConnection.js"></script>
         <script src="cordova.js"></script>
         <script>
-            $('#testje').click(function () {
-                navigator.notification.alert(
-	                "Dit is de vraag?",
-	                "Titel?",
-	                "No",
-	                "Yes",
-	                {
-	                    onClose: function (buttonIndex) {
-	                        if (buttonIndex == 1) {
-	                            alert('Yes');
-	                        }else if(buttonIndex == 0)
-	                            alert('No');
-	                    }
-	                }
-                );
-            });
-
             var timeout;
             // Als de pagina geladen is kijken of er een 'cookie' is opgeslaan met een eerder ingelogde gebruikerId
             // Indien wel --> login overslaan en met gegevens van vorige gebruiker blijven werken

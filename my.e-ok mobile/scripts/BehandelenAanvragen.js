@@ -70,16 +70,19 @@ $(document).on('pagebeforeshow', '#detailsAanvraag', function () {
 });
 // De jQuery controls die dynamisch toegevoegd werden aan de pagina initialiseren
 $(document).on('pagebeforeshow', '#aanvragen', function () {
+    $('#btnConfAanvrNo').button();
+    $('#btnConfAanvrYes').button();
+
     if (geenTeBehandelenAanvragen)
         melding(msgGeenAanvragen, 5000, 'error');
     else
         $('#colSetAanvragen div[data-role="collapsible"]').collapsible();
     if (aanvragenLGHR == null) {
         $("#btnAllesGoedkeuren").button("disable");
-        $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd');
+        $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } else {
         $("#btnAllesGoedkeuren").button("enable");
-        $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '');
+        $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
     }
 });
 
@@ -95,7 +98,8 @@ function getAanvragenLGHR() {
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            $("#btnAllesGoedkeuren").button();
+            $("#btnAllesGoedkeuren").button("enable");
+            $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
             if (data.indexOf('error@#@') != -1) {
                 geenTeBehandelenAanvragen = true;
                 aanvragenLGHR = null;
@@ -227,6 +231,7 @@ function inBatchGoedkeuren() {
         }
         aanvragenBatch.push(aanvraagBatch);
     }
+    aanvragenLGHR = null;
 
     $.ajax({
         headers: { 'Access-Control-Allow-Origin': "*" },
@@ -247,27 +252,37 @@ function disableBijBehandeling() {
     try {
         // Afkeuren
         $('#btnAfkeuren').button("disable");
-        $('#btnAfkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'auto');
+        $('#btnAfkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } catch (ex) { }
     try {
         // Goedkeuren
         $('#btnGoedkeuren').button("disable");
-        $('#btnGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'auto');
+        $('#btnGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } catch (ex) { }
     try {
         // Verlof aanvragen
         $('#btnDetailDagen').button("disable");
-        $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'auto');
+        $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } catch (ex) { }
     try {
         // Behandelen
         $('.btnBehandelen').button("disable");
-        $('.btnBehandelen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'auto');
+        $('.btnBehandelen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } catch (ex) { }
     try{
         // Alles goedkeuren
         $("#btnAllesGoedkeuren").button("disable");
-        $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'auto');
+        $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
+    } catch (ex) { }
+    try {
+        // ConfirmBox alles goedkeuren (Nee)
+        $('#btnConfAanvrNo').button('disable');
+        $('#btnConfAanvrNo').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
+    } catch (ex) { }
+    try {
+        // ConfirmBox alles goedkeuren (Ja)
+        $('#btnConfAanvrYes').button('disable');
+        $('#btnConfAanvrYes').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } catch (ex) { }
 }
 function enableBijBehandeling() {
@@ -295,5 +310,15 @@ function enableBijBehandeling() {
         // Alles goedkeuren
         $("#btnAllesGoedkeuren").button("enable");
         $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
+    } catch (ex) { }
+    try {
+        // ConfirmBox alles goedkeuren (Nee)
+        $('#btnConfAanvrNo').button('enable');
+        $('#btnConfAanvrNo').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
+    } catch (ex) { }
+    try {
+        // ConfirmBox alles goedkeuren (Ja)
+        $('#btnConfAanvrYes').button('enable');
+        $('#btnConfAanvrYes').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
     } catch (ex) { }
 }
