@@ -148,7 +148,8 @@ function opvullenTeBehandelenAanvragen(aanvragen) {
         content += '<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAanvraag' + (key + 1) + '" class="btnBehandelen" type="submit" value="' + dynamicBehandelen + '" />' + dynamicBehandelen + '</div></div>'
     });
     $('#colSetAanvragen')[0].innerHTML = content;
-    alert('render done');
+    alert(dynamicTot);
+    alert('</span></p><p class="aanvraagInfo"><span class="vet">' + dynamicTot + '</span><span class="eindTijd">');
 
     $('#colSetAanvragen input[type="submit"]').click(function () {
         $('#loadingDivAanvragen').css('display', 'inline');
