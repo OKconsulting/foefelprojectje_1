@@ -28,7 +28,7 @@ function aanvraagBehandelen(selectorAanvraag) {
 
             // Navigeren naar de lijst van opgehaalde dagen
             //window.location.href = "./home.html#detailsAanvraag";
-            $.mobile.changePage('home.html', '#detailsAanvraag', { transition: "slide" });
+            $('#aBehandel' + aanvraagInBehandeling).click();
         }
     });
 }
@@ -145,9 +145,11 @@ function opvullenTeBehandelenAanvragen(aanvragen) {
         content += aanvraag.Afdeling + '</span><span class="aanvraagID">';
         content += aanvraag.vakantieaanvraagID + '</span><span class="goedkeuringID">';
         content += aanvraag.VakantiegoedkeuringID + '</span></div>';
+        content += '<a id="aBehandel' + (key + 1) + '" href="#detailsAanvraag"></a>';
         content += '<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAanvraag' + (key + 1) + '" class="btnBehandelen" type="submit" value="' + dynamicBehandelen + '" />' + dynamicBehandelen + '</div></div>'
     });
     $('#colSetAanvragen')[0].innerHTML = content;
+
 
     $('#colSetAanvragen input[type="submit"]').click(function () {
         $('#loadingDivAanvragen').css('display', 'inline');
