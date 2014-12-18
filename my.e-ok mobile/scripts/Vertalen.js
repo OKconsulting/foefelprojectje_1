@@ -32,43 +32,10 @@ var dynamicAantAangevraagd = '';
 var dynamicRedenAanvrBeh = '';
 var dynamicBtnDagenBevestigen = '';
 function vertaalTeksten(taal) {
-    if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
-    else {  // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.open("GET", "xml/WebConfig.xml", false);
-    xmlhttp.send();
-    xml = xmlhttp.responseXML;
-    /*
-    // Statische teksten wijzigen
-    vertalingen = xml.getElementsByTagName("Vertaling");
-    var taalIndex = 0;
-    switch (taal) {
-        case "fr":
-            taalIndex = 2;
-            break;
-        case "en":
-            taalIndex = 1;
-            break;
-    }
-    for (var vertaling = 0; vertaling < vertalingen.length; vertaling++) {
-        var tekst = vertalingen[vertaling].children[taalIndex].innerHTML;
-        var className = vertalingen[vertaling].attributes['class'].value;
-        var isButton = vertalingen[8].attributes['isButton'].value;
-        if (vertalingen[8].attributes['isButton'].value = 1)
-            $('.' + vertalingen[vertaling].attributes['class'].value).parent().html(vertalingen[vertaling].children[taalIndex].innerHTML);
-        else
-            $('.' + vertalingen[vertaling].attributes['class'].value).html(vertalingen[vertaling].children[taalIndex].innerHTML);
-    }*/
-
-    
-
-   /* var xml = $.ajax({
-        url: 'xml/WebConfig.xml',
+     var xml = $.ajax({
+         url: url + 'xml/WebConfig.xml',
         async: false
-    }).responseText;*/
+    }).responseText;
 
     // Statische teksten wijzigen
     $(xml).find('Vertalingen').find('Vertaling').each(function () {
@@ -101,4 +68,6 @@ function vertaalTeksten(taal) {
     dynamicAantAangevraagd = $(xml).find('Vertalingen').find('DynamischeTekst[class="AantAangevraagd"]').find(taal).text();
     dynamicRedenAanvrBeh = $(xml).find('Vertalingen').find('DynamischeTekst[class="RedenAanvrBeh"]').find(taal).text();
     dynamicBtnDagenBevestigen = $(xml).find('Vertalingen').find('DynamischeTekst[class="btnDagenBevestigen"]').find(taal).text();
+
+    alert(dynamicTot);
 }
