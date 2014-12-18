@@ -31,6 +31,12 @@
 		<icon src="/icons/android/icon-xhdpi.png" density="xhdpi" />
 	</platform>
 
+  <platform name="wp8">
+    <icon src="/icons/ios/icon-120.png" width="99" height="99" />
+    <icon src="/icons/ios/icon-152.png" width="159" height="159" />
+    <splash src="/icons/android/splash.png" width="768" height="1280"/>
+  </platform>
+
 	<preference name="phonegap-version" value="3.5.0" />
 	<preference name="orientation" value="portrait" />
 	<preference name="DisallowOverscroll" value="true" />
