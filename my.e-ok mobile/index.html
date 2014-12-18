@@ -20,6 +20,7 @@
                 <input type="email" id="loginInput" placeholder="Login" />
                 <input type="password" id="paswoordInput" placeholder="Paswoord" />
                 <input type="button" id="inloggen" class="btnInloggen" value="Inloggen" data-role="button" />
+                <input type="button" id="testje" class="btnInloggen" value="testje" data-role="button" />
             </div>
             <div id="containerLoading">
                 <img src="images/gif-load.gif" />
@@ -33,6 +34,9 @@
     <script src="cordova.js"></script>
     <script>
         var timeout;
+        $('#testje').click(function () {
+            $('#loginInput').val(url);
+        });
         // Als de pagina geladen is kijken of er een 'cookie' is opgeslaan met een eerder ingelogde gebruikerId
         // Indien wel --> login overslaan en met gegevens van vorige gebruiker blijven werken
         $(document).ready(function () {
