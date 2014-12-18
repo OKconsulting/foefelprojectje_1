@@ -33,7 +33,7 @@ var dynamicRedenAanvrBeh = '';
 var dynamicBtnDagenBevestigen = '';
 function vertaalTeksten(taal) {
      var xml = $.ajax({
-         url: url + 'xml/WebConfig.xml',
+         url: url + 'xml/TekstenClient.xml',
         async: false
     }).responseText;
 
@@ -68,6 +68,4 @@ function vertaalTeksten(taal) {
     dynamicAantAangevraagd = $(xml).find('Vertalingen').find('DynamischeTekst[class="AantAangevraagd"]').find(taal).text();
     dynamicRedenAanvrBeh = $(xml).find('Vertalingen').find('DynamischeTekst[class="RedenAanvrBeh"]').find(taal).text();
     dynamicBtnDagenBevestigen = $(xml).find('Vertalingen').find('DynamischeTekst[class="btnDagenBevestigen"]').find(taal).text();
-
-    alert(dynamicTot);
 }
