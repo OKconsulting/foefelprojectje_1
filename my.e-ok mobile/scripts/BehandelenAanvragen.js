@@ -23,12 +23,19 @@ function aanvraagBehandelen(selectorAanvraag) {
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            alert('gelukt');
             opvullenDagenAanvraag(data.dagen, data.reden, functieNaam, afdeling, mdwNaam);
             $('#loadingDivAanvragen').css('display', 'none');
 
-            // Navigeren naar de lijst van opgehaalde dagen
-            window.location.href = "./home.html#detailsAanvraag";
+            try {
+                alert('navigating...');
+                // Navigeren naar de lijst van opgehaalde dagen
+                window.location.href = "./home.html#detailsAanvraag";
+                alert('done');
+            } catch (ex) {
+                alert('fout!');
+                alert(ex);
+                
+            }
         }
     });
 }
@@ -62,7 +69,6 @@ function opvullenDagenAanvraag(dagen, reden, functieNaam, afdeling, mdwNaam) {
             content += '<div class="multilineDetail"><p class="vet">Conflict</p>' + dag.conflictreden + '</p></div>';
         content += '</div>';
     });
-    alert('content opgemaakt');
     $('#dagenAanvraag')[0].innerHTML = content;
 }
 // De jQuery controls die dynamisch toegevoegd werden aan de pagina initialiseren
