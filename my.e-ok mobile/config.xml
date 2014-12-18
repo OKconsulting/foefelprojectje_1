@@ -32,9 +32,9 @@
 	</platform>
 
   <platform name="wp8">
-    <icon src="/icons/ios/icon-120.png" width="99" height="99" />
-    <icon src="/icons/ios/icon-152.png" width="159" height="159" />
-    <splash src="/icons/android/splash.png" width="768" height="1280"/>
+    <icon src="/icons/wp8/icon-99.png" width="99" height="99" />
+    <icon src="/icons/wp8/icon-159.png" width="159" height="159" />
+    <splash src="/icons/wp8/splash.png" width="768" height="1280"/>
   </platform>
 
 	<preference name="phonegap-version" value="3.5.0" />
