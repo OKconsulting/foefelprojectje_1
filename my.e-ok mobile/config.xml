@@ -42,6 +42,7 @@
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="permissions" value="none" />
 	<preference name="exit-on-suspend" value="true" />
+  <preference name="Fullscreen" value="true" />
 
 	<plugin name="com.phonegap.plugin.statusbar" />
 	
