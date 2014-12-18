@@ -503,17 +503,20 @@ table#tblPCodes thead th:first-child, #tblHist thead th:first-child{
     margin: 5px 0 5px;
     border-bottom: 1px #bbb dotted;
     padding-bottom: 2px;
-    float: right;
-    width: 100%;
+}
+
+.aanvraagInfo span:nth-child(1) {
+     text-align: left;
 }
 
 .aanvraagInfo span:nth-child(2) {
-    float: right;
     text-align: right;
 }
 
 .aanvraagInfo span {
+    display: inline-block;
     width: 50%;
+    vertical-align: middle;
 }
 
 .StandaloneCollapsible.ui-collapsible {
