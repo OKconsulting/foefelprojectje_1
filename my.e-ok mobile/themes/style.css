@@ -1,17 +1,4 @@
-﻿@-ms-viewport {
-    zoom: 1.0;
-    width: device-width;
-}
-@-o-viewport { 
-    zoom: 1.0;
-    width: device-width;
-}
-@viewport { 
-    zoom: 1.0;
-    width: device-width;
-}
-
-a, p, th, td {
+﻿a, p, th, td {
     text-shadow: 0 0 0 white !important;
 }
 
