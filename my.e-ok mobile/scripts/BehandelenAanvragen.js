@@ -27,8 +27,7 @@ function aanvraagBehandelen(selectorAanvraag) {
             $('#loadingDivAanvragen').css('display', 'none');
 
             // Navigeren naar de lijst van opgehaalde dagen
-            //window.location.href = "./home.html#detailsAanvraag";
-            $('#aBehandel' + aanvraagInBehandeling).click();
+            $('#aDetailsAanvraag').click();
         }
     });
 }
@@ -145,7 +144,6 @@ function opvullenTeBehandelenAanvragen(aanvragen) {
         content += aanvraag.Afdeling + '</span><span class="aanvraagID">';
         content += aanvraag.vakantieaanvraagID + '</span><span class="goedkeuringID">';
         content += aanvraag.VakantiegoedkeuringID + '</span></div>';
-        content += '<a id="aBehandel' + (key + 1) + '" href="#detailsAanvraag"></a>';
         content += '<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAanvraag' + (key + 1) + '" class="btnBehandelen" type="submit" value="' + dynamicBehandelen + '" />' + dynamicBehandelen + '</div></div>'
     });
     $('#colSetAanvragen')[0].innerHTML = content;
@@ -202,9 +200,9 @@ function goedOfAfkeuren(goedgekeurd) {
                 aanvraagInBehandeling = 0;
                 $('#loadingDivDetailAanvraag').css('display', 'none');
                 if (geenTeBehandelenAanvragen)
-                    window.location.href = "./home.html#home";
+                    $('#aHome').click();
                 else
-                    window.location.href = "./home.html#aanvragen";
+                    $('#aAanvragen').click();
                 melding(data.split('@#@')[1], 10000, data.split('@#@')[0]);
 
                 enableBijBehandeling();
@@ -247,7 +245,7 @@ function inBatchGoedkeuren() {
         success: function (data) {
             getAanvragenLGHR();
             aanvraagInBehandeling = 0;
-            window.location.href = "./home.html#home";
+            $('#aHome').click();
             melding(data.split('@#@')[1], 10000, data.split('@#@')[0]);
         }
     });

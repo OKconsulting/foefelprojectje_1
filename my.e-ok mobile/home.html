@@ -12,6 +12,12 @@
 </head>
 <body class="ui-mobile-viewport ui-overlay-c">
     <div data-role="page" id="home" data-theme="b">
+        <a id="aHome" href="#home"></a>
+        <a id="aDetailsDagen" href="#DetailsDagen"></a>
+        <a id="aAanvragen" href="#aanvragen"></a>
+        <a id="aDetailsAanvraag" href="#detailsAanvraag"></a>
+        
+
         <div class="melding" onclick="hideMelding()">
         </div>
         <div data-role="header" class="header" data-position="fixed">
@@ -1049,7 +1055,7 @@
                             }
                         }
                         // Navigeren naar de lijst van opgehaalde dagen
-                        window.location.href = "./home.html#DetailsDagen";
+                        $('#aDetailsDagen').click();
                     }
                     $('#loadingDivDetailsDagen').css('display', 'none');
                 }
@@ -1258,7 +1264,7 @@
                         enableBijVerlofaanvraag();
 
                         // Saldi, historiek en feest-/verlofdagen opnieuw ophalen
-                        window.location.href = "./home.html#home";
+                        $('#aHome').Click();
                         reloadSaldi();
                         reloadHist();
                         ophalenFeestdagen();
