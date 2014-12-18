@@ -148,6 +148,7 @@ function opvullenTeBehandelenAanvragen(aanvragen) {
         content += '<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAanvraag' + (key + 1) + '" class="btnBehandelen" type="submit" value="' + dynamicBehandelen + '" />' + dynamicBehandelen + '</div></div>'
     });
     $('#colSetAanvragen')[0].innerHTML = content;
+    alert('render done');
 
     $('#colSetAanvragen input[type="submit"]').click(function () {
         $('#loadingDivAanvragen').css('display', 'inline');

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuratie>
   <KeyValuePairs>
-    
+
   </KeyValuePairs>
   <Vertalingen>
     <!-- Statische teksten -->
@@ -189,7 +189,7 @@
       <en>Are you sure you want to approve every requested leave?</en>
       <fr>Est tu certaine que vous voulez Approuver tous?</fr>
     </Vertaling>
-  
+
     <!-- Meldingen -->
     <Melding class="GeenHistoriek">
       <nl>Er is geen historiek beschikbaar.</nl>
@@ -216,7 +216,7 @@
       <en>Please give a reason for rejecting the state leave.</en>
       <fr>Veuillez indiquer une raison pour le refus du congé.</fr>
     </Melding>
-  
+
     <!-- Dynamische teksten -->
     <DynamischeTekst class="AantalUur">
       <nl>Aantal uur</nl>
