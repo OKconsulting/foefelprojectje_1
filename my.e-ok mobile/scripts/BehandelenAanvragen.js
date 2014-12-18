@@ -28,7 +28,7 @@ function aanvraagBehandelen(selectorAanvraag) {
 
             // Navigeren naar de lijst van opgehaalde dagen
             //window.location.href = "./home.html#detailsAanvraag";
-            window.location.replace("./home.html#detailsAanvraag");
+            $.mobile.changePage('home.html', '#detailsAanvraag', { transition: "slide" });
         }
     });
 }
