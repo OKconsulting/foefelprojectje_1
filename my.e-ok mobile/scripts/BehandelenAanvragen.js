@@ -47,14 +47,14 @@ function opvullenDagenAanvraag(dagen, reden, functieNaam, afdeling, mdwNaam) {
         var bCollapsed = (key == 0) ? false : true;
         var datumDag = dag.Datum.split('T')[0].split('-');
         content += '<div data-role="collapsible" data-inset="false" class="StandaloneCollapsible" data-collapsed="' + bCollapsed + '"><h3>';
-        content += datumDag[2] + '/' + datumDag[1] + '/' + datumDag[0] + '</h3><p class="aanvraagInfo"><span class="vet">' + dynamicPrestatieCode  +'</span><span>';
+        content += datumDag[2] + '/' + datumDag[1] + '/' + datumDag[0] + '</h3><p class="aanvraagInfo"><span class="vet">' + dynamicPrestatieCode + '</span><span>';
         content += dag.prestomschrijving + '</span></p><p class="aanvraagInfo"><span class="vet">' + dynamicAantUur + '</span><span>';
         content += dag.aantaluren + '</span></p><p class="aanvraagInfo"><span class="vet">' + dynamicMinBezetting + '</span><span>';
         content += dag.minBezetting + '</span></p><p class="aanvraagInfo"><span class="vet">' + dynamicAantAanwezig + '</span><span>';
         content += dag.aanwezig + '</span></p><p class="aanvraagInfo"><span class="vet">' + dynamicAantAangevraagd + '</span><span>';
         content += dag.aangevraagd + '</span></p>';
-        
-        if(reden != "")
+
+        if (reden != "")
             content += '<div class="multilineDetail"><p class="vet">' + dynamicRedenAanvrBeh + '</p><p>' + reden + '</p></div>';
 
         if (dag.conflictreden != "")
@@ -98,7 +98,9 @@ function getAanvragenLGHR() {
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            $("#btnAllesGoedkeuren").button("enable");
+            try {
+                $("#btnAllesGoedkeuren").button("enable");
+            } catch (ex) { }
             $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
             if (data.indexOf('error@#@') != -1) {
                 geenTeBehandelenAanvragen = true;
@@ -180,7 +182,7 @@ function goedOfAfkeuren(goedgekeurd) {
         $('#loadingDivDetailAanvraag').css('display', 'inline');
         var goedkeuringID = $('#aanvraag' + aanvraagInBehandeling + ' .goedkeuringID')[0].innerHTML;
         var aanvraagID = $('#aanvraag' + aanvraagInBehandeling + ' .aanvraagID')[0].innerHTML;
-        
+
         var mdwIDAanvr = $('#aanvraag' + aanvraagInBehandeling + ' .mdwID')[0].innerHTML;
         var startTijd = $('#dagenAanvraag div[data-role="collapsible"]:first-child h3 a')[0].innerHTML.substring(0, 10).split('/');
         startTijd = startTijd[2] + startTijd[1] + startTijd[0];
@@ -269,7 +271,7 @@ function disableBijBehandeling() {
         $('.btnBehandelen').button("disable");
         $('.btnBehandelen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } catch (ex) { }
-    try{
+    try {
         // Alles goedkeuren
         $("#btnAllesGoedkeuren").button("disable");
         $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
@@ -306,7 +308,7 @@ function enableBijBehandeling() {
         $('.btnBehandelen').button("enable");
         $('.btnBehandelen').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
     } catch (ex) { }
-    try{
+    try {
         // Alles goedkeuren
         $("#btnAllesGoedkeuren").button("enable");
         $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
