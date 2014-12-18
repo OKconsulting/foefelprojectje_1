@@ -26,16 +26,9 @@ function aanvraagBehandelen(selectorAanvraag) {
             opvullenDagenAanvraag(data.dagen, data.reden, functieNaam, afdeling, mdwNaam);
             $('#loadingDivAanvragen').css('display', 'none');
 
-            try {
-                alert('navigating...');
-                // Navigeren naar de lijst van opgehaalde dagen
-                window.location.href = "./home.html#detailsAanvraag";
-                alert('done');
-            } catch (ex) {
-                alert('fout!');
-                alert(ex);
-                
-            }
+            // Navigeren naar de lijst van opgehaalde dagen
+            //window.location.href = "./home.html#detailsAanvraag";
+            window.location.replace("./home.html#detailsAanvraag");
         }
     });
 }
