@@ -1,10 +1,12 @@
 ﻿@-ms-viewport {
     zoom: 1.0;
     width: device-width;
+    user-zoom: fixed;
 }
 @-o-viewport { 
     zoom: 1.0;
     width: device-width;
+    user-zoom: fixed;
 }
 
 a, p, th, td {
@@ -501,10 +503,16 @@ table#tblPCodes thead th:first-child, #tblHist thead th:first-child{
     margin: 5px 0 5px;
     border-bottom: 1px #bbb dotted;
     padding-bottom: 2px;
+    float: right;
+    width: 100%;
 }
 
 .aanvraagInfo span:nth-child(2) {
     float: right;
+}
+
+.aanvraagInfo span {
+    width: 50%;
 }
 
 .StandaloneCollapsible.ui-collapsible {
