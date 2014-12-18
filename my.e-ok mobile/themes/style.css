@@ -509,6 +509,7 @@ table#tblPCodes thead th:first-child, #tblHist thead th:first-child{
 
 .aanvraagInfo span:nth-child(2) {
     float: right;
+    text-align: right;
 }
 
 .aanvraagInfo span {
