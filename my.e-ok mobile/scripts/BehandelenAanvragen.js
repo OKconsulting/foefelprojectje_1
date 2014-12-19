@@ -58,11 +58,11 @@ function opvullenDagenAanvraag(dagen, reden, functieNaam, afdeling, mdwNaam) {
         if (reden != "") {
             $('#txtRedenAanvraagMdw')[0].innerHTML = reden;
 
-            $('#lblRedenAanvraagMdw').css('display', 'inline');
+            $('.lblRedenAanvraagMdw').css('display', 'inline');
             $('#txtRedenAanvraagMdw').css('display', 'block');
             //content += '<div class="multilineDetail"><p class="vet">' + dynamicRedenAanvrBeh + '</p><p>' + reden + '</p></div>';
         } else {
-            $('#lblRedenAanvraagMdw').css('display', 'none');
+            $('.lblRedenAanvraagMdw').css('display', 'none');
             $('#txtRedenAanvraagMdw').css('display', 'none');
         }
 
@@ -78,7 +78,6 @@ $(document).on('pagebeforeshow', '#detailsAanvraag', function () {
 });
 // De jQuery controls die dynamisch toegevoegd werden aan de pagina initialiseren
 $(document).on('pagebeforeshow', '#aanvragen', function () {
-    debugger;
     $('#btnConfAanvrNo').button();
     $('#btnConfAanvrYes').button();
 

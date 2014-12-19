@@ -31,9 +31,9 @@
       <fr>Déconnexion</fr>
     </Vertaling>
     <Vertaling class="txaRedenAanvr">
-      <nl>Reden van afwezigheid</nl>
-      <en>Reason for absence</en>
-      <fr>Raison d'absence</fr>
+      <nl>Reden van afwezigheid:</nl>
+      <en>Reason for absence:</en>
+      <fr>Raison d'absence:</fr>
     </Vertaling>
     <Vertaling class="lblDatVanAanvr">
       <nl>Datum van</nl>
