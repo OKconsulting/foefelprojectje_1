@@ -86,10 +86,14 @@ $(document).on('pagebeforeshow', '#aanvragen', function () {
     else
         $('#colSetAanvragen div[data-role="collapsible"]').collapsible();
     if (aanvragenLGHR == null) {
-        $("#btnAllesGoedkeuren").button("disable");
+        try {
+            $("#btnAllesGoedkeuren").button("disable");
+        } catch (ex) { }
         $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
     } else {
-        $("#btnAllesGoedkeuren").button("enable");
+        try {
+            $("#btnAllesGoedkeuren").button("enable");
+        } catch (ex) { }
         $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
     }
 });
