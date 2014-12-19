@@ -78,6 +78,7 @@ $(document).on('pagebeforeshow', '#detailsAanvraag', function () {
 });
 // De jQuery controls die dynamisch toegevoegd werden aan de pagina initialiseren
 $(document).on('pagebeforeshow', '#aanvragen', function () {
+    debugger;
     $('#btnConfAanvrNo').button();
     $('#btnConfAanvrYes').button();
 
