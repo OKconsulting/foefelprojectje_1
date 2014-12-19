@@ -243,8 +243,7 @@ a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-pop
 }
 
 #Toon-kalender-popup {
-    margin: 10px 0;
-    position: fixed;
+    margin: 20px 0;
 }
 
 #Legende > p {
