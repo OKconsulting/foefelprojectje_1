@@ -503,7 +503,8 @@
 
         // Opmaak voor de overview datepicker voorzien
         // overview datepicker = datepicker met de legende op
-        function styleDteOverview() {
+        var initialHeight = 0;
+        function styleDteOverview() {          
             setDteStyle('#dteOverview');
             popupActive = true;
             popupDte = 'Overview';
@@ -620,6 +621,7 @@
                             kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup', huidigTotJaar);
                         }
                     } else if (popupDte == 'Overview') {
+                        $('#verlofAanv').css('height', document.getElementById('Toon-kalender-popup').offsetHeight + 'px');
                         if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
                             huidigeOverviewMaand -= 1;
 

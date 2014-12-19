@@ -304,10 +304,6 @@ a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-pop
     background-color: white;
 }
 
-#Toon-kalender-popup {
-    position:initial;
-}
-
 #verlofAanvr fieldset {
     border: 1px #d6d6d6 solid;
     padding: 7px;
