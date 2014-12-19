@@ -15,6 +15,11 @@
       <en>Leave requests</en>
       <fr>Demander congé</fr>
     </Vertaling>
+    <Vertaling class="lblMenuAanvragen">
+      <nl>Aanvragen behandelen</nl>
+      <en>Deal with requests</en>
+      <fr>Traiter demandes</fr>
+    </Vertaling>
     <Vertaling class="lblMenuHistoriek">
       <nl>Historiek</nl>
       <en>History</en>

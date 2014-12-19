@@ -38,7 +38,7 @@ function vertaalTeksten(taal) {
     }).responseText;
 
     // Statische teksten wijzigen
-    $(xml).find('Vertalingen').find('Vertaling').each(function () {
+     $(xml).find('Vertalingen').find('Vertaling').each(function () {
         if ($(this).attr('isButton') == 1)
             $('.' + $(this).attr('class')).parent().html($(this).find(taal).text());
         else
