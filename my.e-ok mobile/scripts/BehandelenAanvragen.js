@@ -127,6 +127,18 @@ function getAanvragenLGHR() {
             $('#loadingDivAanvragen').css('display', 'none');
             if ($.mobile.activePage.attr('id') == 'aanvragen')
                 $('#colSetAanvragen div[data-role="collapsible"]').collapsible();
+
+            if (aanvragenLGHR == null) {
+                try {
+                    $("#btnAllesGoedkeuren").button("disable");
+                } catch (ex) { }
+                $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
+            } else {
+                try {
+                    $("#btnAllesGoedkeuren").button("enable");
+                } catch (ex) { }
+                $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
+            }
         }
     });
 }
