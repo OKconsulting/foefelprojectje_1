@@ -305,7 +305,7 @@ a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-pop
 }
 
 #Toon-kalender-popup {
-    position:initial
+    position:initial;
 }
 
 #verlofAanvr fieldset {
