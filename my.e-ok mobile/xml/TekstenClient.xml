@@ -189,6 +189,11 @@
       <en>Are you sure you want to approve every requested leave?</en>
       <fr>Est tu certaine que vous voulez Approuver tous?</fr>
     </Vertaling>
+    <Vertaling class="lblRedenAanvraagMdw">
+      <nl>Reden aanvraag:</nl>
+      <en>Reason request:</en>
+      <fr>Raison demande:</fr>
+    </Vertaling>
 
     <!-- Meldingen -->
     <Melding class="GeenHistoriek">
@@ -282,11 +287,6 @@
       <nl>Aantal aangevraagd</nl>
       <en>Number requested</en>
       <fr>Nombre demandé</fr>
-    </DynamischeTekst>
-    <DynamischeTekst class="RedenAanvrBeh">
-      <nl>Reden aanvraag:</nl>
-      <en>Reason request:</en>
-      <fr>Raison demande:</fr>
     </DynamischeTekst>
     <DynamischeTekst class="btnDagenBevestigen">
       <nl>Bevestigen</nl>

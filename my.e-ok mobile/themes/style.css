@@ -15,6 +15,7 @@ a, p, th, td {
 
 div[data-role="page"] {
     /*height: 100% !important;*/
+    min-height: 100% !important;
 }
 
 #containerLogin {
@@ -492,6 +493,10 @@ table#tblPCodes thead th:first-child, #tblHist thead th:first-child{
 }
 
 .vet {
+    font-weight: bold;
+}
+
+.ui-mobile label.vet , .ui-mobile label.vet {
     font-weight: bold;
 }
 

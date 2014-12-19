@@ -29,7 +29,6 @@ var dynamicPrestatieCode = "";
 var dynamicMinBezetting = '';
 var dynamicAantAanwezig = '';
 var dynamicAantAangevraagd = '';
-var dynamicRedenAanvrBeh = '';
 var dynamicBtnDagenBevestigen = '';
 function vertaalTeksten(taal) {
      
@@ -67,6 +66,5 @@ function vertaalTeksten(taal) {
     dynamicMinBezetting = $(xml).find('Vertalingen').find('DynamischeTekst[class="MinBezetting"]').find(taal).text();
     dynamicAantAanwezig = $(xml).find('Vertalingen').find('DynamischeTekst[class="AantAanwezig"]').find(taal).text();
     dynamicAantAangevraagd = $(xml).find('Vertalingen').find('DynamischeTekst[class="AantAangevraagd"]').find(taal).text();
-    dynamicRedenAanvrBeh = $(xml).find('Vertalingen').find('DynamischeTekst[class="RedenAanvrBeh"]').find(taal).text();
     dynamicBtnDagenBevestigen = $(xml).find('Vertalingen').find('DynamischeTekst[class="btnDagenBevestigen"]').find(taal).text();
 }

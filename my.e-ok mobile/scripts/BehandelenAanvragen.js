@@ -1,5 +1,6 @@
 ﻿// Details van een te behandelen aanvraag ophalen
 function aanvraagBehandelen(selectorAanvraag) {
+    $('#txaRedenAanvraagKeuren').val('');
     var mdwNaam = $(selectorAanvraag + ' > h3')[0].innerHTML;
     mdwNaam = mdwNaam.substring(98, mdwNaam.length - 82);
     var functieNaam = $(selectorAanvraag + ' .functieNaam')[0].innerHTML;
@@ -54,8 +55,16 @@ function opvullenDagenAanvraag(dagen, reden, functieNaam, afdeling, mdwNaam) {
         content += dag.aanwezig + '</span></p><p class="aanvraagInfo"><span class="vet">' + dynamicAantAangevraagd + '</span><span>';
         content += dag.aangevraagd + '</span></p>';
 
-        if (reden != "")
-            content += '<div class="multilineDetail"><p class="vet">' + dynamicRedenAanvrBeh + '</p><p>' + reden + '</p></div>';
+        if (reden != "") {
+            $('#txtRedenAanvraagMdw')[0].innerHTML = reden;
+
+            $('#lblRedenAanvraagMdw').css('display', 'inline');
+            $('#txtRedenAanvraagMdw').css('display', 'block');
+            //content += '<div class="multilineDetail"><p class="vet">' + dynamicRedenAanvrBeh + '</p><p>' + reden + '</p></div>';
+        } else {
+            $('#lblRedenAanvraagMdw').css('display', 'none');
+            $('#txtRedenAanvraagMdw').css('display', 'none');
+        }
 
         if (dag.conflictreden != "")
             content += '<div class="multilineDetail"><p class="vet">Conflict</p>' + dag.conflictreden + '</p></div>';
