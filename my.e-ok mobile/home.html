@@ -435,6 +435,10 @@
     <script src="scripts/Vertalen.js"></script>
     <script src="cordova.js"></script>
     <script>
+        document.addEventListener("backbutton", onBackKeyDown, false);
+            function onBackKeyDown(e) {
+                e.preventDefault();
+        }
         $( "#Toon-kalender" ).bind({
             popupafterclose: function (event, ui) {
                 pageHeightSet = false;
