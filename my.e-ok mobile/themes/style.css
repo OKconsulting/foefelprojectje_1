@@ -242,10 +242,6 @@ a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-pop
     margin-top: 20px;
 }
 
-#Toon-kalender-popup {
-    margin: 20px 0;
-}
-
 #Legende > p {
     font-weight: bold;
     margin-bottom: 5px;
@@ -306,6 +302,10 @@ a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-pop
 
 #Toon-kalender td.ui-datepicker-week-end.ui-datepicker-other-month {
     background-color: white;
+}
+
+#verlofAanv {
+    overflow: scroll;
 }
 
 #verlofAanvr fieldset {
