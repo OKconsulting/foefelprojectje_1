@@ -235,12 +235,16 @@ a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-pop
     margin: 0;
     padding: 2px 20px;
     border-top-right-radius: 5px;
-    margin: 10px 0;
 }
 
 #Toon-kalender .ui-input-text {
     border: 0;
     margin-top: 20px;
+}
+
+#Toon-kalender-popup {
+    margin: 10px 0;
+    position: fixed;
 }
 
 #Legende > p {
