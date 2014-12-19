@@ -435,6 +435,14 @@
     <script src="scripts/Vertalen.js"></script>
     <script src="cordova.js"></script>
     <script>
+        $( "#Toon-kalender" ).bind({
+            popupafterclose: function (event, ui) {
+                pageHeightSet = false;
+                $('#verlofAanv').css('height', initialPageHeight);
+                initialPageHeight = 0;
+            }
+        });
+
         $('#colSetDetailAanvraag.ui-collapsible.ui-collapsible-collapsed').attr('data-collapsed', false).removeClass("ui-collapsible-collapsed").find('.ui-collapsible-content').removeClass('ui-collapsible-content-collapsed');
         $('#loadingDivDetailsDagen').css('display', 'none');
         var verlofSaldi = null;
@@ -557,6 +565,8 @@
             dteTarget = target;
         }
 
+        var initialPageHeight = 0;
+        var pageHeightSet = false;
         // Click event om na te gaan wanneer bepaalde controls verborgen moeten worden
         var firstclick = false;
         window.onclick = function (e) {
@@ -621,7 +631,12 @@
                             kleurDisabledDagen(huidigeTotMaand, '#dteTotPopup', huidigTotJaar);
                         }
                     } else if (popupDte == 'Overview') {
-                        $('#verlofAanv').css('height', document.getElementById('Toon-kalender-popup').offsetHeight + 'px');
+                        if (!pageHeightSet) {
+                            pageHeightSet = true;
+                            initialPageHeight = $('#verlofAanv').css('height');
+                            $('#verlofAanv').css('height', document.getElementById('Toon-kalender-popup').offsetHeight + 'px');
+                        }
+                        
                         if (e.target.className.indexOf('ui-datepicker-prev') != -1) {
                             huidigeOverviewMaand -= 1;
 
