@@ -304,8 +304,8 @@ a[href="#table-column-toggle-popup"], a[href="#table-column-toggle_historiek-pop
     background-color: white;
 }
 
-#verlofAanv {
-    overflow: scroll;
+#Toon-kalender-popup {
+    position:initial
 }
 
 #verlofAanvr fieldset {
