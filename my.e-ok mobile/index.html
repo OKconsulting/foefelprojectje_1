@@ -34,6 +34,7 @@
     <script src="cordova.js"></script>
     <script>
         $('#txtnumber').val('00:00');
+
         $('#txtnumber').keyup(function (e) {
             var timeValue = '';
             if(e.keyCode == 8)
@@ -43,19 +44,17 @@
             if (timeValue.length != 5 || e.keyCode == 8) {
                 var keyPressed = e.keyCode - 48;
                 if ((keyPressed > -1 && keyPressed < 10) || e.keyCode == 8) {
-
-                    if (timeValue.length < 3)
-                        timeValue = timeValue.replace(':', '');
-
                     if (e.keyCode == 8) {
                         if (timeValue.length == 3 || timeValue.length == 2) {
                             timeValue = timeValue.substr(0, timeValue.length - 1);
                         }
                     }
                     else {
-                        timeValue = timeValue + keyPressed;
-                        if (timeValue.length == 2) {
-                            timeValue = timeValue + ':';
+                        if (timeValue.length == 3 && keyPressed < 6) {
+                            timeValue = timeValue + keyPressed;
+                            if (timeValue.length == 2) {
+                                timeValue = timeValue + ':';
+                            }
                         }
                     }
                 }
