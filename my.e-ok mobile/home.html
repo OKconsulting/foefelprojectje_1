@@ -1055,7 +1055,10 @@
                             // verlofInUren --> NumericalUpDown
                             // verlofInDagen --> Select
                             if (data[i].type == 'Uren') {
-                                content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='datetime' value='" + data[i].aantaluur + "' />";
+                                if (navigator.userAgent.match(/(IEMobile)/))
+                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + data[i].aantaluur + "' />";
+                                else
+                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' />";
                                 content += "<select style='display:none' id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
@@ -1063,7 +1066,10 @@
                                 content += "</select></div>";
                             }
                             else {
-                                content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='datetime' value='" + data[i].aantaluur + "' />";
+                                if (navigator.userAgent.match(/(IEMobile)/))
+                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + data[i].aantaluur + "' />";
+                                else
+                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' />";
                                 content += "<select id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
@@ -1172,6 +1178,37 @@
             });
 
             $('#colSet div[data-role="collapsible"]').collapsible();
+
+            //if (navigator.userAgent.match(/(IEMobile)/)) {
+            $('.collapAantUur').keyup(function (e) {
+                    var selector = '#' + this.id;
+                    var timeValue = '';
+                    if (e.keyCode == 8)
+                        timeValue = $(selector).val();
+                    else
+                        timeValue = $(selector).val().substr(0, $(selector).val().length - 1);
+                    if (timeValue.length != 5 || e.keyCode == 8) {
+                        var keyPressed = e.keyCode - 48;
+                        if ((keyPressed > -1 && keyPressed < 10) || e.keyCode == 8) {
+                            if (e.keyCode == 8) {
+                                if (timeValue.length == 2) {
+                                    timeValue = timeValue.substr(0, timeValue.length - 1);
+                                }
+                            }
+                            else {
+                                timeValue = timeValue + keyPressed;
+                                if (timeValue.length == 4 && keyPressed > 5) {
+                                    timeValue = timeValue.substr(0, timeValue.length - 1);
+                                }
+                                if (timeValue.length == 2) {
+                                    timeValue = timeValue + ':';
+                                }
+                            }
+                        }
+                    }
+                    $(selector).val(timeValue)
+                });
+            //}
         });
         // Code die uitgevoegd wordt bij het laden van de #home pagina
         var appStartup = true;
