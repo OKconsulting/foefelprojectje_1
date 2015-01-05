@@ -943,7 +943,24 @@
 
                     // De dag inkleuren in de datepicker
                     var selector = dtpId + ' tbody tr:nth-child(' + weekInMaand + ') td:nth-child(' + dagInWeek + ')';
-                    $(selector).css('background-color', value.kleur);
+                    if(value.dagDeel == 'dag')
+                        $(selector).css('background-color', value.kleur);
+                    else if (value.dagDeel == 'vm') {
+                        if ($(selector)[0].style.background != '') {
+                            var prevKleur = $(selector)[0].style.background.substr($(selector)[0].style.background.indexOf('rgb'), $(selector)[0].style.background.length - $(selector)[0].style.background.indexOf('rgb')).split(')')[0] + ')';
+                            $(selector).css('background', 'linear-gradient(' + value.kleur + ' 50%, ' + prevKleur + ' 50%)');
+                        }
+                        else
+                            $(selector).css('background', 'linear-gradient(' + value.kleur + ' 50%, white 50%)');
+                    }
+                    else if (value.dagDeel == 'nm') {
+                        if ($(selector)[0].style.background != '') {
+                            var prevKleur = $(selector)[0].style.background.substr($(selector)[0].style.background.indexOf('rgb'), $(selector)[0].style.background.length - $(selector)[0].style.background.indexOf('rgb')).split(')')[0] + ')';
+                            $(selector).css('background', 'linear-gradient(' + prevKleur + ' 50%, ' + value.kleur + ' 50%)');
+                        }
+                        else
+                            $(selector).css('background', 'linear-gradient(white 50%, ' + value.kleur + ' 50%)');
+                    }
                 }
             });
 
@@ -1026,7 +1043,7 @@
                             var maandNaam = maandenHuidig[dag.getMonth()];
                             var datumJaar = dag.getFullYear();
                             // Toevoegen van de datum aan de header van de collapsible
-                            content += "<div data-role='collapsible' data-theme='a' id='collap" + i + "' data-collapsed='true'><h3>" + dagNaam + " " + dagNummer + " " + maandNaam + " " + datumJaar + "</h3><select id='collapSel" + i + "'>";
+                            content += "<div data-role='collapsible' data-theme='a' id='collap" + i + "' data-collapsed='true'><h3>" + dagNaam + " " + dagNummer + " " + maandNaam + " " + datumJaar + "</h3><select id='collapSel" + i + "' class='collapSelDagen'>";
 
                             // Alle prestatieCodes toevoegen aan de select in de collapsible
                             for (y = 0; y < verlofSaldi.length; y++) {
@@ -1037,10 +1054,17 @@
                             // Bepalen welke controls weergegeven moeten worden in de collapsible
                             // verlofInUren --> NumericalUpDown
                             // verlofInDagen --> Select
-                            if (data[i].type == 'Uren')
-                                content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' /></div>";
+                            if (data[i].type == 'Uren') {
+                                content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' />";
+                                content += "<select style='display:none' id='collapDag" + i + "'>";
+                                content += "<option value='D100'>" + dynamicDag + "</option>";
+                                content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
+                                content += "<option value='N50'>" + dynamicNamiddag + "</option>";
+                                content += "</select></div>";
+                            }
                             else {
-                                content += "</label><select>";
+                                content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' />";
+                                content += "<select id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
                                 content += "<option value='N50'>" + dynamicNamiddag + "</option>";
@@ -1109,7 +1133,43 @@
                 event.preventDefault();
                 disableBijVerlofaanvraag();
                 dagenBevestigen();
-            })
+            });
+            
+            var recupPrestatiecode = null;
+            for (i = 0; i < verlofSaldi.length; i++) {
+                if (verlofSaldi[i].isRecup) {
+                    recupPrestatiecode = verlofSaldi[i].prestatiecodeID
+                    break;
+                }
+            }
+            for (i = 0; i < $('select.collapSelDagen').length; i++) {
+                if ($('select.collapSelDagen')[i][$('select.collapSelDagen')[i].selectedIndex].value == recupPrestatiecode) {
+                    $('#collapTxt' + i).css('display', 'inline');
+                    $('#collapDag' + i).parent().css('display', 'none');
+                } else {
+                    $('#collapTxt' + i).css('display', 'none');
+                    $('#collapDag' + i).parent().css('display', 'block');
+                }
+            }
+
+            $('.collapSelDagen').change(function () {
+                var recupPrestatiecode = null;
+                for (i = 0; i < verlofSaldi.length; i++) {
+                    if (verlofSaldi[i].isRecup) {
+                        recupPrestatiecode = verlofSaldi[i].prestatiecodeID
+                        break;
+                    }
+                }
+                if (this[this.selectedIndex].value == recupPrestatiecode) {
+                    var index = this.id.substr(9, this.id.length - 9);
+                    $('#collapTxt' + index).css('display', 'inline');
+                    $('#collapDag' + index).parent().css('display', 'none');
+                } else {
+                    var index = this.id.substr(9, this.id.length - 9);
+                    $('#collapTxt' + index).css('display', 'none');
+                    $('#collapDag' + index).parent().css('display', 'block');
+                }
+            });
 
             $('#colSet div[data-role="collapsible"]').collapsible();
         });
@@ -1218,11 +1278,18 @@
             var UurLeegOfNr = false;
             // Lijst van alle aan te vragen dagen overlopen,
             // Controlleren of alles ingevuld is en de data opslaan in een object
+            var recupPrestatiecode = null;
+            for (i = 0; i < verlofSaldi.length; i++) {
+                if (verlofSaldi[i].isRecup) {
+                    recupPrestatiecode = verlofSaldi[i].prestatiecodeID
+                    break;
+                }
+            }
             $.each(DagenVoorVerlofAanvraag, function (key, value) {
                 var itemIndex = key + 1;
                 var selector = '#colSet > div:nth-child(' + itemIndex + ')';
-                //$('#colSet > div:nth-child(1) div.ui-select select')
-                if (value.type == 'Uren') {
+               
+                if (value.type == 'Uren' || recupPrestatiecode == $(selector + ' div.ui-select select')[0][$(selector + ' div.ui-select select')[0].selectedIndex].value) {
                     var pCodeId = $(selector + ' div.ui-select select')[0][$(selector + ' div.ui-select select')[0].selectedIndex].value;
                     var aantaluur = $(selector + ' div div.ui-input-text input')[0].value;
 
@@ -1259,7 +1326,6 @@
                     jaar: jaar,
                     lijstDagen: DagenVoorVerlofAanvraag
                 };
-
                 // Gegevens doorsturen naar de API
                 $.ajax({
                     headers: { 'Access-Control-Allow-Origin': "*" },
