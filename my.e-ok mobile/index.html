@@ -17,12 +17,8 @@
                 <img src="images/my.e-ok_Logo.png" />
             </div>
             <div id="containerLogin">
-                <input type="date" />
-                <input type="datetime" />
-                <input type="datetime-local" />
-                <input type="number" />
-                <input type="time" />
-                <input type="week" />
+                <input type="number" id="txtnumber" style="display:none;" />
+                <input type="button" onclick="testjeuh()" />
                 <input type="email" id="loginInput" placeholder="Login" />
                 <input type="password" id="paswoordInput" placeholder="Paswoord" />
                 <input type="button" id="inloggen" class="btnInloggen" value="Inloggen" data-role="button" />
@@ -38,6 +34,14 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="cordova.js"></script>
     <script>
+        function testjeuh() {
+            $('#txtnumber').val('00:00');
+        }
+
+        if (navigator.userAgent.match(/(IEMobile)/)) {
+            $('#txtnumber').css('display', 'inline');
+            $('#txtnumber').val('0000');
+        }
         var timeout;
         // Als de pagina geladen is kijken of er een 'cookie' is opgeslaan met een eerder ingelogde gebruikerId
         // Indien wel --> login overslaan en met gegevens van vorige gebruiker blijven werken
