@@ -1055,7 +1055,7 @@
                             // verlofInUren --> NumericalUpDown
                             // verlofInDagen --> Select
                             if (data[i].type == 'Uren') {
-                                content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='date' value='" + data[i].aantaluur + "' />";
+                                content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='datetime' value='" + data[i].aantaluur + "' />";
                                 content += "<select style='display:none' id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
@@ -1063,7 +1063,7 @@
                                 content += "</select></div>";
                             }
                             else {
-                                content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='date' value='" + data[i].aantaluur + "' />";
+                                content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='datetime' value='" + data[i].aantaluur + "' />";
                                 content += "<select id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
