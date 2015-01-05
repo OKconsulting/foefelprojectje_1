@@ -34,14 +34,8 @@
     <script src="cordova.js"></script>
     <script>
         $('#txtnumber').val('00:00');
-        $('#txtnumber').keydown(function (e) { e.preventDefault(); });
-        $('#txtnumber').keyup(function (e) {
-            if (e.preventDefault)
-                e.preventDefault();
-            else
-                e.returnValue = false;
-            
-            var timeValue = $('#txtnumber').val().replace('_', '');
+        $('#txtnumber').keyup(function (e) {            
+            var timeValue = $('#txtnumber').val().substr(0, $('#txtnumber').val().length - 1).replace('_', '');
             if (timeValue.length != 5 || e.keyCode == 8) {
                 var keyPressed = e.keyCode - 48;
                 if ((keyPressed > -1 && keyPressed < 10) || e.keyCode == 8) {
