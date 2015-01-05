@@ -36,7 +36,7 @@
         $('#txtnumber').val('00:00');
         $('#txtnumber').keydown(function (e) { e.preventDefault(); });
         $('#txtnumber').keyup(function (e) {
-            debugger;
+            e.preventDefault();
             
             var timeValue = $('#txtnumber').val().replace('_', '');
             if (timeValue.length != 5 || e.keyCode == 8) {
