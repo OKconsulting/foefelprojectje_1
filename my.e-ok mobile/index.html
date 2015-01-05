@@ -35,7 +35,11 @@
     <script>
         $('#txtnumber').val('00:00');
         $('#txtnumber').keyup(function (e) {
-            var timeValue = $('#txtnumber').val().replace('_', '');
+            var timeValue = '';
+            if(e.keyCode == 8)
+                timeValue = $('#txtnumber').val().replace('_', '');
+            else
+                timeValue = $('#txtnumber').val().substr(0, $('#txtnumber').val().length).replace('_', '');
             if (timeValue.length != 5 || e.keyCode == 8) {
                 var keyPressed = e.keyCode - 48;
                 if ((keyPressed > -1 && keyPressed < 10) || e.keyCode == 8) {
