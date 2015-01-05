@@ -1054,11 +1054,18 @@
                             // Bepalen welke controls weergegeven moeten worden in de collapsible
                             // verlofInUren --> NumericalUpDown
                             // verlofInDagen --> Select
+
+                            debugger;
+                            var aantalUur = data[i].aantaluur.split(':')[0];
+                            if (aantalUur.length == 1) {
+                                aantalUur = '0' + aantalUur;
+                            }
+                            aantalUur = aantalUur + ':' + data[i].aantaluur.split(':')[1];
                             if (data[i].type == 'Uren') {
                                 if (navigator.userAgent.match(/(IEMobile)/))
-                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + data[i].aantaluur + "' />";
+                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
                                 else
-                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' />";
+                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
                                 content += "<select style='display:none' id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
@@ -1067,9 +1074,9 @@
                             }
                             else {
                                 if (navigator.userAgent.match(/(IEMobile)/))
-                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + data[i].aantaluur + "' />";
+                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
                                 else
-                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + data[i].aantaluur + "' />";
+                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
                                 content += "<select id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
