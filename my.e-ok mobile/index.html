@@ -43,12 +43,10 @@
                     if (timeValue.length < 3)
                         timeValue = timeValue.replace(':', '');
 
-                    if (e.keyCode == 8) {
+                    if (e.keyCode == 8)
                         if (timeValue.length == 3)
-                            timeValue = timeValue.substr(0, timeValue.length - 2);
-                        else
                             timeValue = timeValue.substr(0, timeValue.length - 1);
-                    } else { 
+                    else { 
                         timeValue = timeValue + keyPressed;
                         if (timeValue.length == 2)
                             timeValue = timeValue + ':';
