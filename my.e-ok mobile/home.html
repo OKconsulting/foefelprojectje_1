@@ -755,6 +755,8 @@
             reloadHist();
             opvullenRPTKleuren();
             ophalenFeestdagen();
+            if (miRol.indexOf('myHRM') != -1 || miRol.indexOf('myLG') != -1)
+                getAanvragenLGHR();
         }
 
         // De huidige waardes in de saldi tabel weghalen
@@ -1228,16 +1230,6 @@
                     event.preventDefault();
                     haalDagenOp()
                 });
-                $('#btnConfAanvrNo').click(function () {
-                    $('#confirmBoxAanvr').css('display', 'none');
-                });
-                $('.confBackg').click(function () {
-                    $(this).parent().css('display', 'none');
-                });
-                $('#btnConfAanvrYes').click(function () {
-                    $('#confirmBoxAanvr').css('display', 'none');
-                    inBatchGoedkeuren();
-                });
             }
 
             // Als de ingelogde medewerkers HRM|LG is worden de te behandelen aanvragen opgehaald
@@ -1245,18 +1237,6 @@
                 getAanvragenLGHR();
             else
                 $('li.menuBehandelen').css('display', 'none');
-            $('#btnAllesGoedkeuren').click(function () {
-                if (window.innerHeight > window.innerWidth) {
-                    $('.confContent').css('width', '175px').css('margin', '-100px 0 0 -107px');
-                    $('#divConfAanvrYes').css('display', 'block').css('float', 'none');
-                    $('#divConfAanvrNo').css('display', 'block').css('float', 'none');
-                }else{
-                    $('.confContent').css('width', '').css('margin', '');
-                    $('#divConfAanvrYes').css('display', '').css('float', '');
-                    $('#divConfAanvrNo').css('display', '').css('float', '');
-                }
-                $('#confirmBoxAanvr').css('display', 'inline-block');
-            });
 
             if (loadingSaldi) {
                 $('#cboJaar').selectmenu("disable");

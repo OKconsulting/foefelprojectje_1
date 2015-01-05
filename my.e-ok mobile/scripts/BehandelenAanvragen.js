@@ -96,6 +96,29 @@ $(document).on('pagebeforeshow', '#aanvragen', function () {
         } catch (ex) { }
         $('#btnAllesGoedkeuren').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
     }
+
+    $('#btnAllesGoedkeuren').click(function () {
+        if (window.innerHeight > window.innerWidth) {
+            $('.confContent').css('width', '175px').css('margin', '-100px 0 0 -107px');
+            $('#divConfAanvrYes').css('display', 'block').css('float', 'none');
+            $('#divConfAanvrNo').css('display', 'block').css('float', 'none');
+        } else {
+            $('.confContent').css('width', '').css('margin', '');
+            $('#divConfAanvrYes').css('display', '').css('float', '');
+            $('#divConfAanvrNo').css('display', '').css('float', '');
+        }
+        $('#confirmBoxAanvr').css('display', 'inline-block');
+    });
+    $('#btnConfAanvrNo').click(function () {
+        $('#confirmBoxAanvr').css('display', 'none');
+    });
+    $('.confBackg').click(function () {
+        $(this).parent().css('display', 'none');
+    });
+    $('#btnConfAanvrYes').click(function () {
+        $('#confirmBoxAanvr').css('display', 'none');
+        inBatchGoedkeuren();
+    });
 });
 
 // Alle te behandelen aanvragen ophalen voor de HRM|LG
