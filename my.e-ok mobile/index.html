@@ -34,7 +34,7 @@
     <script src="cordova.js"></script>
     <script>
         $('#txtnumber').val('00:00');
-        $('#txtnumber').keypress(function (e) {
+        $('#txtnumber').keyup(function (e) {
             alert("hallo!");
             alert(e.keyCode + " " + e.charCode);
             e.preventDefault();
