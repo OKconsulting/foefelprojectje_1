@@ -36,6 +36,10 @@
         $('#txtnumber').val('00:00');
         $('#txtnumber').keydown(function (e) { e.preventDefault(); });
         $('#txtnumber').keyup(function (e) {
+            if (e.preventDefault)
+                e.preventDefault();
+            else
+                e.returnValue = false;
             e.preventDefault();
             
             var timeValue = $('#txtnumber').val().replace('_', '');
