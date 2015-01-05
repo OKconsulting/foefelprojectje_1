@@ -17,7 +17,7 @@
                 <img src="images/my.e-ok_Logo.png" />
             </div>
             <div id="containerLogin">
-                <input type="number" id="txtnumber" value="00:00"/>
+                <input type="text" id="txtnumber" value="00:00"/>
                 <input type="email" id="loginInput" placeholder="Login" />
                 <input type="password" id="paswoordInput" placeholder="Paswoord" />
                 <input type="button" id="inloggen" class="btnInloggen" value="Inloggen" data-role="button" />
@@ -37,13 +37,13 @@
         $('#txtnumber').keyup(function (e) {
             var timeValue = '';
             if(e.keyCode == 8)
-                timeValue = $('#txtnumber').val().replace('_', '');
+                timeValue = $('#txtnumber').val();
             else
-                timeValue = $('#txtnumber').val().substr(0, $('#txtnumber').val().length).replace('_', '');
+                timeValue = $('#txtnumber').val().substr(0, $('#txtnumber').val().length - 1);
             if (timeValue.length != 5 || e.keyCode == 8) {
                 var keyPressed = e.keyCode - 48;
                 if ((keyPressed > -1 && keyPressed < 10) || e.keyCode == 8) {
-                    
+
                     if (timeValue.length < 3)
                         timeValue = timeValue.replace(':', '');
 
@@ -54,12 +54,13 @@
                     }
                     else {
                         timeValue = timeValue + keyPressed;
-                        if (timeValue.length == 2)
+                        if (timeValue.length == 2) {
                             timeValue = timeValue + ':';
+                        }
                     }
-                    $('#txtnumber').val(timeValue)
                 }
             }
+            $('#txtnumber').val(timeValue)
         });
 
         var timeout;
