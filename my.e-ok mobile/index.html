@@ -35,7 +35,8 @@
     <script>
         $('#txtnumber').val('00:00');
         $('#txtnumber').keypress(function (e) {
-            debugger;
+            alert("hallo!");
+            alert(e.keyCode + " " + e.charCode);
             e.preventDefault();
             var timeValue = $('#txtnumber').val().replace('_', '');
             if (timeValue.length != 5) {
