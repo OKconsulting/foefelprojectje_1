@@ -1246,6 +1246,15 @@
             else
                 $('li.menuBehandelen').css('display', 'none');
             $('#btnAllesGoedkeuren').click(function () {
+                if (window.innerHeight > window.innerWidth) {
+                    $('#confContent').css('width', '175px').css('margin', '-100px 0 0 -107px');
+                    $('#divConfAanvrYes').css('display', 'block').css('float', 'none');
+                    $('#divConfAanvrNo').css('display', 'block').css('float', 'none');
+                }else{
+                    $('#confContent').css('width', '').css('margin', '');
+                    $('#divConfAanvrYes').css('display', '').css('float', '');
+                    $('#divConfAanvrNo').css('display', '').css('float', '');
+                }
                 $('#confirmBoxAanvr').css('display', 'inline-block');
             });
 
@@ -1477,6 +1486,18 @@
                 $('input[value="Behandelen"]').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
             } catch (ex) { }
         }
+
+        $(window).on("orientationchange", function (event) {
+            if (event.orientation == landscape) {
+                $('#confContent').css('width', '').css('margin', '');
+                $('#divConfAanvrYes').css('display', '').css('float', '');
+                $('#divConfAanvrNo').css('display', '').css('float', '');
+            } else {
+                $('#confContent').css('width', '175px').css('margin', '-100px 0 0 -107px');
+                $('#divConfAanvrYes').css('display', 'block').css('float', 'none');
+                $('#divConfAanvrNo').css('display', 'block').css('float', 'none');
+            }
+        });
     </script>
     <script src="scripts/BehandelenAanvragen.js"></script>
 </body>
