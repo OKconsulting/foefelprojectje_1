@@ -17,7 +17,7 @@
                 <img src="images/my.e-ok_Logo.png" />
             </div>
             <div id="containerLogin">
-                <input type="number" id="txtnumber" value="00:00"/>
+                <input type="text" id="txtnumber" value="00:00"/>
                 <input type="email" id="loginInput" placeholder="Login" />
                 <input type="password" id="paswoordInput" placeholder="Paswoord" />
                 <input type="button" id="inloggen" class="btnInloggen" value="Inloggen" data-role="button" />
@@ -34,37 +34,25 @@
     <script src="cordova.js"></script>
     <script>
         $('#txtnumber').val('00:00');
+        $('#txtnumber').keydown(function (e) { e.preventDefault(); });
         $('#txtnumber').keyup(function (e) {
-            alert("hallo!");
-            alert(e.keyCode + " " + e.charCode);
-            e.preventDefault();
+            debugger;
+            
             var timeValue = $('#txtnumber').val().replace('_', '');
-            if (timeValue.length != 5) {
-                var unicode = e.keyCode ? e.keyCode : e.charCode
-
-                var keyPressed = unicode - 48;
-                if ((keyPressed > -1 && keyPressed < 10) || unicode == 8) {
+            if (timeValue.length != 5 || e.keyCode == 8) {
+                var keyPressed = e.keyCode - 48;
+                if ((keyPressed > -1 && keyPressed < 10) || e.keyCode == 8) {
                     
                     if (timeValue.length < 3)
                         timeValue = timeValue.replace(':', '');
 
-                    if (unicode == 8) {
+                    if (e.keyCode == 8) {
                         if (timeValue.length == 3)
                             timeValue = timeValue.substr(0, timeValue.length - 2);
                         else
                             timeValue = timeValue.substr(0, timeValue.length - 1);
-
-                        var i = timeValue.length;
-                        while (i != 5) {
-                            if (timeValue.length == 2)
-                                timeValue = timeValue + ':';
-                            else
-                                timeValue = timeValue + '_';
-                            i++;
-                        }
-                    } else
+                    } else { 
                         timeValue = timeValue + keyPressed;
-                    if (unicode != 8) {
                         if (timeValue.length == 2)
                             timeValue = timeValue + ':';
                     }
