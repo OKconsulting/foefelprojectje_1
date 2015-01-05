@@ -17,7 +17,7 @@
                 <img src="images/my.e-ok_Logo.png" />
             </div>
             <div id="containerLogin">
-                <input type="number" id="txtnumber" onkeypress="testjeuh(event)" value="00:00"/>
+                <input type="number" id="txtnumber" value="00:00"/>
                 <input type="email" id="loginInput" placeholder="Login" />
                 <input type="password" id="paswoordInput" placeholder="Paswoord" />
                 <input type="button" id="inloggen" class="btnInloggen" value="Inloggen" data-role="button" />
@@ -34,40 +34,33 @@
     <script src="cordova.js"></script>
     <script>
         $('#txtnumber').val('00:00');
-        function testjeuh(e) {
+        $('#txtnumber').keypress(function () {
             if (timeValue.length != 5) {
                 var unicode = e.keyCode ? e.keyCode : e.charCode
 
                 var keyPressed = unicode - 96;
-                if ((keyPressed >= 0 && keyPressed < 10) || unicode == 8) {
+                if ((keyPressed > -1 && keyPressed < 10) || unicode == 8) {
 
                     var timeValue = $('#txtnumber').val().replace('_', '');
                     if (timeValue.length < 3)
                         timeValue = timeValue.replace(':', '');
 
+                    if (unicode == 8) {
+                        if (timeValue.length == 3)
+                            timeValue = timeValue.substr(0, timeValue.length - 2);
+                        else
+                            timeValue = timeValue.substr(0, timeValue.length - 1);
 
-
-                    switch (unicode) {
-                        case 8:
-                            if (timeValue.length == 3)
-                                timeValue = timeValue.substr(0, timeValue.length - 2);
+                        var i = timeValue.length;
+                        while (i != 5) {
+                            if (timeValue.length == 2)
+                                timeValue = timeValue + ':';
                             else
-                                timeValue = timeValue.substr(0, timeValue.length - 1);
-
-                            var i = timeValue.length;
-                            while (i != 5) {
-                                if (timeValue.length == 2)
-                                    timeValue = timeValue + ':';
-                                else
-                                    timeValue = timeValue + '_';
-                                i++;
-                            }
-                            break;
-                        case 97:
-                            timeValue = timeValue + '1';
-
-                            break;
-                    }
+                                timeValue = timeValue + '_';
+                            i++;
+                        }
+                    } else
+                        timeValue = timeValue + keyPressed;
                     if (unicode != 8) {
                         if (timeValue.length == 3)
                             timeValue = timeValue + ':';
@@ -75,7 +68,7 @@
                     $('#txtnumber').val(timeValue)
                 }
             }
-        }
+        });
 
         var timeout;
         // Als de pagina geladen is kijken of er een 'cookie' is opgeslaan met een eerder ingelogde gebruikerId
