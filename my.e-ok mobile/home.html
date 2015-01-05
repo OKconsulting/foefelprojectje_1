@@ -1055,7 +1055,6 @@
                             // verlofInUren --> NumericalUpDown
                             // verlofInDagen --> Select
 
-                            debugger;
                             var aantalUur = data[i].aantaluur.split(':')[0];
                             if (aantalUur.length == 1) {
                                 aantalUur = '0' + aantalUur;
@@ -1337,7 +1336,7 @@
                     var pCodeId = $(selector + ' div.ui-select select')[0][$(selector + ' div.ui-select select')[0].selectedIndex].value;
                     var aantaluur = $(selector + ' div div.ui-input-text input')[0].value;
 
-                    if (aantaluur == '')
+                    if (aantaluur == '' || aantaluur.length != 5)
                         UurLeegOfNr = true;
                     value["prestatiecodeID"] = pCodeId;
                     value["aantaluur"] = aantaluur;
@@ -1358,6 +1357,7 @@
 
             // Als niet alles ingevuld werd een melding aan de gebruiker tonen
             if (UurLeegOfNr) {
+                $('#loadingDivDetailD').css('display', 'none');
                 melding(msgAlleVeldenInvullen, 5000, 'error');
                 enableBijVerlofaanvraag();
             } else {
