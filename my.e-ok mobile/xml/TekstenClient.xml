@@ -15,11 +15,6 @@
       <en>Leave requests</en>
       <fr>Demander congé</fr>
     </Vertaling>
-    <Vertaling class="lblMenuAanvragen">
-      <nl>Aanvragen behandelen</nl>
-      <en>Deal with requests</en>
-      <fr>Traiter demandes</fr>
-    </Vertaling>
     <Vertaling class="lblMenuHistoriek">
       <nl>Historiek</nl>
       <en>History</en>
@@ -142,19 +137,37 @@
       <fr>Raison (facultative en approuvant):</fr>
     </Vertaling>
     <vertaling class="btnGoedkeuren" isButton="1">
-      <nl>Goedkeuren</nl>
-      <en>Approve request</en>
-      <fr>Approuver la demande</fr>
+      <nl>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnGoedkeuren&quot; class=&quot;btnGoedkeuren&quot; type=&quot;submit&quot; value=&quot;Goedkeuren&quot; /&gt;Goedkeuren
+      </nl>
+      <en>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnGoedkeuren&quot; class=&quot;btnGoedkeuren&quot; type=&quot;submit&quot; value=&quot;Approve request&quot; /&gt;Approve request
+      </en>
+      <fr>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnGoedkeuren&quot; class=&quot;btnGoedkeuren&quot; type=&quot;submit&quot; value=&quot;Approuver la demande&quot; /&gt;Approuver la demande
+      </fr>
     </vertaling>
     <Vertaling class="btnAfkeuren" isButton="1">
-      <nl>Afkeuren</nl>
-      <en>Disapprove request</en>
-      <fr>Demande déclarée impropre</fr>
+      <nl>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnAfkeuren&quot; class=&quot;btnAfkeuren&quot; type=&quot;submit&quot; value=&quot;Afkeuren&quot; /&gt;Afkeuren
+      </nl>
+      <en>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnAfkeuren&quot; class=&quot;btnAfkeuren&quot; type=&quot;submit&quot; value=&quot;Disapprove request&quot; /&gt;Disapprove request
+      </en>
+      <fr>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnAfkeuren&quot; class=&quot;btnAfkeuren&quot; type=&quot;submit&quot; value=&quot;Demande déclarée impropre&quot; /&gt;Demande déclarée impropre
+      </fr>
     </Vertaling>
     <Vertaling class="btnBehandelAndereAanvr" isButton="1">
-      <nl>Andere aanvraag behandelen</nl>
-      <en>Deal with another application</en>
-      <fr>Traiter une autre demande</fr>
+      <nl>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnBehandelAndereAanvr&quot; class=&quot;btnBehandelAndereAanvr&quot; type=&quot;submit&quot; value=&quot;Andere aanvraag behandelen&quot; /&gt;Andere aanvraag behandelen
+      </nl>
+      <en>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnBehandelAndereAanvr&quot; class=&quot;btnBehandelAndereAanvr&quot; type=&quot;submit&quot; value=&quot;Deal with another application&quot; /&gt;Deal with another application
+      </en>
+      <fr>
+        &lt;input data-theme=&quot;b&quot; id=&quot;btnBehandelAndereAanvr&quot; class=&quot;btnBehandelAndereAanvr&quot; type=&quot;submit&quot; value=&quot;Traiter une autre demande&quot; /&gt;Traiter une autre demande
+      </fr>
     </Vertaling>
     <Vertaling class="btnAllesGoedkeuren" isButton="1">
       <nl>
@@ -198,6 +211,11 @@
       <nl>Reden aanvraag:</nl>
       <en>Reason request:</en>
       <fr>Raison demande:</fr>
+    </Vertaling>
+    <Vertaling class="lblMenuAanvragen">
+      <nl>Aanvragen behandelen</nl>
+      <en>Deal with requests</en>
+      <fr>Traiter demandes</fr>
     </Vertaling>
 
     <!-- Meldingen -->

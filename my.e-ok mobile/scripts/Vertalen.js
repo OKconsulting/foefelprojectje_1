@@ -7,7 +7,6 @@ function vertaalTekst(taal) {
     $('.customDatepicker').datepicker("option", "dayNamesMin", dagenKortHuidig);
     $('.customDatepicker').datepicker("option", "dayNames", dagenHuidig);
     $('.customDatepicker').datepicker("option", "monthNames", maandenHuidig);
-    //setDteStyle('.customDatepicker');
 }
 
 var msgGeenHistoriek = '';
