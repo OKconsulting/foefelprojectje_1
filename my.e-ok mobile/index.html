@@ -32,7 +32,11 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="cordova.js"></script>
     <script>
-        
+        document.addEventListener("backbutton", backButtonDown, false);
+        function backButtonDown() {
+            e.preventDefault();
+            navigator.app.exitApp();
+        }
 
         var timeout;
         // Als de pagina geladen is kijken of er een 'cookie' is opgeslaan met een eerder ingelogde gebruikerId
