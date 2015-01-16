@@ -524,6 +524,7 @@
             popupDte = 'Overview';
             firstclick = true;
             kleurDisabledDagen(huidigeOverviewMaand, '#dteOverview', huidigOverviewJaar);
+            dteTarget = null;
         }
 
         var popupActive = false;
@@ -704,6 +705,9 @@
 
         var dteVanIngevuld = false;
         var dteTotIngevuld = false;
+
+        var reloadDtes = false; // veriabele wordt gebruikt in jquery-ui-1.10.5.custom.js
+
         // Datepickers initialiseren
         $('.customDatepicker').datepicker({
             firstDay: 1,
@@ -714,23 +718,25 @@
             minDate: new Date(jaar, 0, 1),
             //beforeShowDay: $.datepicker.noWeekends,
             onSelect: function (dateText, e) {
-                $('#' + dteTarget).val(dateText);
-                $('#dteTotPopup').css('display', 'none');
-                $('#dteVanPopup').css('display', 'none');
-                popupActive = false;
+                if (dteTarget != null) {
+                    $('#' + dteTarget).val(dateText);
+                    $('#dteTotPopup').css('display', 'none');
+                    $('#dteVanPopup').css('display', 'none');
+                    popupActive = false;
 
-                // Bij het selecteren van een datum nagaan naar welke input het geschreven moet worden
-                if (dteTarget == 'dteVan')
-                    dteVanIngevuld = true;
-                else if (dteTarget == "dteTot")
-                    dteTotIngevuld = true;
-                if (dteVanIngevuld && dteTotIngevuld) {
-                    $("#btnDetailDagen").button("enable");
-                    $('#btnDetailDagen').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
-                }
-                else {
-                    $("#btnDetailDagen").button("disable");
-                    $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
+                    // Bij het selecteren van een datum nagaan naar welke input het geschreven moet worden
+                    if (dteTarget == 'dteVan')
+                        dteVanIngevuld = true;
+                    else if (dteTarget == "dteTot")
+                        dteTotIngevuld = true;
+                    if (dteVanIngevuld && dteTotIngevuld) {
+                        $("#btnDetailDagen").button("enable");
+                        $('#btnDetailDagen').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
+                    }
+                    else {
+                        $("#btnDetailDagen").button("disable");
+                        $('#btnDetailDagen').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
+                    }
                 }
             }
         });
@@ -1092,6 +1098,24 @@
                         content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
                         content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + dynamicBtnDagenBevestigen + "' />" + dynamicBtnDagenBevestigen + "</input></div>";
                         $("#colSet")[0].innerHTML = content;
+
+                        for (i = 0; i < data.length; i++) {
+                            switch (data[i].dagID) {
+                                case 'D100':
+                                    $('#collapDag' + i)[0].selectedIndex = 0;
+                                    break;
+                                case 'V50':
+                                    $('#collapDag' + i)[0].selectedIndex = 1;
+                                    break;
+                                case 'N50':
+                                    $('#collapDag' + i)[0].selectedIndex = 2;
+                                    break;
+                                default:
+                                    $('#collapDag' + i)[0].selectedIndex = 0;
+                                    break;
+                            }
+                            
+                        }
 
                         var iTeller = 0;
                         for (i = 0; i < data.length; i++) {

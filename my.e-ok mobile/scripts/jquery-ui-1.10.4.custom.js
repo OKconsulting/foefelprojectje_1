@@ -7805,6 +7805,9 @@ $.extend(Datepicker.prototype, {
 			inst.input.trigger("change"); // fire the change event
 		}
 
+		if (reloadDtes != null && reloadDtes != undefined && (reloadDtes == true || reloadDtes == false))
+		    inst.inline = reloadDtes;
+
 		if (inst.inline){
 			this._updateDatepicker(inst);
 		} else {
