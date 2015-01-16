@@ -1072,9 +1072,9 @@
                             if (data[i].type == 'Uren') {
                                 aanvragenIn = 'Uren';
                                 if (navigator.userAgent.match(/(IEMobile)/))
-                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
+                                    content += "</label><input class='collapAantUur' onpaste='pastefunc()' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
                                 else
-                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
+                                    content += "</label><input class='collapAantUur' onpaste='pastefunc()' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
                                 content += "<select style='display:none' id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
@@ -1150,6 +1150,10 @@
                     $('#loadingDivDetailsDagen').css('display', 'none');
                 }
             });
+        }
+
+        function pastefunc(){
+            debugger;
         }
 
         // Sorteren van saldi op basis van belang
@@ -1247,9 +1251,6 @@
                         }
                     }
                     $(selector).val(timeValue)
-            });
-            $(".collapAantUur").onpaste(function (e) {
-                debugger;
             });
             //}
         });
