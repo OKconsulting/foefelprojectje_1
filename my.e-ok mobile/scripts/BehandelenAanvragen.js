@@ -73,8 +73,23 @@ function opvullenDagenAanvraag(dagen, reden, functieNaam, afdeling, mdwNaam) {
     $('#dagenAanvraag')[0].innerHTML = content;
 }
 // De jQuery controls die dynamisch toegevoegd werden aan de pagina initialiseren
+var clickEventsBound = false;
 $(document).on('pagebeforeshow', '#detailsAanvraag', function () {
     $('#dagenAanvraag div[data-role="collapsible"]').collapsible();
+
+    if (!clickEventsBound) {
+        // Goedkeuren van een aanvraag
+        $('#btnGoedkeuren').click(function () {
+            disableBijBehandeling();
+            goedOfAfkeuren(true);
+        });
+        // Afkeuren van een aanvraag
+        $('#btnAfkeuren').click(function () {
+            disableBijBehandeling();
+            goedOfAfkeuren(false);
+        });
+        clickEventsBound = true;
+    }
 });
 // De jQuery controls die dynamisch toegevoegd werden aan de pagina initialiseren
 $(document).on('pagebeforeshow', '#aanvragen', function () {
@@ -204,17 +219,6 @@ function opvullenTeBehandelenAanvragen(aanvragen) {
         aanvraagBehandelen(selectorAanvraag);
     });
 }
-
-// Goedkeuren van een aanvraag
-$('#btnGoedkeuren').click(function () {
-    disableBijBehandeling();
-    goedOfAfkeuren(true);
-});
-// Afkeuren van een aanvraag
-$('#btnAfkeuren').click(function () {
-    disableBijBehandeling();
-    goedOfAfkeuren(false);
-});
 function goedOfAfkeuren(goedgekeurd) {
     if (aanvraagInBehandeling != 0) {
         var reden = $('#txaRedenAanvraagKeuren')[0].value;

@@ -536,7 +536,7 @@
                 var einddag = new Date(arrEinddag[2], arrEinddag[1] - 1, arrEinddag[0]);
                 $("#dteVanPopup").datepicker("option", "maxDate", einddag);
             } else
-                $("#dteVanPopup").datepicker("option", "minDate", null);
+                $("#dteVanPopup").datepicker("option", "maxDate", null);
             var maand = $('#dteVanPopup .ui-datepicker-title span')[0].outerText;
             var jaar = $('#dteVanPopup .ui-datepicker-title span:nth-child(2)')[0].outerText;
             huidigeVanMaand = maandenHuidig.indexOf(maand) + 1;
@@ -1018,7 +1018,7 @@
         ophalenFeestdagen();
 
         var DagenVoorVerlofAanvraag;
-
+        var aanvragenIn = "Dagen";
         // De dagen ophalen waarvoor effectief verlof voor aangevraagd kan worden
         // aan de hand van de periode die door de gebruiker werd opgegeven
         function haalDagenOp() {
@@ -1064,6 +1064,7 @@
                             }
                             aantalUur = aantalUur + ':' + data[i].aantaluur.split(':')[1];
                             if (data[i].type == 'Uren') {
+                                aanvragenIn = 'Uren';
                                 if (navigator.userAgent.match(/(IEMobile)/))
                                     content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
                                 else
@@ -1075,6 +1076,7 @@
                                 content += "</select></div>";
                             }
                             else {
+                                aanvragenIn = 'Dagen';
                                 if (navigator.userAgent.match(/(IEMobile)/))
                                     content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
                                 else
@@ -1162,8 +1164,13 @@
                     $('#collapTxt' + i).css('display', 'inline');
                     $('#collapDag' + i).parent().css('display', 'none');
                 } else {
-                    $('#collapTxt' + i).css('display', 'none');
-                    $('#collapDag' + i).parent().css('display', 'block');
+                    if (aanvragenIn == 'Uren') {
+                        $('#collapTxt' + i).css('display', 'inline');
+                        $('#collapDag' + i).parent().css('display', 'none');
+                    } else {
+                        $('#collapTxt' + i).css('display', 'none');
+                        $('#collapDag' + i).parent().css('display', 'block');
+                    }
                 }
             }
 
