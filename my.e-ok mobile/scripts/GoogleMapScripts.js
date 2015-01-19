@@ -13,3 +13,10 @@
         title: 'OKc'
     });
 }
+
+
+var mapHeight = $(document).height() / 100 * 75;
+$('#myGoogleMap').css('height', mapHeight + 'px');
+
+var mapWidth = $(document).width() / 100 * 75;
+$('#myGoogleMap').css('width', mapWidth + 'px');
