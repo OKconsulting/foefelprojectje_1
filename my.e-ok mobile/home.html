@@ -398,7 +398,14 @@
         </div>
         <div data-role="header" class="header" data-position="fixed">
             <div class="left"><a href="#about_panel" data-transition="none"><img src="images/menu.png" /></a></div>
+            <div class="right"><a href="#Toon-map" data-role="none" data-rel="popup" data-position-to="window" onclick="initialize()"><img src="images/herladen.png" /></a></div>
             <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
+        </div>
+
+        <div data-role="popup" id="Toon-map" class="ui-content" data-theme="a">
+            <div id="myGoogleMap" style="width: 350px; height: 550px;">
+
+            </div>
         </div>
 
         <div data-role="content" class="ui-content" role="main">
@@ -433,6 +440,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDQlGfx1xy-4iELx4sSB759T-ESWARO39Y&sensor=false&libraries=places&language=nl"></script>
+    <script src="scripts/GoogleMapScripts.js"></script>
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
     <script src="scripts/Vertalen.js"></script>
