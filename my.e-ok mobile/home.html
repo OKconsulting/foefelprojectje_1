@@ -1072,9 +1072,9 @@
                             if (data[i].type == 'Uren') {
                                 aanvragenIn = 'Uren';
                                 if (navigator.userAgent.match(/(IEMobile)/))
-                                    content += "</label><input class='collapAantUur' onpaste='pastefunc()' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
+                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
                                 else
-                                    content += "</label><input class='collapAantUur' onpaste='pastefunc()' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
+                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
                                 content += "<select style='display:none' id='collapDag" + i + "'>";
                                 content += "<option value='D100'>" + dynamicDag + "</option>";
                                 content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
@@ -1152,10 +1152,6 @@
             });
         }
 
-        function pastefunc(){
-            debugger;
-        }
-
         // Sorteren van saldi op basis van belang
         function sorteerSaldi(a, b) {
             if (a.belang == 0)
@@ -1219,6 +1215,10 @@
                     $('#collapTxt' + index).css('display', 'none');
                     $('#collapDag' + index).parent().css('display', 'block');
                 }
+            });
+
+            $(".collapAantUur").bind("paste", function (e) {
+                e.preventDefault();
             });
 
             $('#colSet div[data-role="collapsible"]').collapsible();
