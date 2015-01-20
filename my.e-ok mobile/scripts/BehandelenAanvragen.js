@@ -142,6 +142,7 @@ function getAanvragenLGHR() {
     try {
         $("#btnAllesGoedkeuren").button("disable");
     } catch (ex) { }
+    $('#btnAllesGoedkeuren').parent().css('color', '#aaa').css('background-color', '#ddd').css('cursor', 'default');
 
     $('#loadingDivAanvragen').css('display', 'inline');
     $('#colSetAanvragen')[0].innerHTML = '';
