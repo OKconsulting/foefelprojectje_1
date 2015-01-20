@@ -1,29 +1,19 @@
-USE [eOKSQL-1]
-GO
-/****** Object:  StoredProcedure [dbo].[time_berekenMaandtotalen]    Script Date: 20/01/2015 9:52:12 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
--- Author:		Morten Minne
--- Create date: 25/09/2014
--- Description:	Dagelijks de maandtotalen berekenen van time.e-ok
--- =============================================
-ALTER PROCEDURE [dbo].[time_berekenMaandtotalen]
+use [eOKSQL-1]
 
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-	declare @startTijd datetime = DATEADD(day, -1, getdate()),
-	@aantalMdws int = cast((select count(mdwID) from [tblUserToegang] where typelogin = 'timeeok') as int)
-	declare @datumGisteren datetime = dateadd(hour, -3, getdate())
+SET NOCOUNT ON;
 
+declare @vandaag datetime = '2015-01-02 02:00:00.000'
+while @vandaag <= '2015-01-20 02:00:00.000'
+begin	
+	declare @startTijd datetime = DATEADD(day, -1, @vandaag),
+	@aantalMdws int = cast((select count(mdwID) from [tblUserToegang] where typelogin = 'timeeok' and mdwID = 5563) as int)
+	declare @datumGisteren datetime = dateadd(hour, -3, @vandaag)
+	print CONCAT('-------------------- ', @startTijd, ' --------------------')
+				
 	--alle mdws ophalen die toegang hebben tot time.e-ok
 	declare @mdwsMetToegang table (mdwID int, rowNr int)
-	INSERT INTO @mdwsMetToegang select mdwID, ROW_NUMBER() OVER (ORDER BY mdwID) as rowNr FROM [tblUserToegang] where typelogin = 'timeeok'
+	delete from @mdwsMetToegang
+	INSERT INTO @mdwsMetToegang select mdwID, ROW_NUMBER() OVER (ORDER BY mdwID) as rowNr FROM [tblUserToegang] where typelogin = 'timeeok' and mdwID = 5563
 	while @aantalMdws != 0
 	begin
 		declare @totSec bigint = 0,
@@ -56,7 +46,7 @@ BEGIN
 			begin
 				-- De tijdlogs afronden
 				declare @uurroosterID int = cast((select top 1 uraID from @uurRoostersMdw where datumstart <= @datumGisteren) as int)
-				if @uurroosterID is not null and @uurroosterID != ''
+				if @uurroosterID is not null or @uurroosterID != ''
 				begin
 					declare @afronden bigint,
 					@uraSituatie int = cast((select top 1 normaalID from [tblSituatieUurroosterAlgemeen] where uraID = @uurroosterID order by tijdstempel desc) as int)
@@ -72,7 +62,7 @@ BEGIN
 					end
 					else
 						set @afronden = cast((select afronden from [tblSituatieNormaal] where normaalID = @uraSituatie) as int)
-		
+
 					-- Hoeveelheid afronden is bekend --> effectief afronden
 					set @afronden = @afronden * 600000000
 					if @afronden != 0 and @afronden != 60000000
@@ -117,8 +107,8 @@ BEGIN
 		
 					set @iItems = @iItems + 2
 				end
-				set @totSec = @totSec * 10000000		
-
+				set @totSec = @totSec * 10000000
+				
 				--Ophalen van de regel die van toepassing is
 				declare @datumRegel datetime = @datumGisteren,
 				@datumSet bit = 0
@@ -172,9 +162,9 @@ BEGIN
 					insert into @tblRegel (maxPerWeek, maxPerMaand, maxPerDrieMaand, maxPerZesMaand, maxPerJaar, overnemen, MinimumOverwerken)
 					values (1000, 1000, 1000, 1000, 1000, 0, 0)
 				end
-
+				
 				delete from @tblTotalen
-				insert into @tblTotalen SELECT top 1 huidigeTotalen.week, huidigeTotalen.maand, huidigeTotalen.drieMaand, huidigeTotalen.zesMaand, huidigeTotalen.jaar, huidigeTotalen.ongelimiteerd, huidigeTotalen.prestOvergenomen, huidigeTotalen.weekNeg, huidigeTotalen.maandNeg, huidigeTotalen.kwartNeg, huidigeTotalen.SemNeg, huidigeTotalen.jaarNeg FROM [time_tblOveruurMedewerkerTotaal] as huidigeTotalen where mdwID = @mdwID and tijdstempel < DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) order by tijdstempel desc 
+				insert into @tblTotalen SELECT top 1 huidigeTotalen.week, huidigeTotalen.maand, huidigeTotalen.drieMaand, huidigeTotalen.zesMaand, huidigeTotalen.jaar, huidigeTotalen.ongelimiteerd, huidigeTotalen.prestOvergenomen, huidigeTotalen.weekNeg, huidigeTotalen.maandNeg, huidigeTotalen.kwartNeg, huidigeTotalen.SemNeg, huidigeTotalen.jaarNeg FROM [time_tblOveruurMedewerkerTotaal] as huidigeTotalen where mdwID = @mdwID and tijdstempel < DATEADD(dd, 0, DATEDIFF(dd, 0, @vandaag)) order by tijdstempel desc 
 
 				if cast((select count(*) from @tblTotalen) as int) = 0
 				begin
@@ -264,14 +254,14 @@ BEGIN
 
 				if exists(select datum from [dbo].fn_getalleCollectieveVerlofdagen(@mdwID, @orgID, @buID, DATEPART(yy, @startTijd), @startTijd, @startTijd, 0) where datum = DATEADD(dd, 0, DATEDIFF(dd, 0, @startTijd)))
 					set @teWerkenUren = @teWerkenUren - cast((select aantaluur from [dbo].fn_getalleCollectieveVerlofdagen(@mdwID, @orgID, @buID, DATEPART(yy, @startTijd), @startTijd, @startTijd, 0) where datum = @startTijd) as bigint) * 36000000000
-
+				
 				if exists(select datum from [dbo].fn_getalleVerlofdagenMdw(@mdwID, DATEPART(yy, @startTijd), 1) where datum = DATEADD(dd, 0, DATEDIFF(dd, 0, @startTijd)))
 					set @teWerkenUren = @teWerkenUren - cast((select aantaluur from [dbo].fn_getalleVerlofdagenMdw(@mdwID, DATEPART(yy, @startTijd), 1) where datum = DATEADD(dd, 0, DATEDIFF(dd, 0, @startTijd))) as bigint) * 36000000000
 				
 				if(@teWerkenUren < 0)
 					set @teWerkenUren = 0
 				set @totSec = @totSec - @teWerkenUren
-				if(@totSec * 60 < ((SELECT MinimumOverwerken FROM @tblRegel) * 36000000000))
+				if(@totSec > 0 and @totSec * 60 < ((SELECT MinimumOverwerken FROM @tblRegel) * 36000000000))
 					set @totSec = 0
 
 				--De gewerkte tijd van vandaag afvlakken
@@ -292,7 +282,7 @@ BEGIN
 							--iOngl = iOngl - iWeek + cast((select maxPerWeek from @tblRegel) as int) * 36000000000 - @totSec
 						end
 					end
-				
+
 					declare @datumMorgen datetime = DATEADD(day, 1, @datumGisteren)
 					if DATEPART(D, @datumMorgen) = 1
 					begin
@@ -516,7 +506,7 @@ BEGIN
 						if (cast((select maxPerWeek from @tblRegel) as bigint) * 36000000000) < cast((cast((select iWeek from @tblTotalen) as bigint) + @totSec) as bigint)
 							set @totSec = (cast((select maxPerWeek from @tblRegel) as bigint) * 36000000000) - cast((select iWeek from @tblTotalen) as bigint)
 					end
-
+					
 					--TOV maand
 					if (cast((select maxPerMaand from @tblRegel) as bigint) * 36000000000) <= cast((select iMaand from @tblTotalen) as bigint)
 					begin
@@ -547,7 +537,7 @@ BEGIN
 					else
 					begin
 						if (cast((select maxPerDrieMaand from @tblRegel) as bigint) * 36000000000) < cast((cast((select iDrieMaand from @tblTotalen) as bigint) + @totSec) as bigint)
-							set @totSec = (cast((select maxPerMaand from @tblRegel) as bigint) * 36000000000) - cast((select iDrieMaand from @tblTotalen) as bigint)
+							set @totSec = (cast((select maxPerDrieMaand from @tblRegel) as bigint) * 36000000000) - cast((select iDrieMaand from @tblTotalen) as bigint)
 					end
 
 					--TOV zesMaand
@@ -564,7 +554,7 @@ BEGIN
 						if (cast((select maxPerZesMaand from @tblRegel) as bigint) * 36000000000) < cast((cast((select iZesMaand from @tblTotalen) as bigint) + @totSec) as bigint)
 							set @totSec = (cast((select maxPerZesMaand from @tblRegel) as bigint) * 36000000000) - cast((select iZesMaand from @tblTotalen) as bigint)
 					end
-
+					
 					--TOV jaar
 					if (cast((select maxPerJaar from @tblRegel) as bigint) * 36000000000) <= cast((select iJaar from @tblTotalen) as bigint)
 					begin
@@ -577,7 +567,7 @@ BEGIN
 						if (cast((select maxPerJaar from @tblRegel) as bigint) * 36000000000) < cast((cast((select iJaar from @tblTotalen) as bigint) + @totSec) as bigint)
 							set @totSec = (cast((select maxPerJaar from @tblRegel) as bigint) * 36000000000) - cast((select iJaar from @tblTotalen) as bigint)
 					end
-
+					
 					--TOV ongelimiteerd
 					if cast((select overnemen from @tblRegel) as bit) = 1
 					begin
@@ -595,6 +585,8 @@ BEGIN
 					end
 				end
 
+				PRINT CONCAT('Final: ', CAST(ROUND((@totsec/36000000000), 2) AS NUMERIC(36,2)))
+
 				--De nieuwe totalen opslaan in de totaalRij
 				declare @totaalID int
 				if @nieuweMaand = 0
@@ -608,7 +600,7 @@ BEGIN
 					tblTot.jaar = (cast((select iJaar from @tblTotalen) as bigint) + @totSec),
 					tblTot.ongelimiteerd = (cast((select iOngl from @tblTotalen) as bigint) + @totSec),
 					tblTot.lastEdited = GETDATE(),
-					tblTot.tijdstempel = GETDATE(),
+					tblTot.tijdstempel = @vandaag,
 					tblTot.prestOvergenomen = @nuOvergenomen,
 					tblTot.weekNeg = (select iWeekNeg from @tblTotalen),
 					tblTot.maandNeg = (select iMaandNeg from @tblTotalen),
@@ -619,9 +611,9 @@ BEGIN
 				end
 				else
 				begin
-					if cast((SELECT count(*) FROM [time_tblOveruurMedewerkerTotaal] where mdwID = @mdwID and tijdstempel >= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))) as int) = 1
+					if cast((SELECT count(*) FROM [time_tblOveruurMedewerkerTotaal] where mdwID = @mdwID and tijdstempel >= DATEADD(dd, 0, DATEDIFF(dd, 0, @vandaag))) as int) = 1
 					begin
-						set @totaalID = cast((SELECT top 1 overdrachtID FROM [time_tblOveruurMedewerkerTotaal] where mdwID = @mdwID and tijdstempel > DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) order by tijdstempel desc) as int)
+						set @totaalID = cast((SELECT top 1 overdrachtID FROM [time_tblOveruurMedewerkerTotaal] where mdwID = @mdwID and tijdstempel > DATEADD(dd, 0, DATEDIFF(dd, 0, @vandaag)) order by tijdstempel desc) as int)
 						update tblTot
 						set tblTot.week = (cast((select iWeek from @tblTotalen) as bigint) + @totSec),
 						tblTot.maand = (cast((select iMaand from @tblTotalen) as bigint) + @totSec),
@@ -630,7 +622,7 @@ BEGIN
 						tblTot.jaar = (cast((select iJaar from @tblTotalen) as bigint) + @totSec),
 						tblTot.ongelimiteerd = (cast((select iOngl from @tblTotalen) as bigint) + @totSec),
 						tblTot.lastEdited = GETDATE(),
-						tblTot.tijdstempel = GETDATE(),
+						tblTot.tijdstempel = @vandaag,
 						tblTot.prestOvergenomen = @nuOvergenomen,
 						tblTot.weekNeg = (select iWeekNeg from @tblTotalen),
 						tblTot.maandNeg = (select iMaandNeg from @tblTotalen),
@@ -642,7 +634,7 @@ BEGIN
 					else
 					begin
 						insert into [time_tblOveruurMedewerkerTotaal] (mdwID, week, maand, drieMaand, zesMaand, jaar, ongelimiteerd, lastEdited, tijdstempel, prestOvergenomen, weekNeg, maandNeg, kwartNeg, SemNeg, jaarNeg)
-						values (@mdwID, (cast((select iWeek from @tblTotalen) as bigint) + @totSec), (cast((select iMaand from @tblTotalen) as bigint) + @totSec), (cast((select iDrieMaand from @tblTotalen) as bigint) + @totSec), (cast((select iZesMaand from @tblTotalen) as bigint) + @totSec), (cast((select iJaar from @tblTotalen) as bigint) + @totSec), (cast((select iOngl from @tblTotalen) as bigint) + @totSec), GETDATE(), getdate(), cast((select overgenomen from @tblTotalen) as bit), (select iWeekNeg from @tblTotalen),(select iMaandneg from @tblTotalen), (select iDrieMaandNeg from @tblTotalen), (select iZesMaandNeg from @tblTotalen), (select iJaarNeg from @tblTotalen))
+						values (@mdwID, (cast((select iWeek from @tblTotalen) as bigint) + @totSec), (cast((select iMaand from @tblTotalen) as bigint) + @totSec), (cast((select iDrieMaand from @tblTotalen) as bigint) + @totSec), (cast((select iZesMaand from @tblTotalen) as bigint) + @totSec), (cast((select iJaar from @tblTotalen) as bigint) + @totSec), (cast((select iOngl from @tblTotalen) as bigint) + @totSec), GETDATE(), @vandaag, cast((select overgenomen from @tblTotalen) as bit), (select iWeekNeg from @tblTotalen),(select iMaandneg from @tblTotalen), (select iDrieMaandNeg from @tblTotalen), (select iZesMaandNeg from @tblTotalen), (select iJaarNeg from @tblTotalen))
 					end
 				end 
 			end
@@ -651,4 +643,6 @@ BEGIN
 		--Overstappen naar de volgende mdw
 		set @aantalMdws = @aantalMdws - 1
 	end
-END
+
+	set @vandaag = DATEADD(day, 1, @vandaag)
+end
