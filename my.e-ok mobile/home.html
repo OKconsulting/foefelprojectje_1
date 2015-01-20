@@ -441,7 +441,7 @@
         </div>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDQlGfx1xy-4iELx4sSB759T-ESWARO39Y&sensor=false&libraries=places&language=nl"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDQlGfx1xy-4iELx4sSB759T-ESWARO39Y&sensor=false&libraries=places&language=en"></script>
     <script src="scripts/GoogleMapScripts.js"></script>
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="scripts/jquery-ui-1.10.4.custom.js"></script>
@@ -1300,8 +1300,10 @@
             if (loadingHist) {
                 $('#cboHistItems').selectmenu("disable");
             }
-            if ($('#loadingDivHist')[0].style.display == 'none' && (historiekItems == undefined || historiekItems == null))
+            if ($('#loadingDivHist')[0].style.display == 'none' && (historiekItems == undefined || historiekItems == null)) {
                 melding(msgGeenHistoriek, 5000, 'warning');
+                $('#cboHistItems').selectmenu("disable");
+            }
 
             $("#cboHistItems").selectmenu("refresh", true);
             histPageInit = true;

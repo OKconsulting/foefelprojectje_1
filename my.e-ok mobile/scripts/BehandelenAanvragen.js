@@ -139,6 +139,10 @@ $(document).on('pagebeforeshow', '#aanvragen', function () {
 // Alle te behandelen aanvragen ophalen voor de HRM|LG
 var geenTeBehandelenAanvragen = false;
 function getAanvragenLGHR() {
+    try {
+        $("#btnAllesGoedkeuren").button("disable");
+    } catch (ex) { }
+
     $('#loadingDivAanvragen').css('display', 'inline');
     $('#colSetAanvragen')[0].innerHTML = '';
     $.ajax({
