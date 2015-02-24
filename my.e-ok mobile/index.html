@@ -32,6 +32,8 @@
     <script src="scripts/DatabaseConnection.js"></script>
     <script src="cordova.js"></script>
     <script>
+        var APIVersion = '2';
+
         document.addEventListener("backbutton", backButtonDown, false);
         function backButtonDown() {
             e.preventDefault();
@@ -45,8 +47,23 @@
             var mdwID = window.localStorage.getItem("mdwID");
 
             if (mdwID != null) {
-                window.localStorage.setItem("mdwID", mdwID);
-                window.location.href = "./home.html#home";
+                $.ajax({
+                    headers: { 'Access-Control-Allow-Origin': "*" },
+                    url: url + 'api/User/getApiLocation/?apiVersion=' + APIVersion,
+                    cache: false,
+                    type: 'GET',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        window.localStorage.setItem("mdwID", mdwID);
+                        window.location.href = "./home.html#home";
+                    },
+                    error: function (e) {
+                        if (e.responseJSON == undefined || e.responseJSON == null)
+                            melding("U heeft geen internet connectie.", 3000, 'error');
+                        else
+                            melding(e.responseJSON, 3000, 'error');
+                    }
+                });
             }
         });
 
@@ -102,7 +119,7 @@
 
             $.ajax({
                 headers: { 'Access-Control-Allow-Origin': "*" },
-                url: url + 'api/user/Login/',
+                url: url + 'api/user/Login/?apiVersion=' + APIVersion,
                 cache: false,
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
