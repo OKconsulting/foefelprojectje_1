@@ -58,11 +58,11 @@
                     <tr id="tblPCodes5">
                         <th class="tblPCodes5">Beschikbare uren</th>
                     </tr>
-                    <tr id="tblPCodes6">
-                        <th class="tblPCodes6">Geldig vanaf</th>
-                    </tr>
                     <tr id="tblPCodes7">
-                        <th class="tblPCodes7">Geldig tot</th>
+                        <th class="tblPCodes7">Geldig vanaf</th>
+                    </tr>
+                    <tr id="tblPCodes6">
+                        <th class="tblPCodes6">Geldig tot</th>
                     </tr>
                 </tbody>
             </table>
@@ -480,8 +480,8 @@
             $('#tblPCodes3')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].aangevraagd * 100) / 100 + '</td>';
             $('#tblPCodes4')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].beschikbaar * 100) / 100 + '</td>';
             $('#tblPCodes5')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantalUren + '</td>';
-            $('#tblPCodes6')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].vandatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].vandatum.split('T')[0].split('-')[1] + '</td>';
-            $('#tblPCodes7')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
+            $('#tblPCodes7')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].vandatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].vandatum.split('T')[0].split('-')[1] + '</td>';
+            $('#tblPCodes6')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
         }
         // wijzigen van het weer te geven item in de historiek tabel
         function changeHistItem() {
