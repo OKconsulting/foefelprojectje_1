@@ -44,6 +44,7 @@
         // Als de pagina geladen is kijken of er een 'cookie' is opgeslaan met een eerder ingelogde gebruikerId
         // Indien wel --> login overslaan en met gegevens van vorige gebruiker blijven werken
         $(document).ready(function () {
+            alert(url);
             var mdwID = window.localStorage.getItem("mdwID");
 
             if (mdwID != null) {
