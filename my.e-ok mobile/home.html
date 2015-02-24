@@ -59,7 +59,10 @@
                         <th class="tblPCodes5">Beschikbare uren</th>
                     </tr>
                     <tr id="tblPCodes6">
-                        <th class="tblPCodes6">Geldig tot</th>
+                        <th class="tblPCodes6">Geldig vanaf</th>
+                    </tr>
+                    <tr id="tblPCodes7">
+                        <th class="tblPCodes7">Geldig tot</th>
                     </tr>
                 </tbody>
             </table>
@@ -477,7 +480,8 @@
             $('#tblPCodes3')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].aangevraagd * 100) / 100 + '</td>';
             $('#tblPCodes4')[0].innerHTML += '<td>' + Math.round(verlofSaldi[selectedPCode].beschikbaar * 100) / 100 + '</td>';
             $('#tblPCodes5')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].aantalUren + '</td>';
-            $('#tblPCodes6')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
+            $('#tblPCodes6')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].vandatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].vandatum.split('T')[0].split('-')[1] + '</td>';
+            $('#tblPCodes7')[0].innerHTML += '<td>' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[2] + '/' + verlofSaldi[selectedPCode].voordatum.split('T')[0].split('-')[1] + '</td>';
         }
         // wijzigen van het weer te geven item in de historiek tabel
         function changeHistItem() {
@@ -788,6 +792,7 @@
             $('#tblPCodes4')[0].innerHTML = $('#tblPCodes4 th')[0].outerHTML;
             $('#tblPCodes5')[0].innerHTML = $('#tblPCodes5 th')[0].outerHTML;
             $('#tblPCodes6')[0].innerHTML = $('#tblPCodes6 th')[0].outerHTML;
+            $('#tblPCodes7')[0].innerHTML = $('#tblPCodes7 th')[0].outerHTML;
         }
 
         // Herladen van de saldi
@@ -811,6 +816,7 @@
             $('#tblHist4')[0].innerHTML = $('#tblHist4 th')[0].outerHTML;
             $('#tblHist5')[0].innerHTML = $('#tblHist5 th')[0].outerHTML;
             $('#tblHist6')[0].innerHTML = $('#tblHist6 th')[0].outerHTML;
+            $('#tblHist7')[0].innerHTML = $('#tblHist7 th')[0].outerHTML;
         }
 
         // Herladen van de historiek van de gebruiker
