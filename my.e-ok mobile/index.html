@@ -49,7 +49,7 @@
             if (mdwID != null) {
                 $.ajax({
                     headers: { 'Access-Control-Allow-Origin': "*" },
-                    url: url + 'api/User/getApiLocation/?apiVersion=' + APIVersion,
+                    url: url + 'api/User/getVersionInfo/?apiVersion=' + APIVersion,
                     cache: false,
                     type: 'GET',
                     contentType: 'application/json; charset=utf-8',
