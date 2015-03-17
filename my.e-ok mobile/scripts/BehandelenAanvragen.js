@@ -304,6 +304,8 @@ function inBatchGoedkeuren() {
             aanvraagInBehandeling = 0;
             $('#aHome').click();
             melding(data.split('@#@')[1], 10000, data.split('@#@')[0]);
+
+            enableBijBehandeling();
         }
     });
 }
@@ -381,3 +383,10 @@ function enableBijBehandeling() {
         $('#btnConfAanvrYes').parent().css('color', '').css('background-color', '').css('cursor', 'pointer');
     } catch (ex) { }
 }
+
+$('#txaRedenAanvraagKeuren').focus(function () {
+    $('#btnBehandelAndereAanvr').css('margin-bottom', '300px');
+});
+$('#txaRedenAanvraagKeuren').blur(function () {
+    $('#btnBehandelAndereAanvr').css('margin-bottom', '0px');
+});
