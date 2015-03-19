@@ -454,19 +454,8 @@
         document.addEventListener('deviceready', onDeviceReady, false);
 
         function onDeviceReady() {
-            document.addEventListener('hidekeyboard', onKeyboardHide, false);
-            document.addEventListener('showkeyboard', onKeyboardShow, false);
             document.addEventListener("backbutton", backButtonDown, false);
         }
-
-        function onKeyboardHide() {
-            alert('keyboardHide');
-        }
-
-        function onKeyboardShow() {
-            alert('keyboardShow');
-        }
-
         
         function backButtonDown() {
             e.preventDefault();
