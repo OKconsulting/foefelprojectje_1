@@ -333,7 +333,7 @@
             <textarea id="txaRedenAanvraagKeuren" name="txaReden" data-theme="a"></textarea>
             <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnGoedkeuren" class="btnGoedkeuren" type="submit" value="Goedkeuren" />Goedkeuren</div>
             <div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAfkeuren" class="btnAfkeuren" type="submit" value="Afkeuren" />Afkeuren</div>
-            <a style="text-decoration: none;" href="#aanvragen"><div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnBehandelAndereAanvr" class="btnBehandelAndereAanvr" type="submit" value="Andere aanvraag behandelen" />Andere aanvraag behandelen</div></a>
+            <a style="text-decoration: none;" href="#aanvragen"><div style="margin-bottom: 450px;" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnBehandelAndereAanvr" class="btnBehandelAndereAanvr" type="submit" value="Andere aanvraag behandelen" />Andere aanvraag behandelen</div></a>
         </div>
 
         <div data-role="panel" id="detailsAanvraag_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
@@ -451,7 +451,23 @@
     <script src="scripts/Vertalen.js"></script>
     <script src="cordova.js"></script>
     <script>
-        document.addEventListener("backbutton", backButtonDown, false);
+        document.addEventListener('deviceready', onDeviceReady, false);
+
+        function onDeviceReady() {
+            document.addEventListener('hidekeyboard', onKeyboardHide, false);
+            document.addEventListener('showkeyboard', onKeyboardShow, false);
+            document.addEventListener("backbutton", backButtonDown, false);
+        }
+
+        function onKeyboardHide() {
+            alert('keyboardHide');
+        }
+
+        function onKeyboardShow() {
+            alert('keyboardShow');
+        }
+
+        
         function backButtonDown() {
             e.preventDefault();
             navigator.app.exitApp();
@@ -816,7 +832,6 @@
             $('#tblHist4')[0].innerHTML = $('#tblHist4 th')[0].outerHTML;
             $('#tblHist5')[0].innerHTML = $('#tblHist5 th')[0].outerHTML;
             $('#tblHist6')[0].innerHTML = $('#tblHist6 th')[0].outerHTML;
-            $('#tblHist7')[0].innerHTML = $('#tblHist7 th')[0].outerHTML;
         }
 
         // Herladen van de historiek van de gebruiker
