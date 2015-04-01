@@ -540,7 +540,12 @@
         // Opmaak voor de overview datepicker voorzien
         // overview datepicker = datepicker met de legende op
         var initialHeight = 0;
-        function styleDteOverview() {          
+        function styleDteOverview() {
+            $('#dteVanPopup').css('display', 'none');
+            $('#dteTotPopup').css('display', 'none');
+            popupDte = '';
+            popupActive = false;
+
             setDteStyle('#dteOverview');
             popupActive = true;
             popupDte = 'Overview';
