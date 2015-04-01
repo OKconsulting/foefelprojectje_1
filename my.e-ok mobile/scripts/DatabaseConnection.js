@@ -9,5 +9,5 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
     // "http://api.okc.be/myeok/"; --> Oude API
 }
 else {
-    url = "http://localhost:50681/";
+    url = "http://api.okc.be/myeok_2/"; //"http://localhost:50681/";
 }

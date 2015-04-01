@@ -962,6 +962,8 @@
         function kleurDisabledDagen(huidigeMaand, dtpId, huidigjaar) {
             // Alle feest-/verlofdagen overlopen en op de datepicker kleuren indien nodig
             $.each(uitTeSchakelenDagen, function (key, value) {
+                debugger;
+                
                 // Als de dag plaatsvindt in de huidig weergegeven maand --> dag kleuren
                 var datumUitschakelen = value.datum;
                 if (value.altDatum != '' && value.altDatum != null)
