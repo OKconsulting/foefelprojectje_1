@@ -962,8 +962,6 @@
         function kleurDisabledDagen(huidigeMaand, dtpId, huidigjaar) {
             // Alle feest-/verlofdagen overlopen en op de datepicker kleuren indien nodig
             $.each(uitTeSchakelenDagen, function (key, value) {
-                debugger;
-                
                 // Als de dag plaatsvindt in de huidig weergegeven maand --> dag kleuren
                 var datumUitschakelen = value.datum;
                 if (value.altDatum != '' && value.altDatum != null)
@@ -985,20 +983,44 @@
                     if(value.dagDeel == 'dag')
                         $(selector).css('background-color', value.kleur);
                     else if (value.dagDeel == 'vm') {
+                        var defaultValue = '';
+
                         if ($(selector)[0].style.background != '') {
                             var prevKleur = $(selector)[0].style.background.substr($(selector)[0].style.background.indexOf('rgb'), $(selector)[0].style.background.length - $(selector)[0].style.background.indexOf('rgb')).split(')')[0] + ')';
-                            $(selector).css('background', 'linear-gradient(' + value.kleur + ' 50%, ' + prevKleur + ' 50%)');
+                            defaultValue = 'linear-gradient(' + value.kleur + ' 50%, ' + prevKleur + ' 50%)';
+
+                            $(selector).css('background', defaultValue);
+                            $(selector).css('background', '-o-' + defaultValue);
+                            $(selector).css('background', '-moz-' + defaultValue);
+                            $(selector).css('background', '-webkit-' + defaultValue);
                         }
-                        else
-                            $(selector).css('background', 'linear-gradient(' + value.kleur + ' 50%, white 50%)');
+                        else {
+                            defaultValue = 'linear-gradient(' + value.kleur + ' 50%, white 50%)';
+
+                            $(selector).css('background', defaultValue);
+                            $(selector).css('background', '-o-' + defaultValue);
+                            $(selector).css('background', '-moz-' + defaultValue);
+                            $(selector).css('background', '-webkit-' + defaultValue);
+                        }
                     }
                     else if (value.dagDeel == 'nm') {
+                        var defaultValue = '';
                         if ($(selector)[0].style.background != '') {
                             var prevKleur = $(selector)[0].style.background.substr($(selector)[0].style.background.indexOf('rgb'), $(selector)[0].style.background.length - $(selector)[0].style.background.indexOf('rgb')).split(')')[0] + ')';
-                            $(selector).css('background', 'linear-gradient(' + prevKleur + ' 50%, ' + value.kleur + ' 50%)');
+                            defaultValue = 'linear-gradient(' + prevKleur + ' 50%, ' + value.kleur + ' 50%)';
+                            
+                            $(selector).css('background', defaultValue);
+                            $(selector).css('background', '-o-' + defaultValue);
+                            $(selector).css('background', '-moz-' + defaultValue);
+                            $(selector).css('background', '-webkit-' + defaultValue);
                         }
-                        else
-                            $(selector).css('background', 'linear-gradient(white 50%, ' + value.kleur + ' 50%)');
+                        else {
+                            defaultValue = 'linear-gradient(white 50%, ' + value.kleur + ' 50%)';
+                            $(selector).css('background', defaultValue);
+                            $(selector).css('background', '-o-' + defaultValue);
+                            $(selector).css('background', '-moz-' + defaultValue);
+                            $(selector).css('background', '-webkit-' + defaultValue);
+                        } 
                     }
                 }
             });
