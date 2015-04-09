@@ -251,6 +251,11 @@
       <en>Number of hours</en>
       <fr>Nombre d'heurs</fr>
     </DynamischeTekst>
+	<DynamischeTekst class="Dagdeel">
+      <nl>Dagdeel</nl>
+      <en>Part of the day</en>
+      <fr>Patrie du jour</fr>
+    </DynamischeTekst>
     <DynamischeTekst class="Dag">
       <nl>dag</nl>
       <en>day</en>

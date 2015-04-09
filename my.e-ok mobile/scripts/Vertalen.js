@@ -53,6 +53,7 @@ function vertaalTeksten(taal) {
 
     // Dynamische teksten wijzigen
     dynamicAantUur = $(xml).find('Vertalingen').find('DynamischeTekst[class="AantalUur"]').find(taal).text();
+    dynamicDagdeel = $(xml).find('Vertalingen').find('DynamischeTekst[class="Dagdeel"]').find(taal).text();
     dynamicDag = $(xml).find('Vertalingen').find('DynamischeTekst[class="Dag"]').find(taal).text();
     dynamicVoormiddag = $(xml).find('Vertalingen').find('DynamischeTekst[class="Voormiddag"]').find(taal).text();
     dynamicNamiddag = $(xml).find('Vertalingen').find('DynamischeTekst[class="Namiddag"]').find(taal).text();

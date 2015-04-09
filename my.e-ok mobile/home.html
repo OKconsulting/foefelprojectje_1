@@ -498,7 +498,7 @@
             $('#tblHist thead tr')[0].innerHTML = '<th></th><th>' + datumStart.split('-')[2] + '/' + datumStart.split('-')[1] + ' - ' + datumEind.split('-')[2] + '/' + datumEind.split('-')[1] + '</th>';
             $('#tblHist1')[0].innerHTML += '<td>' + datumStart.split('-')[2] + '/' + datumStart.split('-')[1] + '</td>';
             $('#tblHist2')[0].innerHTML += '<td>' + datumEind.split('-')[2] + '/' + datumEind.split('-')[1] + '</td>';
-            $('#tblHist3')[0].innerHTML += '<td>' + historiekItems[selectedPCode].aantaldagen + '</td>';
+            $('#tblHist3')[0].innerHTML += '<td>' + historiekItems[selectedPCode].aantaldagen / 1000 + '</td>';
             var aanvraagDatum = historiekItems[selectedPCode].datumaanvraag.split('T')[0];
             $('#tblHist4')[0].innerHTML += '<td>' + aanvraagDatum.split('-')[2] + '/' + aanvraagDatum.split('-')[1] + '</td>';
             $('#tblHist5')[0].innerHTML += '<td>' + historiekItems[selectedPCode].status + '</td>';
@@ -1110,8 +1110,7 @@
                             for (y = 0; y < verlofSaldi.length; y++) {
                                 content += '<option value="' + verlofSaldi[y].prestatiecodeID + '">' + verlofSaldi[y].omschrijving + '</option>';
                             }
-
-                            content += "</select><label>" + dynamicAantUur;
+                            
                             // Bepalen welke controls weergegeven moeten worden in de collapsible
                             // verlofInUren --> NumericalUpDown
                             // verlofInDagen --> Select
@@ -1122,6 +1121,8 @@
                             }
                             aantalUur = aantalUur + ':' + data[i].aantaluur.split(':')[1];
                             if (data[i].type == 'Uren') {
+                                content += "</select><label>" + dynamicAantUur;
+
                                 aanvragenIn = 'Uren';
                                 if (navigator.userAgent.match(/(IEMobile)/))
                                     content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
@@ -1134,6 +1135,8 @@
                                 content += "</select></div>";
                             }
                             else {
+                                content += "</select><label>" + dynamicDagdeel;
+
                                 aanvragenIn = 'Dagen';
                                 if (navigator.userAgent.match(/(IEMobile)/))
                                     content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
