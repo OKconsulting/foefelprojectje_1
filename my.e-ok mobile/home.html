@@ -1321,7 +1321,7 @@
             }
 
             // Als de ingelogde medewerkers HRM|LG is worden de te behandelen aanvragen opgehaald
-            if (miRol.indexOf('myHRM') != -1 || miRol.indexOf('myLG') != -1)
+            if (miRol.indexOf('myHRM') != -1 || miRol.indexOf('myLG') != -1 || miRol.indexOf('myHR') != -1)
                 getAanvragenLGHR();
             else
                 $('li.menuBehandelen').css('display', 'none');
