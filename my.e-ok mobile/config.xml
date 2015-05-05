@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <widget id="com.okc.mobile.myE-ok" version="1.2.6" versionCode="028" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>my.e-ok Mobile</name>
     <description>
@@ -47,7 +47,7 @@
     <splash src="/icons/wp8/splash.png" width="768" height="1280"/>
   </platform>
 
-	<preference name="phonegap-version" value="3.7.0" />
+	<preference name="phonegap-version" value="3.7.2" />
 	<preference name="orientation" value="portrait" />
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="permissions" value="none" />
