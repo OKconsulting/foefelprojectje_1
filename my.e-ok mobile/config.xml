@@ -2,9 +2,11 @@
 <widget id="com.okc.mobile.myE-ok" version="1.2.6" versionCode="028" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
 	<!-- Android id="com.okc.mobile.myE-ok" -->
 	<!-- iOS id="com.OKc.app" -->
-    <name>my.e-ok Mobile</name>
+    <name>My.e-ok</name>
+    <!-- WP <name>My.e-ok</name>-->
+    <!-- iOS & Android <name>my.e-ok Mobile</name>-->
     <description>
-        My.e-ok is nu beschikbaar of uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
+        My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
     </description>
     <author email="minnemorten@hotmail.com">minnemorten@hotmail.com</author>
     <content src="index.html" />
