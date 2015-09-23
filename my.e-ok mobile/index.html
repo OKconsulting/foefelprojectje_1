@@ -45,8 +45,9 @@
         // Indien wel --> login overslaan en met gegevens van vorige gebruiker blijven werken
         $(document).ready(function () {
             var mdwID = window.localStorage.getItem("mdwID");
+            var miRol = window.localStorage.getItem("miRol");
 
-            if (mdwID != null) {
+            if (mdwID != null && miRol != null) {
                 $.ajax({
                     headers: { 'Access-Control-Allow-Origin': "*" },
                     url: url + 'api/User/getVersionInfo/?apiVersion=' + APIVersion,
@@ -60,7 +61,7 @@
                         if (e.responseJSON == undefined || e.responseJSON == null)
                             melding("U heeft geen internet connectie.", 3000, 'error');
                         else
-                            melding(e.responseJSON, 3000, 'error');
+                            melding(e.responseJSON, 5000, 'error');
                     }
                 });
             }
@@ -134,7 +135,7 @@
                     if (e.responseJSON == undefined || e.responseJSON == null)
                         melding("U heeft geen internet connectie.", 3000, 'error');
                     else
-                        melding(e.responseJSON, 3000, 'error');
+                        melding(e.responseJSON, 5000, 'error');
                 }
             });
         }

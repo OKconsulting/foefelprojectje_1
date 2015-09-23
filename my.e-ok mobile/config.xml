@@ -57,6 +57,7 @@
 	<preference name="permissions" value="none" />
 	<preference name="exit-on-suspend" value="true" />
   <preference name="Fullscreen" value="true" />
+  <preference name="SplashScreenDelay" value="10000" />
 
 	<plugin name="com.phonegap.plugin.statusbar" />
 	
