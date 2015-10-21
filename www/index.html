@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--
     Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
 
@@ -149,9 +149,11 @@
 					contentType: 'application/json; charset=utf-8',
 					data: JSON.stringify(user),
 					success: function (data) {
+					    var test = 2;
+					    test + 5;
 						window.localStorage.setItem("miRol", data.split('@#@')[1])
 						window.localStorage.setItem("mdwID", data.split('@#@')[0]);
-						window.location.href = "./home.html#home";
+						window.location.href = "Home.html#home";
 					},
 					error: function (e) {
 						$('#containerLogin').css('display', 'block');
