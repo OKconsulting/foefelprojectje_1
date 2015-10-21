@@ -125,7 +125,9 @@
 			}
 
 			$("#inloggen").on('click', function () {
-				if ($('[data-role=footer]')[0].style.display == 'none') {
+			    window.alert(url + 'api/user/Login/?apiVersion=' + APIVersion);
+			    if ($('[data-role=footer]')[0].style.display == 'none') {
+			        window.alert('login');
 					$('#containerLogin').css('display', 'none');
 					$('#containerLoading').css('display', 'block');
 					login();
