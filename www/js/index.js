@@ -24,8 +24,29 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
 		document.addEventListener("backbutton", this.backButtonDown, false);
     },
-    onDeviceReady: function() {
+    onDeviceReady: function () {
+        var mdwID = window.localStorage.getItem("mdwID");
+        var miRol = window.localStorage.getItem("miRol");
+        $('#login').css('background-color', 'red');
 
+        if (mdwID != null && miRol != null) {
+            $.ajax({
+                headers: { 'Access-Control-Allow-Origin': "*" },
+                url: url + 'api/User/getVersionInfo/?apiVersion=' + APIVersion,
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    window.location.href = "./home.html#home";
+                },
+                error: function (e) {
+                    if (e.responseJSON == undefined || e.responseJSON == null)
+                        melding("U heeft geen internet connectie.", 3000, 'error');
+                    else
+                        melding(e.responseJSON, 5000, 'error');
+                }
+            });
+        }
     },
 	backButtonDown: function() {
 		e.preventDefault();
