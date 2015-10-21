@@ -149,11 +149,13 @@
 					contentType: 'application/json; charset=utf-8',
 					data: JSON.stringify(user),
 					success: function (data) {
+					    $('#login').css('background-color', 'green');
 						window.localStorage.setItem("miRol", data.split('@#@')[1])
 						window.localStorage.setItem("mdwID", data.split('@#@')[0]);
 						window.location.href = "Home.html#home";
 					},
 					error: function (e) {
+					    $('#login').css('background-color', 'red');
 						$('#containerLogin').css('display', 'block');
 						$('#containerLoading').css('display', 'none');
 						if (e.responseJSON == undefined || e.responseJSON == null)
