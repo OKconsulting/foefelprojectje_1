@@ -2,10 +2,10 @@
 var url;
 
 if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-    url = "http://api.okc.be/myeok_2/";
+    url = "http://192.168.2.125:50681/";
 }
 else {
-    url = "http://api.okc.be/myeok_2/";
+    url = "http://192.168.2.125:50681/";
 }
 // "http://api.okc.be/myeok_2/";
 // "http://192.168.2.125:50681/";
