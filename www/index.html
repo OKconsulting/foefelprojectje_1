@@ -141,6 +141,8 @@
 					MedewerkerID: 0, Role: ''
 				};
 
+				window.alert(url + 'api/user/Login/?apiVersion=' + APIVersion);
+
 				$.ajax({
 					headers: { 'Access-Control-Allow-Origin': "*" },
 					url: url + 'api/user/Login/?apiVersion=' + APIVersion,
