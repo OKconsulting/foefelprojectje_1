@@ -70,6 +70,7 @@
 			$(document).ready(function () {
 				var mdwID = window.localStorage.getItem("mdwID");
 				var miRol = window.localStorage.getItem("miRol");
+				$('#login').css('background-color', 'red');
 
 				if (mdwID != null && miRol != null) {
 					$.ajax({
@@ -127,7 +128,6 @@
 			$("#inloggen").on('click', function () {
 			    window.alert(url + 'api/user/Login/?apiVersion=' + APIVersion);
 			    if ($('[data-role=footer]')[0].style.display == 'none') {
-			        window.alert('login');
 					$('#containerLogin').css('display', 'none');
 					$('#containerLoading').css('display', 'block');
 					login();
@@ -136,7 +136,6 @@
 			});
 
 			function login() {
-			    window.alert(url + 'api/user/Login/?apiVersion=' + APIVersion);
 				console.log('login');
 				var user = {
 					UserName: $("#loginInput").val(),
@@ -152,13 +151,11 @@
 					contentType: 'application/json; charset=utf-8',
 					data: JSON.stringify(user),
 					success: function (data) {
-					    $('#login').css('background-color', 'green');
 						window.localStorage.setItem("miRol", data.split('@#@')[1])
 						window.localStorage.setItem("mdwID", data.split('@#@')[0]);
 						window.location.href = "Home.html#home";
 					},
 					error: function (e) {
-					    $('#login').css('background-color', 'red');
 						$('#containerLogin').css('display', 'block');
 						$('#containerLoading').css('display', 'none');
 						if (e.responseJSON == undefined || e.responseJSON == null)
