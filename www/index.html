@@ -134,14 +134,13 @@
 			});
 
 			function login() {
+			    window.alert(url + 'api/user/Login/?apiVersion=' + APIVersion);
 				console.log('login');
 				var user = {
 					UserName: $("#loginInput").val(),
 					Paswoord: $("#paswoordInput").val(),
 					MedewerkerID: 0, Role: ''
 				};
-
-				window.alert(url + 'api/user/Login/?apiVersion=' + APIVersion);
 
 				$.ajax({
 					headers: { 'Access-Control-Allow-Origin': "*" },
