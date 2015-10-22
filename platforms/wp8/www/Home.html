@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--
     Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
 
@@ -481,18 +481,6 @@
         </script>
 		<script>
 			var APIVersion = '2';
-
-			document.addEventListener('deviceready', onDeviceReady, false);
-			function onDeviceReady() {
-				document.addEventListener("backbutton", backButtonDown, false);
-			}
-			function backButtonDown() {
-				e.preventDefault();
-				navigator.app.exitApp();
-
-				$("#btnDagenBevestigen").button("disable");
-
-			}
 
 			$( "#Toon-kalender" ).bind({
 				popupafterclose: function (event, ui) {
@@ -1552,7 +1540,7 @@
 			function logout() {
 				window.localStorage.removeItem("mdwID");
 				window.localStorage.removeItem("miRol");
-				window.location.href = "./index.html#login";
+				window.location.href = "index.html#login";
 			}
 
 			function disableBijVerlofaanvraag() {

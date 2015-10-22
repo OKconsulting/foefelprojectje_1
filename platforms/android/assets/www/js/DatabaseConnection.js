@@ -2,18 +2,12 @@
 var url;
 
 if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-    url = "http://api.okc.be/myeok/";
-
-    /*var vandaag = new Date();
-    if (vandaag >= new Date(2015, 4, 18, 0, 0, 0, 0)) {
-        url = "http://api.okc.be/myeok/";
-    }*/
-
-    // "http://api.okc.be/myeok_2/"; -- Test API
-    // "http://192.168.2.11:50681/"; --> Lokaal via emulator
-    // "http://localhost:50681/"; --> Lokaal zonder emulator
-    // "http://api.okc.be/myeok/"; --> Live API
+    url = "http://api.okc.be/myeok_2/";
 }
 else {
-    url = "http://localhost:50681/";
+    url = "http://api.okc.be/myeok_2/";
 }
+// "http://api.okc.be/myeok_2/";
+// "http://192.168.2.125:50681/";
+// "http://localhost:50681/";
+// "http://api.okc.be/myeok/";
