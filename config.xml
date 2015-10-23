@@ -1,5 +1,5 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.okc.mobile.myE-ok" version="1.3.0">
-	<name>myeok</name>
+	<name>My.e-ok</name>
 	
 	<description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
@@ -30,12 +30,13 @@
 	<gap:plugin name="org.apache.cordova.console"/>
 	<gap:plugin name="org.apache.cordova.device"/>
 	<gap:plugin name="org.apache.cordova.dialogs"/>
-  <gap:plugin name="org.apache.cordova.globalization"/>
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
-  <gap:plugin name="org.apache.cordova.network-information"/>
-  <gap:plugin name="org.apache.cordova.splashscreen"/>
-  <gap:plugin name="com.phonegap.plugin.statusbar" />
-
+	
+	<gap:plugin name="org.apache.cordova.globalization"/>
+	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
+	<gap:plugin name="org.apache.cordova.network-information"/>
+	<gap:plugin name="org.apache.cordova.splashscreen"/>
+	<gap:plugin name="com.phonegap.plugin.statusbar" />
+  
   <!--
   <gap:plugin name="org.apache.cordova.geolocation"/>
   <gap:plugin name="org.apache.cordova.contacts"/>
