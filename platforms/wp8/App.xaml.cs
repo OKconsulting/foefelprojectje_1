@@ -32,7 +32,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace com.OKc.mobile.myE-ok
+namespace com.OKc.app
 {
     public partial class App : Application
     {

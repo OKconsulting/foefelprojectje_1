@@ -34,7 +34,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
 
-namespace com.OKc.mobile.myE-ok
+namespace com.OKc.app
 {
     public partial class MainPage : PhoneApplicationPage
     {
