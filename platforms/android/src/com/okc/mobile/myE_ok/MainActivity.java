@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.okc.mobile.myE_ok;
+package com.OKc.mobile.myE_ok;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
