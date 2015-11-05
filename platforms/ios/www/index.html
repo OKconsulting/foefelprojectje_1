@@ -118,13 +118,13 @@
 					} else {
 					    url = "http://api.okc.be/myeok/";
 					}
-
 					login();
 				} else
 					$('#loginInput').focus();
 			});
 
 			function login() {
+			    window.alert(url);
 				console.log('login');
 				var user = {
 					UserName: $("#loginInput").val(),
