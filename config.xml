@@ -8,8 +8,8 @@
   </description>
 	
 	<author email="minnemorten@hotmail.com">minnemorten@hotmail.com</author>
-	
-	<content src="index.html"/>
+
+  <content src="index.html"/>
 	
 	<preference name="permissions" value="none"/>
 	<preference name="orientation" value="portrait"/>
@@ -32,7 +32,6 @@
 	<gap:plugin name="org.apache.cordova.console"/>
 	<gap:plugin name="org.apache.cordova.device"/>
 	<gap:plugin name="org.apache.cordova.dialogs"/>
-	
 	<gap:plugin name="org.apache.cordova.globalization"/>
 	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
 	<gap:plugin name="org.apache.cordova.network-information"/>
@@ -89,6 +88,7 @@
 	<allow-intent href="sms:*"/>
 	<allow-intent href="mailto:*"/>
 	<allow-intent href="geo:*"/>
+  <allow-navigation href="*" />
   
 	<platform name="android">
 		<allow-intent href="market:*"/>

@@ -68,6 +68,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
     <config-file parent="UIStatusBarHidden" platform="ios">
         <true />
     </config-file>
