@@ -37,6 +37,7 @@
 	<gap:plugin name="org.apache.cordova.network-information"/>
 	<gap:plugin name="org.apache.cordova.splashscreen"/>
 	<gap:plugin name="com.phonegap.plugin.statusbar" />
+  <gap:plugin name="cordova-plugin-whitelist" source="npm" />
   
   <!--
   <gap:plugin name="org.apache.cordova.geolocation"/>
@@ -88,9 +89,12 @@
 	<allow-intent href="sms:*"/>
 	<allow-intent href="mailto:*"/>
 	<allow-intent href="geo:*"/>
-  <allow-navigation href="*" />
   
-	<platform name="android">
+  <!--<allow-navigation href="http://*/*" />
+  <allow-navigation href="https://*/*" />-->
+  <allow-navigation href="*" />
+
+  <platform name="android">
 		<allow-intent href="market:*"/>
 	</platform>
 	<platform name="ios">
