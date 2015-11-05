@@ -131,11 +131,6 @@
 					MedewerkerID: 0, Role: ''
 				};
 
-				window.alert(user.UserName);
-				window.alert(user.Paswoord);
-				window.alert(user.MedewerkerID);
-				window.alert(user.Role);
-
 				$.ajax({
 					headers: { 'Access-Control-Allow-Origin': "*" },
 					url: url + 'api/user/Login/?apiVersion=' + APIVersion,
@@ -149,6 +144,7 @@
 						window.location.href = "Home.html#home";
 					},
 					error: function (e) {
+					    window.alert(e);
 						$('#containerLogin').css('display', 'block');
 						$('#containerLoading').css('display', 'none');
 						if (e.responseJSON == undefined || e.responseJSON == null)
