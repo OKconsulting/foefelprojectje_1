@@ -92,6 +92,7 @@
   <allow-navigation href="https://*/*" />-->
   <allow-navigation href="*" />
 
+  <platform name="wp8" />
   <platform name="android">
 		<allow-intent href="market:*"/>
 	</platform>
