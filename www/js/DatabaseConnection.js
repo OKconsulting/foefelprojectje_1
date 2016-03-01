@@ -3,11 +3,10 @@ var url;
 
 function determineUrl() {
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-
-        url = "http://localhost:50681/";
+        url = "http://192.168.2.125:50681/";
     }
     else {
-        url = "http://localhost:50681/";
+        url = "http://192.168.2.125:50681/";
     }
 }
 determineUrl();
