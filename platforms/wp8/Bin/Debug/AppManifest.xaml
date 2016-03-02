@@ -11,8 +11,8 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="com.OKc.app" EntryPointType="com.OKc.app.App" RuntimeVersion="4.7.50308.0">
+<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="com.okc.mobile.myE_ok" EntryPointType="com.okc.mobile.myE_ok.App" RuntimeVersion="4.7.50308.0">
   <Deployment.Parts>
-    <AssemblyPart x:Name="com.OKc.app" Source="com.OKc.app.dll" />
+    <AssemblyPart x:Name="com.okc.mobile.myE_ok" Source="com.okc.mobile.myE_ok.dll" />
   </Deployment.Parts>
 </Deployment>
