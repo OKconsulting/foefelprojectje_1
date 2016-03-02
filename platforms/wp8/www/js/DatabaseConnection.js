@@ -3,10 +3,10 @@ var url;
 
 function determineUrl() {
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-        url = "http://192.168.2.125:50681/";
+        url = "http://api.okc.be/myeok/";
     }
     else {
-        url = "http://192.168.2.125:50681/";
+        url = "http://api.okc.be/myeok/";
     }
 }
 determineUrl();
