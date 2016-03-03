@@ -49,7 +49,7 @@
       </dict>
     </dict>
     <key>CFBundleIdentifier</key>
-    <string>com.OKc.app</string>
+    <string>com.okc.mobile.myE_ok</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -59,9 +59,9 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>1.3.2</string>
+    <string>1.3.3</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.3.2</string>
+    <string>1.3.3</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSMainNibFile</key>

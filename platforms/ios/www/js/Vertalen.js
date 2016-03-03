@@ -30,7 +30,6 @@ var dynamicAantAanwezig = '';
 var dynamicAantAangevraagd = '';
 var dynamicBtnDagenBevestigen = '';
 function vertaalTeksten(taal) {
-     
      var xml = $.ajax({
          url: (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) ? (url + 'xml/TekstenClient.xml') : 'xml/TekstenClient.xml',
         async: false

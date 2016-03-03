@@ -1267,14 +1267,18 @@
 							break;
 						}
 					}
+					var index = this.id.substr(9, this.id.length - 9);
 					if (this[this.selectedIndex].value == recupPrestatiecode) {
-						var index = this.id.substr(9, this.id.length - 9);
 						$('#collapTxt' + index).css('display', 'inline');
 						$('#collapDag' + index).parent().css('display', 'none');
 					} else {
-						var index = this.id.substr(9, this.id.length - 9);
-						$('#collapTxt' + index).css('display', 'none');
-						$('#collapDag' + index).parent().css('display', 'block');
+					    if (aanvragenIn == Dagen) {
+					        $('#collapTxt' + index).css('display', 'none');
+					        $('#collapDag' + index).parent().css('display', 'block');
+					    } else {
+					        $('#collapTxt' + index).css('display', 'inline');
+					        $('#collapDag' + index).parent().css('display', 'none');
+					    }
 					}
 				});
 
