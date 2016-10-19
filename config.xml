@@ -31,13 +31,15 @@
   
 	<gap:plugin name="org.apache.cordova.console"/>
 	<gap:plugin name="org.apache.cordova.device"/>
-	<gap:plugin name="org.apache.cordova.dialogs"/>
+	<!--<gap:plugin name="org.apache.cordova.dialogs"/>-->
 	<gap:plugin name="org.apache.cordova.globalization"/>
 	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
 	<gap:plugin name="org.apache.cordova.network-information"/>
 	<gap:plugin name="org.apache.cordova.splashscreen"/>
 	<gap:plugin name="com.phonegap.plugin.statusbar" />
   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+  
+  <plugin name="org.apache.cordova.dialogs" spec="0.3.0" source="pgb" />
   
   <!--
   <gap:plugin name="org.apache.cordova.geolocation"/>

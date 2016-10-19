@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.okc.mobile.myE_ok"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "com.okc.mobile.myE_ok"
         }
     },
     "dependent_plugins": {}
