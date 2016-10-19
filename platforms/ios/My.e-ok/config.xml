@@ -95,4 +95,5 @@
     <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreenDelay" value="10000" />
     <preference name="phonegap-version" value="cli-6.3.0" />
+    <preference name="windows-appx-target" value="8.1-phone" />
 </widget>
