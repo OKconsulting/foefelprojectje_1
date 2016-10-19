@@ -10,7 +10,7 @@
     <description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
   </description>
-    <author email="minnemorten@hotmail.com">minnemorten@hotmail.com</author>
+    <author email="helpdesk@okc.be">helpdesk@okc.be</author>
     <content src="index.html" />
     <gap:plugin name="org.apache.cordova.console" source="npm" />
     <gap:plugin name="org.apache.cordova.device" source="npm" />
@@ -94,4 +94,5 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreenDelay" value="10000" />
+    <preference name="phonegap-version" value="cli-6.1.0" />
 </widget>
