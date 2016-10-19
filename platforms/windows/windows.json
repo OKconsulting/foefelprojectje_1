@@ -1,0 +1,40 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "My.e-ok"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "My.e-ok"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "id": "org.apache.cordova.dialogs.notification",
+            "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
+            "pluginId": "org.apache.cordova.dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "id": "org.apache.cordova.dialogs.NotificationProxy",
+            "file": "plugins/org.apache.cordova.dialogs/src/windows/NotificationProxy.js",
+            "pluginId": "org.apache.cordova.dialogs",
+            "merges": [
+                ""
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-whitelist": "1.0.0",
+        "org.apache.cordova.dialogs": "0.3.0"
+    }
+}

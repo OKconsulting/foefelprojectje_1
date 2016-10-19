@@ -28,7 +28,7 @@
 	<preference name="android-installLocation" value="auto"/>
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="SplashScreenDelay" value="10000" />
-  <preference name="phonegap-version" value="cli-6.1.0" />
+  <preference name="phonegap-version" value="cli-6.3.0" />
 
   
 	<gap:plugin name="org.apache.cordova.console" source="npm"/>
@@ -36,7 +36,6 @@
 	<gap:plugin name="org.apache.cordova.dialogs" source="npm"/>
 	<gap:plugin name="org.apache.cordova.globalization" source="npm"/>
 	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
-	<!--<gap:plugin name="org.apache.cordova.network-information" source="npm"/>-->
 	<gap:plugin name="org.apache.cordova.splashscreen" source="npm"/>
 	<gap:plugin name="com.phonegap.plugin.statusbar" />
   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
