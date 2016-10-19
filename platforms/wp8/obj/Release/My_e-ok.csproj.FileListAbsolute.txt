@@ -1,0 +1,14 @@
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\Bin\Release\ApplicationIcon.png
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\Bin\Release\Background.png
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\Bin\Release\com.OKc.app.dll
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\Bin\Release\com.OKc.app.pdb
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\Bin\Release\AppManifest.xaml
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\Bin\Release\com.OKc.app.xap
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\App.g.cs
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\Plugins\org.apache.cordova.dialogs\NotificationBox.g.cs
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\cordovalib\CordovaView.g.cs
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\MainPage.g.cs
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\com.OKc.app.g.resources
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\com.OKc.app.dll
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\com.OKc.app.pdb
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Release\XapCacheFile.xml
