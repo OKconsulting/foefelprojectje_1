@@ -4,7 +4,7 @@
     <description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
   </description>
-    <author email="morten.minne@admb.be">OKc</author>
+    <author email="morten.minne@admb.be">morten.minne@admb.be</author>
     <content src="index.html" />
     <gap:plugin name="org.apache.cordova.console" source="npm" />
     <gap:plugin name="org.apache.cordova.device" source="npm" />
@@ -15,7 +15,7 @@
     <gap:plugin name="com.phonegap.plugin.statusbar" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <gap:plugin name="cordova-plugin-network-information" source="npm" />
-    <icon src="icon.png" />
+    <icon src="www/icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
     <icon gap:platform="android" gap:qualifier="hdpi" src="www/res/icon/android/icon-72-hdpi.png" />

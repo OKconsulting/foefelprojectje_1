@@ -8,10 +8,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.okc.mobile.myE-ok"
+            "PACKAGE_NAME": "com.OKc.app"
         },
         "org.apache.cordova.dialogs": {
-            "PACKAGE_NAME": "com.okc.mobile.myE_ok"
+            "PACKAGE_NAME": "com.OKc.app"
         }
     },
     "dependent_plugins": {}

@@ -19,17 +19,17 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "{b57bb190-62c5-11e5-9e10-290f89a15fbe}"
+            "PACKAGE_NAME": "com.OKc.app"
         },
         "org.apache.cordova.dialogs": {
-            "PACKAGE_NAME": "com.okc.mobile.myE_ok"
+            "PACKAGE_NAME": "com.OKc.app"
         }
     },
     "dependent_plugins": {},
     "modules": [
         {
-            "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
             "id": "org.apache.cordova.dialogs.notification",
+            "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
             "pluginId": "org.apache.cordova.dialogs",
             "merges": [
                 "navigator.notification"

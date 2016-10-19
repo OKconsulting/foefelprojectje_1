@@ -1,8 +1,8 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
         "id": "org.apache.cordova.dialogs.notification",
+        "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
         "pluginId": "org.apache.cordova.dialogs",
         "merges": [
             "navigator.notification"
@@ -14,6 +14,6 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.0.0",
     "org.apache.cordova.dialogs": "0.3.0"
-}
+};
 // BOTTOM OF METADATA
 });
