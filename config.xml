@@ -31,8 +31,6 @@
   <preference name="phonegap-version" value="cli-6.3.0" />
   
   <preference name="windows-appx-target" value="8.1-phone" />
-  <preference name="windows-identity-name" value="12065OKc.My.e-ok_v5rhgjvfv15ja" />
-  <preference name="windows-identity-publisher" value="CN=28CE31E9-6147-4E87-9AB2-37E875314590" />
 
   
 	<gap:plugin name="org.apache.cordova.console" source="npm"/>
