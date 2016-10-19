@@ -1,1 +1,0 @@
-C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Debug\cordovalib\CordovaView.g.cs
