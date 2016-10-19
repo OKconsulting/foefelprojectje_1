@@ -29,15 +29,17 @@
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="SplashScreenDelay" value="10000" />
   
-	<gap:plugin name="org.apache.cordova.console"/>
-	<gap:plugin name="org.apache.cordova.device"/>
-	<!--<gap:plugin name="org.apache.cordova.dialogs"/>-->
-	<gap:plugin name="org.apache.cordova.globalization"/>
+	<gap:plugin name="org.apache.cordova.console" source="npm"/>
+	<gap:plugin name="org.apache.cordova.device" source="npm"/>
+	<gap:plugin name="org.apache.cordova.dialogs" source="npm"/>
+	<gap:plugin name="org.apache.cordova.globalization" source="npm"/>
 	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
-	<gap:plugin name="org.apache.cordova.network-information"/>
-	<gap:plugin name="org.apache.cordova.splashscreen"/>
+	<!--<gap:plugin name="org.apache.cordova.network-information" source="npm"/>-->
+	<gap:plugin name="org.apache.cordova.splashscreen" source="npm"/>
 	<gap:plugin name="com.phonegap.plugin.statusbar" />
   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+  <gap:plugin name="cordova-plugin-network-information" source="npm" />
+
   
   <!--
   <gap:plugin name="org.apache.cordova.geolocation"/>
