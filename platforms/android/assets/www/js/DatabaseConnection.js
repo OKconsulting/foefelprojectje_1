@@ -3,10 +3,10 @@ var url;
 
 function determineUrl() {
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-        url = "http://api.okc.be/myeok_2/";
+        url = "http://api.okc.be/myeok/";
     }
     else {
-        url = "http://api.okc.be/myeok_2/";
+        url = "http://api.okc.be/myeok/";
     }
 }
 determineUrl();
