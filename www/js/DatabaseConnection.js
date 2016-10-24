@@ -11,6 +11,6 @@ function determineUrl() {
 }
 determineUrl();
 // "http://api.okc.be/myeok_2/";        // Test
-// "http://192.168.2.125:50681/";       // Toestel
-// "http://localhost:50681/";           // Lokaal
+// "http://192.168.2.125:58206/";       // Toestel
+// "http://localhost:58206/";           // Lokaal
 // "http://api.okc.be/myeok/";          // Live
