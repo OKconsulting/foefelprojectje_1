@@ -484,6 +484,7 @@
 				var selectedPCode = $('#cboPrestatieC')[0].selectedIndex;
 				$('#tblPCodes thead tr')[0].innerHTML = '<th></th><th>' + verlofSaldi[selectedPCode].omschrijving + '</th>';
 
+				debugger;
 				if (verlofSaldi[selectedPCode].SaldoAanvraag == "D") {
 				    $('#tblPCodes1')[0].innerHTML += '<td>' + parseFloat(verlofSaldi[selectedPCode].beginsaldo.replace(',', '.')).toFixed(2).replace('.', ',') + '</td>';
 				    $('#tblPCodes2')[0].innerHTML += '<td>' + (Math.round(parseFloat(verlofSaldi[selectedPCode].gebruikt.replace(',', '.')) * 100, 2) / 100).toFixed(2).replace('.', ',') + '</td>';
@@ -544,9 +545,6 @@
 			if (taal == null) {
 				window.localStorage.setItem("TaalKeuze", 'nl');
 				taal = 'nl';
-			}
-			if (mdwID == 20420 || mdwID == 20238) {
-			    url = "http://api.okc.be/myeok_2/";
 			}
 
 			// Waardes uit de inputvelden van de datepicker verwijderen
