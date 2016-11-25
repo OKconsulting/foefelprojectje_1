@@ -22,7 +22,7 @@ var app = {
     },
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-		document.addEventListener("backbutton", backButtonDown, false);
+		//document.addEventListener("backbutton", backButtonDown, false);
     },
     onDeviceReady: function() {
 
