@@ -15,7 +15,6 @@
     <gap:plugin name="org.apache.cordova.globalization" source="npm" />
     <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" />
     <gap:plugin name="org.apache.cordova.splashscreen" source="npm" />
-    <gap:plugin name="com.phonegap.plugin.statusbar" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <gap:plugin name="cordova-plugin-network-information" source="npm" />
     <icon src="www/icon.png" />
