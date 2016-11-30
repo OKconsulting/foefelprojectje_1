@@ -14,6 +14,7 @@ var msgGeenSaldi = '';
 var msgAlleVeldenInvullen = '';
 var msgGeenAanvragen = '';
 var msgGeenRedenAfkeuren = '';
+var msgOnvoldoendeVerlof = '';
 
 var dynamicAantUur = '';
 var dynamicDag = '';
@@ -59,6 +60,9 @@ function vertaalTeksten(taal) {
     msgGeenRedenAfkeuren = $(xml).find('Vertalingen').find('Melding[class="GeenRedenAfkeuren"]').find(taal).text();
     if (msgGeenRedenAfkeuren == '')
         msgGeenRedenAfkeuren = 'Gelieve een reden voor afkeuren van het verlof te vermelden.';
+    msgOnvoldoendeVerlof = $(xml).find('Vertalingen').find('Melding[class="OnvoldoendeVerlof"]').find(taal).text();
+    if (msgOnvoldoendeVerlof == '')
+        msgOnvoldoendeVerlof = 'Je beschikt niet over genoeg verlofuren om verlof aan te vragen voor deze periode.';
 
     // Dynamische teksten wijzigen
     dynamicAantUur = $(xml).find('Vertalingen').find('DynamischeTekst[class="AantalUur"]').find(taal).text();
