@@ -3,10 +3,10 @@ var url;
 
 function determineUrl() {
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-        url = "http://localhost:50681/";
+        url = "http://api.okc.be/myeok_2/";
     }
     else {
-        url = "http://localhost:50681/";
+        url = "http://api.okc.be/myeok_2/";
     }
 }
 determineUrl();
