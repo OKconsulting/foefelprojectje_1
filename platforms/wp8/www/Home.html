@@ -603,6 +603,7 @@
 
 			// Tonen van de datum tot datepicker
 			function showDteTotPopup(target) {
+			    //$("#dteTotPopup").datepicker("option", "maxDate", new Date(new Date().getFullYear() + 1, 11, 31));
 				if ($('#dteVan').val() != '') {
 					var arrStartdag = $('#dteVan').val().split('-');
 					var startdag = new Date(arrStartdag[2], arrStartdag[1] - 1, arrStartdag[0]);
@@ -1104,188 +1105,201 @@
 			function haalDagenOp() {
 				$('#loadingDivDetailsDagen').css('display', 'inline');
 			    // gegevens voorsturen naar de API
-				$.ajax({
-					headers: { 'Access-Control-Allow-Origin': "*" },
-					url: url + 'api/VerlofAanvragen/GetRequestedDagen/?mwId=' + mdwID + '&startdag=' + $('#dteVan').val() + '&einddag=' + $('#dteTot').val() + '&sTaal=' + taal,
-					cache: false,
-					type: 'GET',
-					contentType: 'application/json; charset=utf-8',
-					success: function (data) {
-						// Als er een fout plaatsvond deze weergeven aan de gebruiker
-						if (typeof data == 'string')
-							melding(data, 5000, 'error');
-						else {
-						    DagenVoorVerlofAanvraag = data;
-						    $("#colSet")[0].innerHTML = '';
-						    var content = '';
 
-						    loadingSaldi = true;
-						    $('#loadingDivSaldi').css('display', 'inline');
-						    $("#cboPrestatieC").selectmenu();
-						    $("#cboPrestatieC").selectmenu("disable");
+				if ($('#dteVan').val().substr(6, 4) == $('#dteTot').val().substr(6, 4)) {
+				    $.ajax({
+				        headers: { 'Access-Control-Allow-Origin': "*" },
+				        url: url + 'api/VerlofAanvragen/GetRequestedDagen/?mwId=' + mdwID + '&startdag=' + $('#dteVan').val() + '&einddag=' + $('#dteTot').val() + '&sTaal=' + taal,
+				        cache: false,
+				        type: 'GET',
+				        contentType: 'application/json; charset=utf-8',
+				        success: function (data) {
+				            // Als er een fout plaatsvond deze weergeven aan de gebruiker
+				            if (typeof data == 'string')
+				                melding(data, 5000, 'error');
+				            else {
+				                DagenVoorVerlofAanvraag = data;
+				                $("#colSet")[0].innerHTML = '';
+				                var content = '';
 
-						    jaar = $('#dteVan').val().substr(6, 4);
-						    $.ajax({
-						        headers: { 'Access-Control-Allow-Origin': "*" },
-						        url: url + 'api/Medewerker/GetVerlofSaldo/?mwId=' + mdwID + '&jaar=' + jaar + '&taal=' + taal,
-						        cache: false,
-						        type: 'GET',
-						        contentType: 'application/json; charset=utf-8',
-						        success: function (data) {
-						            var revealCbo = true;
-						            if (data.length == 0) {
-						                revealCbo = false;
-						                if ($.mobile.activePage.attr('id') == 'home') {
-						                    melding(msgGeenSaldi, 5000, 'warning');
-						                    $('#cboPrestatieC')[0].innerHTML = '';
-						                    $("#cboPrestatieC").selectmenu();
-						                }
-						            } else {
-						                verlofSaldi = data;
-						                verlofSaldi.sort(sorteerSaldi);
+				                loadingSaldi = true;
+				                $('#loadingDivSaldi').css('display', 'inline');
+				                $("#cboPrestatieC").selectmenu();
+				                $("#cboPrestatieC").selectmenu("disable");
 
-						                // Select voor het selecteren van een item om weer te geven leeg maken en opnieuw opvullen
-						                $('#cboPrestatieC')[0].innerHTML = '';
-						                $.each(verlofSaldi, function (key, pcode) {
-						                    var option = document.createElement("option");
-						                    option.text = pcode.omschrijving;
-						                    option.value = pcode.prestatiecodeID;
-						                    $('#cboPrestatieC')[0].add(option);
-						                });
-						                if ($.mobile.activePage.attr("id") == 'home')
-						                    $("#cboPrestatieC").selectmenu("refresh", true);
-						                changePrestC();
-						            }
-						            $('#loadingDivSaldi').css('display', 'none');
-						            $('#cboJaar').selectmenu("enable");
-						            if (revealCbo) {
-						                $('#cboPrestatieC').selectmenu();
-						                $('#cboPrestatieC').selectmenu("enable");
-						            }
+				                var teSelecterenIndex = $('#cboJaar')[0].selectedIndex;
+				                $.each($('#cboJaar')[0], function (key, val) {
+				                    if (val.value == $('#dteVan').val().substr(6, 4)) {
+				                        teSelecterenIndex = key;
+				                    }
+				                });
+				                $('#cboJaar')[0].selectedIndex = teSelecterenIndex;
+				                jaar = $('#cboJaar')[0][$('#cboJaar')[0].selectedIndex].value;
+				                $.ajax({
+				                    headers: { 'Access-Control-Allow-Origin': "*" },
+				                    url: url + 'api/Medewerker/GetVerlofSaldo/?mwId=' + mdwID + '&jaar=' + jaar + '&taal=' + taal,
+				                    cache: false,
+				                    type: 'GET',
+				                    contentType: 'application/json; charset=utf-8',
+				                    success: function (data) {
+				                        var revealCbo = true;
+				                        if (data.length == 0) {
+				                            revealCbo = false;
+				                            if ($.mobile.activePage.attr('id') == 'home') {
+				                                melding(msgGeenSaldi, 5000, 'warning');
+				                                $('#cboPrestatieC')[0].innerHTML = '';
+				                                $("#cboPrestatieC").selectmenu();
+				                            }
+				                        } else {
+				                            verlofSaldi = data;
+				                            verlofSaldi.sort(sorteerSaldi);
 
-						            loadingSaldi = false;
+				                            // Select voor het selecteren van een item om weer te geven leeg maken en opnieuw opvullen
+				                            $('#cboPrestatieC')[0].innerHTML = '';
+				                            $.each(verlofSaldi, function (key, pcode) {
+				                                var option = document.createElement("option");
+				                                option.text = pcode.omschrijving;
+				                                option.value = pcode.prestatiecodeID;
+				                                $('#cboPrestatieC')[0].add(option);
+				                            });
+				                            if ($.mobile.activePage.attr("id") == 'home')
+				                                $("#cboPrestatieC").selectmenu("refresh", true);
+				                            changePrestC();
+				                        }
+				                        $('#loadingDivSaldi').css('display', 'none');
+				                        $('#cboJaar').selectmenu("enable");
+				                        if (revealCbo) {
+				                            $('#cboPrestatieC').selectmenu();
+				                            $('#cboPrestatieC').selectmenu("enable");
+				                        }
 
-						            // Een lijst van alle opgehaalde dagen weergeven op de #DetailsDagen pagina
-						            for (i = 0; i < DagenVoorVerlofAanvraag.length; i++) {
-						                var dag = new Date(DagenVoorVerlofAanvraag[i].dag.split('T')[0].split('-')[0], DagenVoorVerlofAanvraag[i].dag.split('T')[0].split('-')[1] - 1, DagenVoorVerlofAanvraag[i].dag.split('T')[0].split('-')[2]);
-						                var dagNaam = dagenHuidig[dag.getDay()];
-						                var dagNummer = dag.getDate();
-						                var maandNaam = maandenHuidig[dag.getMonth()];
-						                var datumJaar = dag.getFullYear();
+				                        loadingSaldi = false;
 
-						                // Toevoegen van de datum aan de header van de collapsible
-						                content += "<div data-role='collapsible' data-theme='a' id='collap" + i + "' data-collapsed='true'><h3>" + dagNaam + " " + dagNummer + " " + maandNaam + " " + datumJaar + "</h3><select id='collapSel" + i + "' class='collapSelDagen'>";
+				                        // Een lijst van alle opgehaalde dagen weergeven op de #DetailsDagen pagina
+				                        for (i = 0; i < DagenVoorVerlofAanvraag.length; i++) {
+				                            var dag = new Date(DagenVoorVerlofAanvraag[i].dag.split('T')[0].split('-')[0], DagenVoorVerlofAanvraag[i].dag.split('T')[0].split('-')[1] - 1, DagenVoorVerlofAanvraag[i].dag.split('T')[0].split('-')[2]);
+				                            var dagNaam = dagenHuidig[dag.getDay()];
+				                            var dagNummer = dag.getDate();
+				                            var maandNaam = maandenHuidig[dag.getMonth()];
+				                            var datumJaar = dag.getFullYear();
 
-						                // Alle prestatieCodes toevoegen aan de select in de collapsible
-						                var dagenOver = false;
-						                var teSelecterenIndex = 0;
-						                for (y = 0; y < verlofSaldi.length; y++) {
-						                    if (verlofSaldi[y].prestatiecodeID == DagenVoorVerlofAanvraag[i].prestatiecodeID) {
-						                        if (verlofSaldi[y].aantalDagen > 0) {
-						                            dagenOver = true;
-						                            teSelecterenIndex = y;
-						                        }
-						                    }
-						                }
-						                if (!dagenOver) {
-						                    var iTeller = 0;
-						                    while (verlofSaldi[iTeller].aantalDagen <= 0) {
-						                        if (iTeller + 1 < verlofSaldi.length) {
-						                            iTeller += 1;
-						                        }
-						                        else {
-						                            break;
-						                        }
-						                    }
-						                    if (iTeller < verlofSaldi.length && verlofSaldi[iTeller].aantalDagen > 0) {
-						                        teSelecterenIndex = iTeller;
-						                    }
-						                }
+				                            // Toevoegen van de datum aan de header van de collapsible
+				                            content += "<div data-role='collapsible' data-theme='a' id='collap" + i + "' data-collapsed='true'><h3>" + dagNaam + " " + dagNummer + " " + maandNaam + " " + datumJaar + "</h3><select id='collapSel" + i + "' class='collapSelDagen'>";
 
-						                verlofSaldi[teSelecterenIndex].aantalDagen -= 1;
-						                for (y = 0; y < verlofSaldi.length; y++) {
-						                    var aantBeschikbaar = parseFloat(('' + verlofSaldi[y].beschikbaar).replace(',', '.'));
-						                    if (verlofSaldi[y].isRecup) {
-						                        aantBeschikbaar += parseFloat(('' + verlofSaldi[y].urenInNegatief).replace(',', '.'));
-						                    }
-						                    if (aantBeschikbaar > 0) {
-						                        if (y == teSelecterenIndex) {
-						                            content += '<option value="' + verlofSaldi[y].prestatiecodeID + '" selected>' + verlofSaldi[y].omschrijving + '</option>';
-						                        } else {
-						                            content += '<option value="' + verlofSaldi[y].prestatiecodeID + '">' + verlofSaldi[y].omschrijving + '</option>';
-						                        }
-						                    }
-						                }
+				                            // Alle prestatieCodes toevoegen aan de select in de collapsible
+				                            var dagenOver = false;
+				                            var teSelecterenIndex = 0;
+				                            for (y = 0; y < verlofSaldi.length; y++) {
+				                                if (verlofSaldi[y].prestatiecodeID == DagenVoorVerlofAanvraag[i].prestatiecodeID) {
+				                                    if (verlofSaldi[y].aantalDagen > 0) {
+				                                        dagenOver = true;
+				                                        teSelecterenIndex = y;
+				                                    }
+				                                }
+				                            }
+				                            if (!dagenOver) {
+				                                var iTeller = 0;
+				                                while (verlofSaldi[iTeller].aantalDagen <= 0) {
+				                                    if (iTeller + 1 < verlofSaldi.length) {
+				                                        iTeller += 1;
+				                                    }
+				                                    else {
+				                                        break;
+				                                    }
+				                                }
+				                                if (iTeller < verlofSaldi.length && verlofSaldi[iTeller].aantalDagen > 0) {
+				                                    teSelecterenIndex = iTeller;
+				                                }
+				                            }
 
-						                // Bepalen welke controls weergegeven moeten worden in de collapsible
-						                // verlofInUren --> NumericalUpDown
-						                // verlofInDagen --> Select
+				                            verlofSaldi[teSelecterenIndex].aantalDagen -= 1;
+				                            for (y = 0; y < verlofSaldi.length; y++) {
+				                                var aantBeschikbaar = parseFloat(('' + verlofSaldi[y].beschikbaar).replace(',', '.'));
+				                                if (verlofSaldi[y].isRecup) {
+				                                    aantBeschikbaar += parseFloat(('' + verlofSaldi[y].urenInNegatief).replace(',', '.'));
+				                                }
+				                                if (aantBeschikbaar > 0) {
+				                                    if (y == teSelecterenIndex) {
+				                                        content += '<option value="' + verlofSaldi[y].prestatiecodeID + '" selected>' + verlofSaldi[y].omschrijving + '</option>';
+				                                    } else {
+				                                        content += '<option value="' + verlofSaldi[y].prestatiecodeID + '">' + verlofSaldi[y].omschrijving + '</option>';
+				                                    }
+				                                }
+				                            }
 
-						                var aantalUur = DagenVoorVerlofAanvraag[i].aantaluur.split(':')[0];
-						                if (aantalUur.length == 1) {
-						                    aantalUur = '0' + aantalUur;
-						                }
-						                aantalUur = aantalUur + ':' + DagenVoorVerlofAanvraag[i].aantaluur.split(':')[1];
+				                            // Bepalen welke controls weergegeven moeten worden in de collapsible
+				                            // verlofInUren --> NumericalUpDown
+				                            // verlofInDagen --> Select
 
-						                if (!verlofSaldi[teSelecterenIndex].aanvragenInDagen) {
-						                    content += "</select><label>" + dynamicAantUur;
+				                            var aantalUur = DagenVoorVerlofAanvraag[i].aantaluur.split(':')[0];
+				                            if (aantalUur.length == 1) {
+				                                aantalUur = '0' + aantalUur;
+				                            }
+				                            aantalUur = aantalUur + ':' + DagenVoorVerlofAanvraag[i].aantaluur.split(':')[1];
 
-						                    if (navigator.userAgent.match(/(IEMobile)/))
-						                        content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
-						                    else
-						                        content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
-						                    content += "<select style='display:none' id='collapDag" + i + "'>";
-						                }
-						                else {
-						                    content += "</select><label>" + dynamicDagdeel;
+				                            if (!verlofSaldi[teSelecterenIndex].aanvragenInDagen) {
+				                                content += "</select><label>" + dynamicAantUur;
 
-						                    if (navigator.userAgent.match(/(IEMobile)/))
-						                        content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
-						                    else
-						                        content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
-						                    content += "<select id='collapDag" + i + "'>";
-						                }
-						                content += "<option value='D100'>" + dynamicDag + "</option>";
-						                content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
-						                content += "<option value='N50'>" + dynamicNamiddag + "</option>";
-						                content += "</select></div>";
-						            }
-						            // Een button btnDagenBevestigen toevoegen
-						            content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
-						            content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + dynamicBtnDagenBevestigen + "' />" + dynamicBtnDagenBevestigen + "</input></div>";
-						            $("#colSet")[0].innerHTML = content;
+				                                if (navigator.userAgent.match(/(IEMobile)/))
+				                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
+				                                else
+				                                    content += "</label><input class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
+				                                content += "<select style='display:none' id='collapDag" + i + "'>";
+				                            }
+				                            else {
+				                                content += "</select><label>" + dynamicDagdeel;
 
-						            for (i = 0; i < DagenVoorVerlofAanvraag.length; i++) {
-						                switch (DagenVoorVerlofAanvraag[i].dagID) {
-						                    case 'D100':
-						                        $('#collapDag' + i)[0].selectedIndex = 0;
-						                        break;
-						                    case 'V50':
-						                        $('#collapDag' + i)[0].selectedIndex = 1;
-						                        break;
-						                    case 'N50':
-						                        $('#collapDag' + i)[0].selectedIndex = 2;
-						                        break;
-						                    default:
-						                        $('#collapDag' + i)[0].selectedIndex = 0;
-						                        break;
-						                }
+				                                if (navigator.userAgent.match(/(IEMobile)/))
+				                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='number' value='" + aantalUur + "' />";
+				                                else
+				                                    content += "</label><input style='display:none' class='collapAantUur' id='collapTxt" + i + "' type='time' value='" + aantalUur + "' />";
+				                                content += "<select id='collapDag" + i + "'>";
+				                            }
+				                            content += "<option value='D100'>" + dynamicDag + "</option>";
+				                            content += "<option value='V50'>" + dynamicVoormiddag + "</option>";
+				                            content += "<option value='N50'>" + dynamicNamiddag + "</option>";
+				                            content += "</select></div>";
+				                        }
+				                        // Een button btnDagenBevestigen toevoegen
+				                        content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
+				                        content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + dynamicBtnDagenBevestigen + "' />" + dynamicBtnDagenBevestigen + "</input></div>";
+				                        $("#colSet")[0].innerHTML = content;
 
-						            }
+				                        for (i = 0; i < DagenVoorVerlofAanvraag.length; i++) {
+				                            switch (DagenVoorVerlofAanvraag[i].dagID) {
+				                                case 'D100':
+				                                    $('#collapDag' + i)[0].selectedIndex = 0;
+				                                    break;
+				                                case 'V50':
+				                                    $('#collapDag' + i)[0].selectedIndex = 1;
+				                                    break;
+				                                case 'N50':
+				                                    $('#collapDag' + i)[0].selectedIndex = 2;
+				                                    break;
+				                                default:
+				                                    $('#collapDag' + i)[0].selectedIndex = 0;
+				                                    break;
+				                            }
 
+				                        }
 
-						            if ($('select.collapSelDagen')[0].length > 0) {
-						                // Navigeren naar de lijst van opgehaalde dagen
-						                $('#aDetailsDagen').click();
-						            } else {
-						                melding(msgOnvoldoendeVerlof, 5000, 'error');
-						            }
-						        }
-						    });
-						}
-						$('#loadingDivDetailsDagen').css('display', 'none');
-					}
-				});
+				                        
+				                        if ($('select.collapSelDagen')[0].length > 0) {
+				                            // Navigeren naar de lijst van opgehaalde dagen
+				                            $('#aDetailsDagen').click();
+				                        } else {
+				                            melding(msgOnvoldoendeVerlof, 5000, 'error');
+				                        }
+				                    }
+				                });
+				            }
+				            $('#loadingDivDetailsDagen').css('display', 'none');
+				        }
+				    });
+				} else {
+				    melding(msgVerschJaren, 5000, 'error');
+				    $('#loadingDivDetailsDagen').css('display', 'none');
+				}
 			}
 
 			// Sorteren van saldi op basis van belang

@@ -15,6 +15,7 @@ var msgAlleVeldenInvullen = '';
 var msgGeenAanvragen = '';
 var msgGeenRedenAfkeuren = '';
 var msgOnvoldoendeVerlof = '';
+var msgVerschJaren = '';
 
 var dynamicAantUur = '';
 var dynamicDag = '';
@@ -63,7 +64,10 @@ function vertaalTeksten(taal) {
     msgOnvoldoendeVerlof = $(xml).find('Vertalingen').find('Melding[class="OnvoldoendeVerlof"]').find(taal).text();
     if (msgOnvoldoendeVerlof == '')
         msgOnvoldoendeVerlof = 'Je beschikt niet over genoeg verlofuren om verlof aan te vragen voor deze periode.';
-
+    msgVerschJaren = $(xml).find('Vertalingen').find('Melding[class="VerschJaren"]').find(taal).text();
+    if (msgVerschJaren == '')
+        msgVerschJaren = 'De periode die je selecteerde loopt over verschillende jaren. Gelieve de periode op te splitsen per jaar.';
+    
     // Dynamische teksten wijzigen
     dynamicAantUur = $(xml).find('Vertalingen').find('DynamischeTekst[class="AantalUur"]').find(taal).text();
     if (dynamicAantUur == '')
