@@ -179,10 +179,8 @@ ol, ul {
     clear: both;
 }
 
-#home_panel, #historiek_panel, #verlof_panel, #details_panel, #opties_panel, #about_panel, #aanvragen_panel, #detailsAanvraag_panel {
+[data-role=panel] {
     margin-top: 51px;
-    background-color: #f9f9f9;
-    z-index: 5;
 }
 
 #home_panel .ui-panel-inner, #historiek_panel .ui-panel-inner, #verlof_panel .ui-panel-inner, #details_panel .ui-panel-inner, #opties_panel .ui-panel-inner, #about_panel .ui-panel-inner, #aanvragen_panel .ui-panel-inner, #detailsAanvraag_panel .ui-panel-inner{

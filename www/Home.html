@@ -8,32 +8,39 @@
         
         <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
         <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
-
+        
         <title>my.e-ok</title>
 		<link href="css/reset.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
+		
+        <script src="js/jquery-1.10.2.min.js"></script>
 		<link href="css/jquery.mobile-1.4.3.min.css" rel="stylesheet" />
 		<link href="css/jquery.mobile.datepicker.css" rel="stylesheet" />
-		<script src="js/jquery-1.10.2.min.js"></script>
-		<script src="js/jquery.mobile-1.4.3.min.js"></script>
-		<script src="js/jquery.mobile.datepicker.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/googleMap.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDQlGfx1xy-4iELx4sSB759T-ESWARO39Y&sensor=false&libraries=places&language=en"></script>
+        <script src="js/DatabaseConnection.js"></script>
+        <link href="css/style.css" rel="stylesheet" />
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+        <script src="js/jquery.mobile.datepicker.js"></script>
     </head>
     <body class="ui-mobile-viewport ui-overlay-c">
-        <div data-role="page" id="home" data-theme="b">
-			<a id="aHome" href="#home"></a>
-			<a id="aDetailsDagen" href="#DetailsDagen"></a>
-			<a id="aAanvragen" href="#aanvragen"></a>
-            <a id="aDetailsAanvraag" href="#detailsAanvraag"></a>
-
-			<div class="melding" onclick="hideMelding()">
-			</div>
-			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#home_panel"><img src="img/menu.png" /></a></div>
-				<div class="right"><a href="#" data-role="none" data-rel="popup" data-position-to="window" onclick="reloadSaldi()"><img src="img/herladen.png" /></a></div>
-				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
-			</div>
+        <div data-role="page" id="home" data-theme="a">
+            <div data-role="header" class="header" data-position="fixed">
+                <div class="left"><a id="aOpenHomePanel" href="#home_panel"><img src="img/menu.png" /></a></div>
+                <div class="right"><a href="#" data-role="none" data-rel="popup" data-position-to="window" onclick="reloadSaldi()"><img src="img/herladen.png" /></a></div>
+                <div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
+            </div>
+            
+            <div style="display: none;">
+                <a id="aHome" href="#home"></a>
+                <a id="aDetailsDagen" href="#DetailsDagen"></a>
+                <a id="aAanvragen" href="#aanvragen"></a>
+                <a id="aDetailsAanvraag" href="#detailsAanvraag"></a>
+            </div>
 
 			<div data-role="content" class="ui-content" role="main">
+                <div class="melding" onclick="hideMelding()"></div>
 				<div id="loadingDivSaldi">
 					<img src="img/gif-load_blue.gif" />
 				</div>
@@ -75,14 +82,14 @@
 				</table>
 			</div>
 
-			<div data-role="panel" id="home_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+			<div data-role="panel" id="home_panel" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
 				<div class="ui-panel-inner">
 					<a href="#home" data-transition="none" data-rel="close" class='home_hide_panel' style='display:none;'></a>
 					<ul class="menu">
 						<li><a href="#home" data-rel="close" data-transition="none"><img src="img/home.png" /><span class="lblMenuHome">Verlofsaldo</span><div class="clear-fix"></div></a></li>
 						<li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="img/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
 						<li><a href="#historiek" data-rel="close" data-transition="none"><img src="img/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
-
+                        
 						<li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="img/KalenderChecked.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
 
 						<li><a href="#Opties" data-rel="close" data-transition="none"><img src="img/opties.png" /><span class="lblMenuInst">Taalkeuze</span><div class="clear-fix"></div></a></li>
@@ -93,11 +100,9 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="verlofAanv" data-theme="b">
-			<div class="melding" onclick="hideMelding()">
-			</div>
+		<div data-role="page" id="verlofAanv" data-theme="a">
 			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#verlof_panel" data-transition="none"><img src="img/menu.png" /></a></div>
+				<div class="left"><a id="aOpenVerlofPanel" href="#verlof_panel" data-transition="none"><img src="img/menu.png" /></a></div>
 				<div class="right"><a href="#Toon-kalender" onclick="styleDteOverview()" data-role="none" data-rel="popup" data-position-to="window"><img src="img/kalender.png" /></a></div>
 				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
 			</div>
@@ -126,6 +131,7 @@
 			</div>
 
 			<div data-role="content" class="ui-content" role="main">
+                <div class="melding" onclick="hideMelding()"></div>
 				<div id="loadingDivDetailsDagen">
 					<img src="img/gif-load_blue.gif" />
 				</div>
@@ -139,17 +145,19 @@
 						<!--<input name="dteTot" id="dteTot" type="text" data-role="date" data-theme="a" oninput="clearTotDte()">-->
 						<label id="txaReden" class="txaRedenAanvr" for="txaReden">Reden van afwezigheid</label>
 						<textarea id="txaRedenVal" name="txaReden" data-theme="a"></textarea>
-						<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a">
-							<input data-theme="b" id="btnDetailDagen" class="btnDetailDagenAanvr" type="submit" value="Verder" />Verder
+
+                        <input data-theme="a" id="btnDetailDagen" class="btnDetailDagenAanvr" type="submit" value="Verder" />
+						<!--<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a">-->
+                            
 							<!--<a onclick="haalDagenOp()" href="#" data-transition="none" class="ui-btn" data-role="none" data-position-to="window">Details dagen</a>-->
-						</div>
+						<!--</div>-->
 						<div id="dteVanPopup" class="customDatepicker"></div>
 						<div id="dteTotPopup" class="customDatepicker"></div>
 					</fieldset>
 				</form>
 			</div>
 
-			<div data-role="panel" id="verlof_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+			<div data-role="panel" id="verlof_panel" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
 				<div class="ui-panel-inner">
 					<a href="#verlofAanv" data-transition="none" data-rel="close" class='verlof_hide_panel' style='display:none;'></a>
 					<ul class="menu">
@@ -157,7 +165,7 @@
 						<li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="img/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
 						<li><a href="#historiek" data-rel="close" data-transition="none"><img src="img/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
 
-						<li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="img/KalenderChecked.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+                        <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="img/KalenderChecked.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
 
 						<li><a href="#Opties" data-rel="close" data-transition="none"><img src="img/opties.png" /><span class="lblMenuInst">Taalkeuze</span><div class="clear-fix"></div></a></li>
 						<li><a href="#About" data-rel="close" data-transition="none"><img src="img/About.png" /><span>ADMB</span><div class="clear-fix"></div></a></li>
@@ -167,15 +175,14 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="DetailsDagen" data-theme="b">
-			<div class="melding" onclick="hideMelding()">
-			</div>
+		<div data-role="page" id="DetailsDagen" data-theme="a">
 			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#details_panel" data-transition="none"><img src="img/menu.png" /></a></div>
+				<div class="left"><a id="aOpenDetailsPanel" href="#details_panel" data-transition="none"><img src="img/menu.png" /></a></div>
 				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
 			</div>
 
 			<div data-role="content" class="ui-content" role="main">
+                <div class="melding" onclick="hideMelding()"></div>
 				<div id="loadingDivDetailD" style="display: none;">
 					<img src="img/gif-load_blue.gif">
 				</div>
@@ -183,7 +190,7 @@
 				</div>
 			</div>
 
-			<div data-role="panel" id="details_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+			<div data-role="panel" id="details_panel" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
 				<div class="ui-panel-inner">
 					<a href="#DetailsDagen" data-transition="none" data-rel="close" class='details_hide_panel' style='display:none;'></a>
 					<ul class="menu">
@@ -201,16 +208,15 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="historiek" data-theme="b">
-			<div class="melding" onclick="hideMelding()">
-			</div>
+		<div data-role="page" id="historiek" data-theme="a">
 			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#historiek_panel" data-transition="none"><img src="img/menu.png" /></a></div>
+				<div class="left"><a id="aOpenHistoriekPanel" href="#historiek_panel" data-transition="none"><img src="img/menu.png" /></a></div>
 				<div class="right"><a href="#" data-role="none" data-rel="popup" data-position-to="window" onclick="reloadHist()"><img src="img/herladen.png" /></a></div>
 				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
 			</div>
 
 			<div data-role="content" class="ui-content" role="main">
+                <div class="melding" onclick="hideMelding()"></div>
 				<div id="loadingDivHist">
 					<img src="img/gif-load_blue.gif" />
 				</div>
@@ -248,7 +254,7 @@
 				</table>
 			</div>
 
-			<div data-role="panel" id="historiek_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+			<div data-role="panel" id="historiek_panel" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
 				<div class="ui-panel-inner">
 					<a href="#historiek" data-transition="none" data-rel="close" class='historiek_hide_panel' style='display:none;'></a>
 					<ul class="menu">
@@ -266,16 +272,15 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="aanvragen" data-theme="b">
-			<div class="melding" onclick="hideMelding()">
-			</div>
+		<div data-role="page" id="aanvragen" data-theme="a">
 			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#aanvragen_panel" data-transition="none"><img src="img/menu.png" /></a></div>
+				<div class="left"><a id="aOpenAanvragenPanel" href="#aanvragen_panel" data-transition="none"><img src="img/menu.png" /></a></div>
 				<div class="right"><a href="#" data-role="none" data-rel="popup" data-position-to="window" onclick="getAanvragenLGHR()"><img src="img/herladen.png" /></a></div>
 				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
 			</div>
 
 			<div data-role="content" class="ui-content" role="main">
+                <div class="melding" onclick="hideMelding()"></div>
 				<div id="loadingDivAanvragen" style="display: none;">
 					<img src="img/gif-load_blue.gif">
 				</div>
@@ -283,16 +288,16 @@
 					<div class="confBackg">&nbsp;</div>
 					<div class="confContent">
 						<p class="txtConfirmAanvr">Weet je zeker dat je alle aanvragen wilt goedkeuren?</p>
-						<div id="divConfAanvrNo" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnConfAanvrNo" class="btnConfAanvrNo" type="submit" value="Nee" />Nee</div>
-						<div id="divConfAanvrYes" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnConfAanvrYes" class="btnConfAanvrYes" type="submit" value="Ja" />Ja</div>
+						<div id="divConfAanvrNo" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="a" id="btnConfAanvrNo" class="btnConfAanvrNo" type="submit" value="Nee" />Nee</div>
+						<div id="divConfAanvrYes" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="a" id="btnConfAanvrYes" class="btnConfAanvrYes" type="submit" value="Ja" />Ja</div>
 					</div>
 				</div>
 				<div data-role="collapsibleset" data-theme="a" data-iconpos="right" id="colSetAanvragen">
 				</div>
-				<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAllesGoedkeuren" class="btnAllesGoedkeuren" type="submit" value="Alles goedkeuren" />Alles goedkeuren</div>
+				<div class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="a" id="btnAllesGoedkeuren" class="btnAllesGoedkeuren" type="submit" value="Alles goedkeuren" />Alles goedkeuren</div>
 			</div>
 
-			<div data-role="panel" id="aanvragen_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+			<div data-role="panel" id="aanvragen_panel" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
 				<div class="ui-panel-inner">
 					<a href="#aanvragen" data-transition="none" data-rel="close" class='aanvragen_hide_panel' style='display:none;'></a>
 					<ul class="menu">
@@ -310,15 +315,14 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="detailsAanvraag" data-theme="b">
-			<div class="melding" onclick="hideMelding()">
-			</div>
+		<div data-role="page" id="detailsAanvraag" data-theme="a">
 			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#detailsAanvraag_panel" data-transition="none"><img src="img/menu.png" /></a></div>
+				<div class="left"><a id="aOpenDetailsAanvraagPanel" href="#detailsAanvraag_panel" data-transition="none"><img src="img/menu.png" /></a></div>
 				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
 			</div>
 
 			<div data-role="content" class="ui-content" role="main" data-theme="a">
+                <div class="melding" onclick="hideMelding()"></div>
 				<div id="loadingDivDetailAanvraag" style="display: none;">
 					<img src="img/gif-load_blue.gif">
 				</div>
@@ -338,12 +342,12 @@
 				<br/>
 				<label class="lblRedenBeh vet">Reden (optioneel bij goedkeuren):</label>
 				<textarea id="txaRedenAanvraagKeuren" name="txaReden" data-theme="a"></textarea>
-				<div style="z-index: 0; " class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnGoedkeuren" class="btnGoedkeuren" type="submit" value="Goedkeuren" />Goedkeuren</div>
-				<div style="z-index: 0; " class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnAfkeuren" class="btnAfkeuren" type="submit" value="Afkeuren" />Afkeuren</div>
-				<a style="text-decoration: none; z-index: 0; " href="#aanvragen"><div style="margin-bottom: 450px;" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="b" id="btnBehandelAndereAanvr" class="btnBehandelAndereAanvr" type="submit" value="Andere aanvraag behandelen" />Andere aanvraag behandelen</div></a>
+				<div style="z-index: 0; " class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="a" id="btnGoedkeuren" class="btnGoedkeuren" type="submit" value="Goedkeuren" />Goedkeuren</div>
+				<div style="z-index: 0; " class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="a" id="btnAfkeuren" class="btnAfkeuren" type="submit" value="Afkeuren" />Afkeuren</div>
+				<a style="text-decoration: none; z-index: 0; " href="#aanvragen"><div style="margin-bottom: 450px;" class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a"><input data-theme="a" id="btnBehandelAndereAanvr" class="btnBehandelAndereAanvr" type="submit" value="Andere aanvraag behandelen" />Andere aanvraag behandelen</div></a>
 			</div>
 
-			<div data-role="panel" id="detailsAanvraag_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+			<div data-role="panel" id="detailsAanvraag_panel" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
 				<div class="ui-panel-inner">
 					<a href="#detailsAanvraag" data-transition="none" data-rel="close" class='detailsAanvraag_hide_panel' style='display:none;'></a>
 					<ul class="menu">
@@ -361,15 +365,14 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="Opties" data-theme="b">
-			<div class="melding" onclick="hideMelding()">
-			</div>
+		<div data-role="page" id="Opties" data-theme="a">
 			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#opties_panel" data-transition="none"><img src="img/menu.png" /></a></div>
+				<div class="left"><a id="aOpenOptiesPanel" href="#opties_panel" data-transition="none"><img src="img/menu.png" /></a></div>
 				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
 			</div>
 
 			<div data-role="content" class="ui-content" role="main">
+                <div class="melding" onclick="hideMelding()"></div>
 				<form>
 					<fieldset data-role="controlgroup">
 						<input onchange="changeLang()" type="radio" name="radio-choice-v-2" data-theme="a" id="rdbNl" value="on" checked="checked">
@@ -385,7 +388,7 @@
 				</div>
 			</div>
 
-			<div data-role="panel" id="opties_panel" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
+			<div data-role="panel" id="opties_panel" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-open">
 				<div class="ui-panel-inner">
 					<a href="#Opties" data-transition="none" data-rel="close" class='opties_hide_panel' style='display:none;'></a>
 					<ul class="menu">
@@ -403,11 +406,9 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="About" data-theme="b">
-			<div class="melding" onclick="hideMelding()">
-			</div>
+		<div data-role="page" id="About" data-theme="a">
 			<div data-role="header" class="header" data-position="fixed">
-				<div class="left"><a href="#about_panel" data-transition="none"><img src="img/menu.png" /></a></div>
+				<div class="left"><a id="aOpenAboutPanel" href="#about_panel" data-transition="none"><img src="img/menu.png" /></a></div>
 				<div class="right"><a href="#Toon-map" data-role="none" data-rel="popup" data-position-to="window" onclick="initialize()"><img src="img/map.png" /></a></div>
 				<div class="center"><h1><a href="#home">my.e-ok</a></h1></div>
 			</div>
@@ -419,6 +420,7 @@
 			</div>
 
 			<div data-role="content" class="ui-content" role="main">
+                <div class="melding" onclick="hideMelding()"></div>
 				<div id="contactGeg">
 					<p>Groep ADMB</p>
 					<p>Sint-Clarastraat 48</p>
@@ -440,7 +442,7 @@
 						<li><a href="#verlofAanv" data-rel="close" data-transition="none"><img src="img/kalender_black.png" /><span class="lblMenuVerlof">Verlof aanvragen</span><div class="clear-fix"></div></a></li>
 						<li><a href="#historiek" data-rel="close" data-transition="none"><img src="img/history.png" /><span class="lblMenuHistoriek">Historiek</span><div class="clear-fix"></div></a></li>
 
-						<li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="img/KalenderChecked.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
+                        <li class="menuBehandelen"><a href="#aanvragen" data-rel="close" data-transition="none"><img src="img/KalenderChecked.png" /><span class="lblMenuAanvragen">Aanvragen behandelen</span><div class="clear-fix"></div></a></li>
 
 						<li><a href="#Opties" data-rel="close" data-transition="none"><img src="img/opties.png" /><span class="lblMenuInst">Instellingen</span><div class="clear-fix"></div></a></li>
 						<li><a href="#About" data-rel="close" data-transition="none"><img src="img/About.png" /><span>ADMB</span><div class="clear-fix"></div></a></li>
@@ -450,18 +452,13 @@
 			</div>
 		</div>
 		
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDQlGfx1xy-4iELx4sSB759T-ESWARO39Y&sensor=false&libraries=places&language=en"></script>
-		<script src="js/googleMap.js"></script>
-		<script src="js/DatabaseConnection.js"></script>
-		<script src="js/jquery-ui-1.10.4.custom.js"></script>
 		<script src="js/Vertalen.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/Home.js"></script>
         <script type="text/javascript">
             app.initialize();
         </script>
 		<script>
-			var APIVersion = '2';
+			var APIVersion = '3';
 
 			$( "#Toon-kalender" ).bind({
 				popupafterclose: function (event, ui) {
@@ -1085,8 +1082,8 @@
 					success: function (data) {
 						// De opgehaalde dagen in een array opslaan
 						// Deze lijst wordt pas overlopen/toegepast bij het weergeven/navigeren in een datepicker
-						loadingFeest = false;
-						uitTeSchakelenDagen = data;
+					    loadingFeest = false;
+					    uitTeSchakelenDagen = data;
 						if (dteDisabled) {
 							$('#dteVan').textinput("option", "disabled", false);
 							$('#dteTot').textinput("option", "disabled", false);
@@ -1261,8 +1258,9 @@
 				                            content += "</select></div>";
 				                        }
 				                        // Een button btnDagenBevestigen toevoegen
-				                        content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
-				                        content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + dynamicBtnDagenBevestigen + "' />" + dynamicBtnDagenBevestigen + "</input></div>";
+				                        //content += "<div class='ui-btn ui-input-btn ui-corner-all ui-shadow ui-btn-a'>";
+				                        //content += "<input data-theme='b' id='btnDagenBevestigen' type='submit' value='" + dynamicBtnDagenBevestigen + "' />" + dynamicBtnDagenBevestigen + "</input></div>";
+				                        content += "<input data-theme='a' id='btnDagenBevestigen' type='submit' value='" + dynamicBtnDagenBevestigen + "' />";
 				                        $("#colSet")[0].innerHTML = content;
 
 				                        for (i = 0; i < DagenVoorVerlofAanvraag.length; i++) {
@@ -1638,6 +1636,33 @@
 					$('#divConfAanvrNo').css('display', 'block').css('float', 'none');
 				}
 			});
+
+			if (navigator.userAgent.match(/(IEMobile)/)) {
+			    $(document).on('click', '#aOpenHomePanel', function () {
+			        $("#home_panel").panel("open");
+			    });
+			    $(document).on('click', '#aOpenVerlofPanel', function () {
+			        $("#verlof_panel").panel("open");
+			    });
+			    $(document).on('click', '#aOpenDetailsPanel', function () {
+			        $("#details_panel").panel("open");
+			    });
+			    $(document).on('click', '#aOpenHistoriekPanel', function () {
+			        $("#historiek_panel").panel("open");
+			    });
+			    $(document).on('click', '#aOpenAanvragenPanel', function () {
+			        $("#aanvragen_panel").panel("open");
+			    });
+			    $(document).on('click', '#aOpenDetailsAanvraagPanel', function () {
+			        $("#detailsAanvraag_panel").panel("open");
+			    });
+			    $(document).on('click', '#aOpenOptiesPanel', function () {
+			        $("#opties_panel").panel("open");
+			    });
+			    $(document).on('click', '#aOpenAboutPanel', function () {
+			        $("#about_panel").panel("open");
+			    });
+			}
 		</script>
 		<script src="js/BehandelenAanvragen.js"></script>
     </body>

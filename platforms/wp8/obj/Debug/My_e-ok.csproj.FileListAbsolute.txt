@@ -12,3 +12,4 @@ C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Debug\com.OKc.ap
 C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Debug\com.OKc.app.dll
 C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Debug\com.OKc.app.pdb
 C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\obj\Debug\XapCacheFile.xml
+C:\Users\user\Documents\GitHub\my.e-ok_mobile\platforms\wp8\Bin\Debug\Properties\WMAppManifest.xml

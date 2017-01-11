@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.OKc.app" version="16.4.1">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.OKc.app" version="17.1.1">
   <!-- android: com.okc.mobile.myE-ok -->
   <!-- com.OKc.app -->
 	<name>My.e-ok</name>
@@ -32,7 +32,8 @@
   
   <preference name="windows-appx-target" value="8.1-phone" />
   <preference name="windows-identity-name" value="12065OKc.My.e-ok" />
-
+  <!--<preference name="windows-identity-name" value="12065OKc.myeok" />-->
+  
   
 	<gap:plugin name="org.apache.cordova.console" source="npm"/>
 	<gap:plugin name="org.apache.cordova.device" source="npm"/>
@@ -84,8 +85,8 @@
 	<gap:splash src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136"/>
 	<gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
 	<gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
-	<gap:splash src="www/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>
-  
+	<gap:splash src="www/res/screen/windows-phone/screen-portrait.png" gap:platform="winphone"/>
+   
 	<access origin="http://127.0.0.1*"/>
 	<access origin="http://10.0.2.2*"/>
 	<access origin="*"/>
