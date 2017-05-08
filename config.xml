@@ -1,7 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.OKc.app" version="17.1.1">
   <!-- android: com.okc.mobile.myE-ok -->
   <!-- com.OKc.app -->
-	<name>My.e-ok</name>
+	<name>myeok</name>
 
   <description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
@@ -29,10 +29,10 @@
 	<preference name="android-installLocation" value="auto"/>
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="SplashScreenDelay" value="10000" />
-  <preference name="phonegap-version" value="cli-6.3.0" />
+  <preference name="phonegap-version" value="cli-6.5.0" />
   
   <preference name="windows-appx-target" value="8.1-phone" />
-  <preference name="windows-identity-name" value="12065OKc.My.e-ok" />
+	<!--<preference name="windows-identity-name" value="12065OKc.My.e-ok" />-->
   <!--<preference name="windows-identity-name" value="12065OKc.myeok" />-->
   
   
