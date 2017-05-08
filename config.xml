@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.okc.mobile.myE-ok" version="17.1.1">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.OKc.app" version="17.1.1">
   <!-- android: com.okc.mobile.myE-ok -->
   <!-- com.OKc.app -->
 	<name>My.e-ok</name>
@@ -6,8 +6,9 @@
   <description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
   </description>
-	
-	<author email="morten.minne@admb.be">morten.minne@admb.be</author>
+
+	<!--<author email="morten.minne@admb.be">morten.minne@admb.be</author>-->
+	<author email="morten.minne@admb.be">helpdesk@okc.be</author>
 
   <content src="index.html"/>
 	
