@@ -1,12 +1,17 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.OKc.app" version="17.1.1">
   <!-- android: com.okc.mobile.myE-ok -->
   <!-- com.OKc.app -->
-	<name>My.e-ok</name>
+	<name>myeok</name>
 
   <description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
   </description>
+<<<<<<< HEAD
 	
+=======
+
+	<!--<author email="morten.minne@admb.be">morten.minne@admb.be</author>-->
+>>>>>>> origin/master
 	<author email="morten.minne@admb.be">OKc</author>
 
   <content src="index.html"/>
@@ -31,7 +36,11 @@
   <preference name="phonegap-version" value="cli-6.5.0" />
   
   <preference name="windows-appx-target" value="8.1-phone" />
+<<<<<<< HEAD
   <!--<preference name="windows-identity-name" value="12065OKc.My.e-ok" />-->
+=======
+	<!--<preference name="windows-identity-name" value="12065OKc.My.e-ok" />-->
+>>>>>>> origin/master
   <preference name="windows-identity-name" value="12065OKc.myeok" />
   
   
