@@ -33,7 +33,7 @@
   
   <preference name="windows-appx-target" value="8.1-phone" />
 	<!--<preference name="windows-identity-name" value="12065OKc.My.e-ok" />-->
-  <!--<preference name="windows-identity-name" value="12065OKc.myeok" />-->
+  <preference name="windows-identity-name" value="12065OKc.myeok" />
   
   
 	<gap:plugin name="org.apache.cordova.console" source="npm"/>
