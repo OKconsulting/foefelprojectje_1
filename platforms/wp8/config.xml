@@ -3,7 +3,7 @@
     <feature name="Notification">
         <param name="wp-package" value="Notification" />
     </feature>
-    <name>My.e-ok</name>
+    <name>My.e-OK</name>
     <description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
   </description>
@@ -81,4 +81,5 @@
     <preference name="phonegap-version" value="cli-6.5.0" />
     <preference name="windows-appx-target" value="8.1-phone" />
     <preference name="windows-identity-name" value="12065OKc.myeok" />
+    <preference name="windows-display-name" value="myeok" />
 </widget>

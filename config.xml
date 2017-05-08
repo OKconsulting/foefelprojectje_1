@@ -1,7 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.OKc.app" version="17.1.1">
   <!-- android: com.okc.mobile.myE-ok -->
   <!-- com.OKc.app -->
-	<name>myeok</name>
+	<name>My.e-OK</name>
 
   <description>
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
@@ -33,9 +33,9 @@
   <preference name="windows-appx-target" value="8.1-phone" />
   <!--<preference name="windows-identity-name" value="12065OKc.My.e-ok" />-->
   <preference name="windows-identity-name" value="12065OKc.myeok" />
-  
-  
-	<gap:plugin name="org.apache.cordova.console" source="npm"/>
+  <preference name="windows-display-name" value="myeok" />
+
+  <gap:plugin name="org.apache.cordova.console" source="npm"/>
 	<gap:plugin name="org.apache.cordova.device" source="npm"/>
 	<gap:plugin name="org.apache.cordova.dialogs" source="npm"/>
 	<gap:plugin name="org.apache.cordova.globalization" source="npm"/>
