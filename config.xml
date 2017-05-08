@@ -7,7 +7,7 @@
       My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!
   </description>
 	
-	<author email="morten.minne@admb.be">morten.minne@admb.be</author>
+	<author email="morten.minne@admb.be">OKc</author>
 
   <content src="index.html"/>
 	
@@ -28,11 +28,11 @@
 	<preference name="android-installLocation" value="auto"/>
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="SplashScreenDelay" value="10000" />
-  <preference name="phonegap-version" value="cli-6.3.0" />
+  <preference name="phonegap-version" value="cli-6.5.0" />
   
   <preference name="windows-appx-target" value="8.1-phone" />
-  <preference name="windows-identity-name" value="12065OKc.My.e-ok" />
-  <!--<preference name="windows-identity-name" value="12065OKc.myeok" />-->
+  <!--<preference name="windows-identity-name" value="12065OKc.My.e-ok" />-->
+  <preference name="windows-identity-name" value="12065OKc.myeok" />
   
   
 	<gap:plugin name="org.apache.cordova.console" source="npm"/>

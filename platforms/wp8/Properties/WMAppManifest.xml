@@ -4,7 +4,7 @@
     <Languages xmlns="">
         <Language code="en-US" />
     </Languages>
-    <App Author="morten.minne@admb.be" BitsPerPixel="32" Description="My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!" Genre="apps.normal" ProductID="{29305da0-95df-11e6-a37f-5399c11f7d23}" Publisher="morten.minne@admb.be" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="My.e-ok" Version="17.1.1" xmlns="">
+    <App Author="OKc" BitsPerPixel="32" Description="My.e-ok is nu beschikbaar op uw toestel! Met de applicatie kan je vakantie aanvragen en uw saldi en historiek bekijken zoals op my.e-ok.be!" Genre="apps.normal" ProductID="{29305da0-95df-11e6-a37f-5399c11f7d23}" Publisher="OKc" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="My.e-ok" Version="17.1.1" xmlns="">
         <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
         <Capabilities>
             <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
