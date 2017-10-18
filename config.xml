@@ -35,15 +35,21 @@
   <preference name="windows-identity-name" value="12065OKc.myeok" />
   <preference name="windows-display-name" value="myeok" />
 
-  <gap:plugin name="org.apache.cordova.console" source="npm"/>
-	<gap:plugin name="org.apache.cordova.device" source="npm"/>
-	<gap:plugin name="org.apache.cordova.dialogs" source="npm"/>
-	<gap:plugin name="org.apache.cordova.globalization" source="npm"/>
-	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
-	<gap:plugin name="org.apache.cordova.splashscreen" source="npm"/>
+	<!--<gap:plugin name="org.apache.cordova.console" source="npm"/>-->
+	<gap:plugin name="cordova-plugin-console" source="npm"/>
+	<!--<gap:plugin name="org.apache.cordova.device" source="npm"/>-->
+	<gap:plugin name="cordova-plugin-device" source="npm"/>
+	<!--<gap:plugin name="org.apache.cordova.dialogs" source="npm"/>-->
+	<gap:plugin name="cordova-plugin-dialogs" source="npm"/>
+	<!--<gap:plugin name="org.apache.cordova.globalization" source="npm"/>-->
+	<gap:plugin name="cordova-plugin-globalization" source="npm"/>
+	<!--<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>-->
+	<gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
+	<!--<gap:plugin name="org.apache.cordova.splashscreen" source="npm"/>-->
+	<gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
+	<gap:plugin name="cordova-plugin-network-information" source="npm" />
 	<!--<gap:plugin name="com.phonegap.plugin.statusbar" />-->
-  <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-  <gap:plugin name="cordova-plugin-network-information" source="npm" />
 
   
   <!--
